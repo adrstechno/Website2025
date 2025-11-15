@@ -3,29 +3,18 @@ import { motion } from 'framer-motion';
 const Team = () => {
   const leaders = [
     {
-      name: 'Abhishek Dubey',
-      role: 'Chief Executive Officer',
+      name: 'Mr. Abhishek Dubey',
+      role: 'Founder & CEO',
       image: '/team/abhishek.jpg',
     },
-    {
-      name: 'Siddhant Dubey',
-      role: 'Chief Technology Officer',
-      image: '/team/siddhant.jpg',
-    },
-   
   ];
 
   const developers = [
-    { name: 'Srajal Vishwakarma', role: 'Full Stack Developer', image: '/team/srajal.jpg' },
-    { name: 'Sapeksh Vishwakarma', role: 'Frontend Developer', image: '/team/sapeksh.jpg' },
-    { name: 'Sparsh Sahu', role: 'Backend Developer', image: '/team/sparsh.jpg' },
-    { name: 'Sachin Sen', role: 'Full Stack Developer', image: '/team/sachin.jpg' },
-    { name: 'Danish Khan', role: 'Mobile Developer', image: '/team/danish.jpg' },
-    { name: 'Ishant Patel', role: 'Frontend Developer', image: '/team/ishant.jpg' },
-    { name: 'Roshan Sachdev', role: 'Backend Developer', image: '/team/roshan.jpg' },
-    { name: 'Sakshi Jain', role: 'UI/UX Designer', image: '/team/sakshi.jpg' },
-    { name: 'Anshraj Baghel', role: 'Full Stack Developer', image: '/team/anshraj.jpg' },
-    { name: 'Aman Vishwakarma', role: 'DevOps Engineer', image: '/team/aman.jpg' },
+    { name: 'Piyush Khare', role: 'Full Stack Developer', image: '/team/piyush.jpg' },
+    { name: 'Siddhant Dubey', role: 'Chief Technical Officer', image: '/team/siddhant.jpg' },
+    { name: 'Aman Vishwakarma', role: 'Full Stack Developer', image: '/team/aman.jpg' },
+    { name: 'Ishant Patel', role: 'Team Lead & Full Stack Developer', image: '/team/ishant.jpg' },
+    { name: 'Sapetsh Vishwakarma', role: 'Full Stack Developer', image: '/team/sapetsh.jpg' },
   ];
 
   return (
@@ -65,7 +54,7 @@ const Team = () => {
             <p className="text-xl text-secondary">Guiding ADRS Technology to success</p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <div className="grid md:grid-cols-1 gap-8 max-w-md mx-auto">
             {leaders.map((leader, index) => (
               <motion.div
                 key={index}
@@ -110,7 +99,7 @@ const Team = () => {
             <p className="text-xl text-secondary">Expert developers building the future</p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {developers.map((dev, index) => (
               <motion.div
                 key={index}
