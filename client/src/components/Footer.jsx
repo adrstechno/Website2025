@@ -1,8 +1,12 @@
 import { Link } from 'react-router-dom';
 import { FaLinkedin, FaGithub, FaTwitter } from 'react-icons/fa';
+import { useTheme } from '../context/ThemeContext';
 
 const Footer = () => {
+  const { theme } = useTheme();
   const currentYear = new Date().getFullYear();
+
+  const logoSrc = theme === 'dark' ? '/logo-dark.png' : '/logo.png';
 
   const footerLinks = {
     Company: [
@@ -37,7 +41,7 @@ const Footer = () => {
           {/* Brand */}
           <div className="col-span-2 md:col-span-1">
             <div className="flex items-center space-x-3 mb-4">
-              <img src="/logo.png" alt="ADRS Technology" className="h-10 w-auto" />
+              <img src={logoSrc} alt="ADRS Technology logo" className="h-10 w-auto" />
             </div>
             <div className="text-lg font-bold mb-4">
               <span className="text-primary">ADRS</span>

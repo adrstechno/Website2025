@@ -44,11 +44,7 @@ const Navbar = () => {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8, ease: [0.6, 0.05, 0.01, 0.9] }}
-      className={`fixed w-full z-50 transition-all duration-500 ${
-        scrolled
-          ? 'bg-white/90 dark:bg-dark-primary/90 backdrop-blur-2xl shadow-lg shadow-purple-500/5'
-          : 'bg-transparent'
-      }`}
+      className="fixed w-full z-50 bg-transparent transition-all duration-500"
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
@@ -223,19 +219,28 @@ const Navbar = () => {
           </div>
 
           {/* MOBILE BUTTON */}
-          <button onClick={() => setMobileMenuOpen(!mobileMenuOpen)} className="lg:hidden p-2 relative">
-            <div className="w-6 h-5 flex flex-col justify-between">
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="lg:hidden p-2 relative bg-white/90 dark:bg-dark-secondary/80 rounded-md shadow-sm hover:shadow-md transition-shadow focus:outline-none focus:ring-2 focus:ring-purple-500"
+            aria-label={mobileMenuOpen ? 'Close main menu' : 'Open main menu'}
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-menu"
+            type="button"
+          >
+            <span className="sr-only">{mobileMenuOpen ? 'Close main menu' : 'Open main menu'}</span>
+
+            <div className="w-7 h-6 flex flex-col justify-between">
               <motion.span
                 animate={mobileMenuOpen ? { rotate: 45, y: 8, backgroundColor: '#8b5cf6' } : { rotate: 0, y: 0 }}
-                className="w-full h-0.5 bg-primary transition-colors"
+                className="w-full h-0.5 bg-gray-800 dark:bg-gray-200 transition-colors"
               />
               <motion.span
                 animate={mobileMenuOpen ? { opacity: 0, x: -10 } : { opacity: 1, x: 0 }}
-                className="w-full h-0.5 bg-primary"
+                className="w-full h-0.5 bg-gray-800 dark:bg-gray-200"
               />
               <motion.span
                 animate={mobileMenuOpen ? { rotate: -45, y: -8, backgroundColor: '#8b5cf6' } : { rotate: 0, y: 0 }}
-                className="w-full h-0.5 bg-primary transition-colors"
+                className="w-full h-0.5 bg-gray-800 dark:bg-gray-200 transition-colors"
               />
             </div>
           </button>
@@ -245,7 +250,7 @@ const Navbar = () => {
       {/* MOBILE MENU */}
       <AnimatePresence>
         {mobileMenuOpen && (
-          <motion.div
+          <motion.div id="mobile-menu"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
