@@ -3,102 +3,70 @@ import ProductCard from '../components/ProductCard';
 import { useState } from 'react';
 
 const Products = () => {
-  const [activeTab, setActiveTab] = useState('all');
-
   const products = [
     {
-      name: 'ADRS Dashboard Pro',
-      description: 'Enterprise-grade analytics and business intelligence platform with real-time data visualization and custom reporting.',
-      icon: '📊',
+      name: 'IDHPS',
+      description: 'Comprehensive healthcare solution for modern medical facilities with appointment management, telemedicine, and electronic health records.',
+      icon: '🏥',
       gradient: 'from-blue-500 to-cyan-500',
-      badge: 'Popular',
+      badge: 'Healthcare',
       category: 'saas',
       features: [
-        'Real-time data synchronization',
-        'Custom dashboard builder',
-        'Advanced analytics engine',
-        'Multi-user collaboration',
-        'API integration support',
+        'Appointment Scheduling',
+        'Telemedicine Integration',
+        'Electronic Health Records (EHR)',
+        'Patient Portal',
+        'Billing & Insurance',
       ],
     },
     {
-      name: 'ADRS CRM Suite',
-      description: 'Complete customer relationship management solution with sales automation, pipeline tracking, and customer insights.',
-      icon: '👥',
+      name: 'Jewelry Manager',
+      description: 'Complete retail management solution designed specifically for jewelry businesses with inventory, billing, and CRM capabilities.',
+      icon: '💎',
       gradient: 'from-purple-500 to-pink-500',
-      badge: 'New',
+      badge: 'Retail',
       category: 'saas',
       features: [
-        '360° customer view',
-        'Sales pipeline management',
-        'Email marketing automation',
-        'Lead scoring & tracking',
-        'Mobile app included',
+        'Inventory Management',
+        'Point of Sale (POS)',
+        'Customer Relationship Management',
+        'Billing & Invoicing',
+        'Analytics & Reports',
       ],
     },
     {
-      name: 'ADRS Workflow Engine',
-      description: 'No-code workflow automation platform that streamlines business processes and eliminates manual tasks.',
-      icon: '⚙️',
+      name: 'ADRS Learn Pro',
+      description: 'Advanced learning management system with progress tracking, analytics, and interactive course delivery.',
+      icon: '🎓',
       gradient: 'from-green-500 to-teal-500',
+      badge: 'Education',
       category: 'saas',
       features: [
-        'Visual workflow builder',
-        'Pre-built templates',
-        'Multi-step approvals',
-        'Integration marketplace',
-        'Audit trail & compliance',
+        'Course Management',
+        'Progress Tracking',
+        'Analytics Dashboard',
+        'Interactive Assessments',
+        'Student Portal',
       ],
     },
     {
-      name: 'ADRS Cloud Platform',
-      description: 'Fully managed PaaS infrastructure with auto-scaling, load balancing, and global CDN distribution.',
-      icon: '☁️',
+      name: 'Custom ERP',
+      description: 'Tailored enterprise resource planning solution with workflow automation, comprehensive reporting, and seamless integration.',
+      icon: '🏢',
       gradient: 'from-blue-600 to-indigo-600',
       badge: 'Enterprise',
-      category: 'paas',
-      features: [
-        '99.9% uptime guarantee',
-        'Auto-scaling infrastructure',
-        'Global CDN network',
-        'DDoS protection',
-        'Managed databases',
-      ],
-    },
-    {
-      name: 'ADRS DevOps Suite',
-      description: 'Complete CI/CD pipeline with automated testing, deployment, and monitoring capabilities.',
-      icon: '🛠️',
-      gradient: 'from-orange-500 to-red-500',
-      category: 'paas',
-      features: [
-        'Automated CI/CD pipelines',
-        'Container orchestration',
-        'Performance monitoring',
-        'Log aggregation',
-        'Security scanning',
-      ],
-    },
-    {
-      name: 'ADRS AI Assistant',
-      description: 'AI-powered automation and insights platform that learns from your data and optimizes workflows.',
-      icon: '🤖',
-      gradient: 'from-purple-600 to-blue-600',
-      badge: 'AI-Powered',
       category: 'saas',
       features: [
-        'Natural language processing',
-        'Predictive analytics',
-        'Automated recommendations',
-        'Smart data extraction',
-        'Continuous learning',
+        'Workflow Automation',
+        'Custom Reports',
+        'Third-party Integration',
+        'Multi-department Management',
+        'Real-time Analytics',
       ],
     },
   ];
 
-  const filteredProducts = activeTab === 'all' 
-    ? products 
-    : products.filter(p => p.category === activeTab);
+
 
   const comparisonFeatures = [
     'Real-time Analytics',
@@ -161,36 +129,11 @@ const Products = () => {
         </div>
       </section>
 
-      {/* Product Filter */}
-      <section className="py-12 bg-white border-b">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-center gap-4">
-            {[
-              { id: 'all', label: 'All Products' },
-              { id: 'saas', label: 'SaaS Solutions' },
-              { id: 'paas', label: 'PaaS Infrastructure' },
-            ].map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                className={`px-6 py-3 rounded-lg font-semibold transition-all ${
-                  activeTab === tab.id
-                    ? 'bg-blue-600 text-white shadow-lg'
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
-                }`}
-              >
-                {tab.label}
-              </button>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Products Grid */}
       <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredProducts.map((product, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {products.map((product, index) => (
               <ProductCard key={index} product={product} index={index} />
             ))}
           </div>
