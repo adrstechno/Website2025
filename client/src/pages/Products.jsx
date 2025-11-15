@@ -101,9 +101,9 @@ const Products = () => {
   ];
 
   return (
-    <div className="pt-20">
+    <div className="section-bg pt-20">
       {/* Hero Section */}
-      <section className="py-24 bg-gradient-to-br from-blue-50 to-purple-50">
+      <section className="py-24 section-bg-alt">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -111,17 +111,17 @@ const Products = () => {
             transition={{ duration: 0.8 }}
             className="text-center max-w-4xl mx-auto"
           >
-            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-              Powerful <span className="gradient-text">Products</span> for Modern Business
+            <h1 className="text-5xl md:text-6xl font-bold text-primary mb-6">
+              Powerful <span className="text-purple-600 dark:text-purple-400">Products</span> for Modern Business
             </h1>
-            <p className="text-xl text-gray-600 leading-relaxed mb-8">
+            <p className="text-xl text-secondary leading-relaxed mb-8">
               Enterprise-grade solutions designed to transform your operations
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <button className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-semibold hover:shadow-xl transition-all">
                 Start Free Trial
               </button>
-              <button className="px-8 py-4 bg-white text-gray-900 border-2 border-gray-900 rounded-lg font-semibold hover:bg-gray-900 hover:text-white transition-all">
+              <button className="px-8 py-4 card-bg text-primary border-2 border-purple-600 dark:border-purple-400 rounded-lg font-semibold hover:bg-purple-600 hover:text-white dark:hover:bg-purple-500 transition-all">
                 Schedule Demo
               </button>
             </div>
@@ -130,7 +130,7 @@ const Products = () => {
       </section>
 
       {/* Products Grid */}
-      <section className="py-24 bg-white">
+      <section className="py-24 section-bg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             {products.map((product, index) => (
@@ -141,7 +141,7 @@ const Products = () => {
       </section>
 
       {/* Comparison Table */}
-      <section className="py-24 bg-gray-50">
+      <section className="py-24 section-bg-alt">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -150,13 +150,13 @@ const Products = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Compare <span className="gradient-text">Plans</span>
+            <h2 className="text-4xl font-bold text-primary mb-4">
+              Compare <span className="text-purple-600 dark:text-purple-400">Plans</span>
             </h2>
-            <p className="text-xl text-gray-600">Choose the right plan for your needs</p>
+            <p className="text-xl text-secondary">Choose the right plan for your needs</p>
           </motion.div>
 
-          <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+          <div className="card-bg rounded-2xl shadow-xl overflow-hidden">
             <div className="overflow-x-auto">
               <table className="w-full">
                 <thead className="bg-gradient-to-r from-blue-600 to-purple-600 text-white">
@@ -167,10 +167,10 @@ const Products = () => {
                     <th className="px-6 py-4 text-center">Enterprise</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-200">
+                <tbody className="divide-y divide-gray-200 dark:divide-white/10">
                   {comparisonFeatures.map((feature, index) => (
-                    <tr key={index} className="hover:bg-gray-50">
-                      <td className="px-6 py-4 font-medium text-gray-900">{feature}</td>
+                    <tr key={index} className="hover:bg-gray-50 dark:hover:bg-white/5">
+                      <td className="px-6 py-4 font-medium text-primary">{feature}</td>
                       <td className="px-6 py-4 text-center">
                         {index < 2 ? (
                           <svg className="w-6 h-6 text-green-500 mx-auto" fill="currentColor" viewBox="0 0 20 20">
@@ -204,7 +204,7 @@ const Products = () => {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-24 bg-white">
+      <section className="py-24 section-bg">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -213,10 +213,10 @@ const Products = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Frequently Asked <span className="gradient-text">Questions</span>
+            <h2 className="text-4xl font-bold text-primary mb-4">
+              Frequently Asked <span className="text-purple-600 dark:text-purple-400">Questions</span>
             </h2>
-            <p className="text-xl text-gray-600">Everything you need to know</p>
+            <p className="text-xl text-secondary">Everything you need to know</p>
           </motion.div>
 
           <div className="space-y-6">
@@ -227,10 +227,10 @@ const Products = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-gray-50 rounded-xl p-6 hover:shadow-lg transition-shadow"
+                className="card-bg rounded-xl p-6 hover:shadow-lg transition-shadow"
               >
-                <h3 className="text-lg font-bold text-gray-900 mb-3">{faq.question}</h3>
-                <p className="text-gray-600 leading-relaxed">{faq.answer}</p>
+                <h3 className="text-lg font-bold text-primary mb-3">{faq.question}</h3>
+                <p className="text-secondary leading-relaxed">{faq.answer}</p>
               </motion.div>
             ))}
           </div>
