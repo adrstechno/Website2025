@@ -7,15 +7,15 @@ const Gallery = () => {
   const categories = ['all', 'events', 'workshops', 'office', 'team'];
 
   const images = [
-    { id: 1, category: 'events', title: 'Tech Conference 2024', image: '/gallery/event1.jpg' },
-    { id: 2, category: 'workshops', title: 'Coding Workshop', image: '/gallery/workshop1.jpg' },
-    { id: 3, category: 'office', title: 'Modern Workspace', image: '/gallery/office1.jpg' },
-    { id: 4, category: 'team', title: 'Team Meeting', image: '/gallery/team1.jpg' },
-    { id: 5, category: 'events', title: 'Product Launch', image: '/gallery/event2.jpg' },
-    { id: 6, category: 'workshops', title: 'AI Workshop', image: '/gallery/workshop2.jpg' },
-    { id: 7, category: 'office', title: 'Development Area', image: '/gallery/office2.jpg' },
-    { id: 8, category: 'team', title: 'Team Celebration', image: '/gallery/team2.jpg' },
-    { id: 9, category: 'events', title: 'Hackathon 2024', image: '/gallery/event3.jpg' },
+    { id: 1, category: 'events', title: 'Tech Conference 2024', image: '/gallery/p2.jpg' },
+    { id: 2, category: 'workshops', title: 'Coding Workshop', image: '/gallery/p3.jpg' },
+    { id: 3, category: 'office', title: 'Modern Workspace', image: '/gallery/p4.jpg' },
+    { id: 4, category: 'team', title: 'Team Meeting', image: '/gallery/p9.jpg' },
+    { id: 5, category: 'events', title: 'Product Launch', image: '/gallery/p10.jpg' },
+    // { id: 6, category: 'workshops', title: 'AI Workshop', image: '/gallery/workshop2.jpg' },
+    // { id: 7, category: 'office', title: 'Development Area', image: '/gallery/office2.jpg' },
+    // { id: 8, category: 'team', title: 'Team Celebration', image: '/gallery/team2.jpg' },
+    // { id: 9, category: 'events', title: 'Hackathon 2024', image: '/gallery/event3.jpg' },
   ];
 
   const filteredImages = selectedCategory === 'all' 
