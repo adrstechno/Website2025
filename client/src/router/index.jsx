@@ -1,13 +1,14 @@
 import { createBrowserRouter } from 'react-router-dom';
 import Layout from '../layouts/Layout';
 import Home from '../pages/Home';
-import About from '../pages/About';
+import Mission from '../pages/Mission';
 import Services from '../pages/Services';
 import Products from '../pages/Products';
 import Contact from '../pages/Contact';
 import Team from '../pages/Team';
 import Workshop from '../pages/Workshop';
 import Gallery from '../pages/Gallery';
+import Career from '../pages/Career';
 
 export const router = createBrowserRouter([
   {
@@ -19,8 +20,8 @@ export const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: 'about',
-        element: <About />,
+        path: 'mission',
+        element: <Mission />,
       },
       {
         path: 'services',
@@ -37,6 +38,10 @@ export const router = createBrowserRouter([
       {
         path: 'workshop',
         element: <Workshop />,
+      },
+      {
+        path: 'career',
+        element: <Career />,
       },
       {
         path: 'gallery',
