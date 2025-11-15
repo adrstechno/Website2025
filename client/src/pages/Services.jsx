@@ -67,9 +67,9 @@ const Services = () => {
   ];
 
   return (
-    <div className="pt-20">
+    <div className="section-bg pt-20">
       {/* Hero Section */}
-      <section className="py-24 bg-gradient-to-br from-blue-50 to-purple-50">
+      <section className="py-24 section-bg-alt">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -77,18 +77,18 @@ const Services = () => {
             transition={{ duration: 0.8 }}
             className="text-center max-w-4xl mx-auto"
           >
-            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
-              Enterprise <span className="gradient-text">Solutions</span> That Scale
+            <h1 className="text-5xl md:text-6xl font-bold text-primary mb-6">
+              Enterprise <span className="text-purple-600 dark:text-purple-400">Solutions</span> That Scale
             </h1>
-            <p className="text-xl text-gray-600 leading-relaxed">
-              Comprehensive SaaS and PaaS services designed for modern businesses
+            <p className="text-xl text-secondary leading-relaxed">
+              Comprehensive technology services designed for modern businesses
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* SaaS Solutions */}
-      <section className="py-24 bg-white">
+      {/* Core Services */}
+      <section className="py-24 section-bg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -97,10 +97,10 @@ const Services = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Core <span className="gradient-text">Services</span>
+            <h2 className="text-4xl font-bold text-primary mb-4">
+              Core <span className="text-purple-600 dark:text-purple-400">Services</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-xl text-secondary max-w-2xl mx-auto">
               Comprehensive technology solutions for your business
             </p>
           </motion.div>
@@ -113,8 +113,8 @@ const Services = () => {
         </div>
       </section>
 
-      {/* PaaS Services */}
-      <section className="py-24 bg-gray-50">
+      {/* Additional Services */}
+      <section className="py-24 section-bg-alt">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -123,10 +123,10 @@ const Services = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Additional <span className="gradient-text">Services</span>
+            <h2 className="text-4xl font-bold text-primary mb-4">
+              Additional <span className="text-purple-600 dark:text-purple-400">Services</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-xl text-secondary max-w-2xl mx-auto">
               Extended capabilities to meet all your technology needs
             </p>
           </motion.div>
@@ -140,7 +140,7 @@ const Services = () => {
       </section>
 
       {/* Industry Solutions */}
-      <section className="py-24 bg-white">
+      <section className="py-24 section-bg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -149,10 +149,10 @@ const Services = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Industry-Specific <span className="gradient-text">Solutions</span>
+            <h2 className="text-4xl font-bold text-primary mb-4">
+              Industry-Specific <span className="text-purple-600 dark:text-purple-400">Solutions</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-xl text-secondary max-w-2xl mx-auto">
               Tailored solutions for your industry's unique challenges
             </p>
           </motion.div>
@@ -166,11 +166,11 @@ const Services = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 whileHover={{ y: -5 }}
-                className="bg-gradient-to-br from-blue-50 to-purple-50 rounded-2xl p-8 text-center"
+                className="card-bg rounded-2xl p-8 text-center"
               >
                 <div className="text-5xl mb-4">{industry.icon}</div>
-                <h3 className="text-xl font-bold text-gray-900 mb-3">{industry.name}</h3>
-                <p className="text-gray-600">{industry.description}</p>
+                <h3 className="text-xl font-bold text-primary mb-3">{industry.name}</h3>
+                <p className="text-secondary">{industry.description}</p>
               </motion.div>
             ))}
           </div>
@@ -178,7 +178,7 @@ const Services = () => {
       </section>
 
       {/* Why Different */}
-      <section className="py-24 bg-gradient-to-br from-gray-900 to-blue-900 text-white">
+      <section className="py-24 section-bg-alt">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -187,8 +187,8 @@ const Services = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl font-bold mb-4">Why ADRS is Different</h2>
-            <p className="text-xl text-blue-200 max-w-2xl mx-auto">
+            <h2 className="text-4xl font-bold text-primary mb-4">Why ADRS is Different</h2>
+            <p className="text-xl text-secondary max-w-2xl mx-auto">
               We don't just provide software—we partner with you for success
             </p>
           </motion.div>
@@ -198,7 +198,7 @@ const Services = () => {
               { icon: '🎯', title: 'Tailored Solutions', desc: 'Customized to your needs' },
               { icon: '🚀', title: 'Rapid Deployment', desc: 'Go live in days, not months' },
               { icon: '💪', title: 'Enterprise Support', desc: 'Dedicated success team' },
-              { icon: '🔐', title: 'Bank-Grade Security', desc: 'SOC 2 & ISO certified' },
+              { icon: '🔐', title: 'Bank-Grade Security', desc: 'Industry-standard security' },
             ].map((item, index) => (
               <motion.div
                 key={index}
@@ -206,11 +206,11 @@ const Services = () => {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="text-center"
+                className="card-bg p-6 rounded-xl text-center"
               >
                 <div className="text-5xl mb-4">{item.icon}</div>
-                <h3 className="text-xl font-bold mb-2">{item.title}</h3>
-                <p className="text-blue-200">{item.desc}</p>
+                <h3 className="text-xl font-bold text-primary mb-2">{item.title}</h3>
+                <p className="text-secondary">{item.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -218,7 +218,7 @@ const Services = () => {
       </section>
 
       {/* Pricing Highlights */}
-      <section className="py-24 bg-white">
+      <section className="py-24 section-bg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -227,10 +227,10 @@ const Services = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              Flexible <span className="gradient-text">Pricing</span>
+            <h2 className="text-4xl font-bold text-primary mb-4">
+              Flexible <span className="text-purple-600 dark:text-purple-400">Pricing</span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-xl text-secondary max-w-2xl mx-auto">
               Plans that grow with your business
             </p>
           </motion.div>
@@ -250,7 +250,7 @@ const Services = () => {
                 className={`rounded-2xl p-8 ${
                   plan.popular
                     ? 'bg-gradient-to-br from-blue-600 to-purple-600 text-white shadow-2xl scale-105'
-                    : 'bg-white border-2 border-gray-200'
+                    : 'card-bg border-2 border-gray-200 dark:border-white/10'
                 }`}
               >
                 {plan.popular && (
@@ -260,11 +260,11 @@ const Services = () => {
                     </span>
                   </div>
                 )}
-                <h3 className={`text-2xl font-bold mb-2 ${plan.popular ? 'text-white' : 'text-gray-900'}`}>
+                <h3 className={`text-2xl font-bold mb-2 ${plan.popular ? 'text-white' : 'text-primary'}`}>
                   {plan.name}
                 </h3>
                 <div className="mb-6">
-                  <span className={`text-4xl font-bold ${plan.popular ? 'text-white' : 'text-gray-900'}`}>
+                  <span className={`text-4xl font-bold ${plan.popular ? 'text-white' : 'text-primary'}`}>
                     {plan.price}
                   </span>
                   {plan.price !== 'Custom' && <span className={plan.popular ? 'text-blue-100' : 'text-gray-600'}>/month</span>}
@@ -275,7 +275,7 @@ const Services = () => {
                       <svg className={`w-5 h-5 mr-2 ${plan.popular ? 'text-white' : 'text-green-500'}`} fill="currentColor" viewBox="0 0 20 20">
                         <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
                       </svg>
-                      <span className={plan.popular ? 'text-white' : 'text-gray-600'}>{feature}</span>
+                      <span className={plan.popular ? 'text-white' : 'text-secondary'}>{feature}</span>
                     </li>
                   ))}
                 </ul>
