@@ -13,7 +13,7 @@ const Team = () => {
     { name: 'Siddhant Dubey', role: 'Chief Technical Officer', image: '/images/Siddhant.jpg' },
     { name: 'Aman Vishwakarma', role: 'Full Stack Developer', image: '/images/Aman.jpg' },
     { name: 'Ishant Patel', role: 'Team Lead', image: '/images/Ishant.jpg' },
-    { name: 'Sapetsh Vishwakarma', role: 'Team Lead', image: '/images/sapeksh.JPG' },
+    { name: 'Sapeksh Vishwakarma', role: 'Team Lead', image: '/images/sapeksh.JPG' },
     { name: 'Srajal Vishwakarma', role: 'Full Stack Developer', image: '/images/srajal.jpeg' },
     { name: 'Sparsh Sahu', role: 'Full Stack Developer', image: '/images/sparsh.jpeg' },
     { name: 'Sachin Sen', role: 'Full Stack Developer', image: '/images/sachin.jpg' },
