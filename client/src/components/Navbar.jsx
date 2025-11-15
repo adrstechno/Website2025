@@ -186,37 +186,22 @@ const Navbar = () => {
 
           {/* THEME TOGGLE + BUTTON (DESKTOP) */}
           <div className="hidden lg:flex items-center gap-12">
-            <motion.button
-              whileHover={{ scale: 1.12 }}
-              whileTap={{ scale: 0.92 }}
-              onClick={toggleTheme}
-              className="relative p-3 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl hover:bg-gray-100 dark:hover:bg-white/5 transition-colors group mr-4"
+            <button
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                toggleTheme();
+              }}
+              className="relative p-3 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl hover:bg-gray-100 dark:hover:bg-white/5 transition-all hover:scale-110 active:scale-95 mr-4"
               aria-label="Toggle theme"
+              type="button"
             >
-              <AnimatePresence mode="wait">
-                {theme === 'dark' ? (
-                  <motion.div
-                    key="sun"
-                    initial={{ rotate: -90, opacity: 0 }}
-                    animate={{ rotate: 0, opacity: 1 }}
-                    exit={{ rotate: 90, opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <HiSun className="w-5 h-5 text-yellow-500" />
-                  </motion.div>
-                ) : (
-                  <motion.div
-                    key="moon"
-                    initial={{ rotate: 90, opacity: 0 }}
-                    animate={{ rotate: 0, opacity: 1 }}
-                    exit={{ rotate: -90, opacity: 0 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    <HiMoon className="w-5 h-5 text-purple-600" />
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.button>
+              {theme === 'dark' ? (
+                <HiSun className="w-5 h-5 text-yellow-500 transition-transform" />
+              ) : (
+                <HiMoon className="w-5 h-5 text-purple-600 transition-transform" />
+              )}
+            </button>
 
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Link
