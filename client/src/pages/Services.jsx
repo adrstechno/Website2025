@@ -4,63 +4,56 @@ import ServiceCard from '../components/ServiceCard';
 const Services = () => {
   const saasServices = [
     {
-      icon: '📊',
-      title: 'Dashboard & Analytics',
-      description: 'Real-time business intelligence with customizable dashboards and advanced analytics.',
+      icon: '🔒',
+      title: 'Security Consultation',
+      description: 'Comprehensive security services to protect your digital assets and infrastructure.',
       gradient: 'from-blue-500 to-cyan-500',
-      highlights: ['Custom KPI tracking', 'Real-time data visualization', 'Predictive analytics'],
+      highlights: ['Penetration Testing', 'Malware Analysis', 'Threat Management', 'Security Audits'],
     },
     {
-      icon: '👥',
-      title: 'CRM Platform',
-      description: 'Complete customer relationship management with sales automation and pipeline tracking.',
+      icon: '💻',
+      title: 'Web & Mobile Development',
+      description: 'Custom application development with modern technologies and best practices.',
       gradient: 'from-purple-500 to-pink-500',
-      highlights: ['360° customer view', 'Sales automation', 'Email integration'],
+      highlights: ['Application Development', 'Tech Consultation', 'Cloud Architecture', 'API Integration'],
     },
     {
-      icon: '⚙️',
-      title: 'Workflow Automation',
-      description: 'Streamline business processes with intelligent automation and approval workflows.',
+      icon: '🏭',
+      title: 'Industrial Automation',
+      description: 'Smart automation solutions for modern manufacturing and logistics operations.',
       gradient: 'from-green-500 to-teal-500',
-      highlights: ['No-code builder', 'Multi-step workflows', 'Integration hub'],
-    },
-    {
-      icon: '📈',
-      title: 'Business Analytics',
-      description: 'Advanced analytics suite with AI-powered insights and forecasting capabilities.',
-      gradient: 'from-orange-500 to-red-500',
-      highlights: ['AI predictions', 'Custom reports', 'Data export'],
+      highlights: ['Warehouse Automation', 'Supply Chain Management', 'Automated QA', 'IoT Integration'],
     },
   ];
 
-  const paasServices = [
+  const additionalServices = [
+    {
+      icon: '🎨',
+      title: 'UI/UX Design',
+      description: 'User-centric design solutions that enhance engagement and satisfaction.',
+      gradient: 'from-blue-600 to-indigo-600',
+      highlights: ['User Research', 'Wireframing', 'Prototyping', 'Design Systems'],
+    },
+    {
+      icon: '📱',
+      title: 'Mobile App Development',
+      description: 'Native and cross-platform mobile applications for iOS and Android.',
+      gradient: 'from-purple-600 to-blue-600',
+      highlights: ['React Native', 'Flutter', 'Native iOS/Android', 'App Store Deployment'],
+    },
     {
       icon: '☁️',
-      title: 'Cloud Hosting',
-      description: 'Enterprise-grade cloud infrastructure with auto-scaling and load balancing.',
-      gradient: 'from-blue-600 to-indigo-600',
-      highlights: ['99.9% uptime SLA', 'Auto-scaling', 'Global CDN'],
-    },
-    {
-      icon: '🛠️',
-      title: 'Developer Tools',
-      description: 'Complete DevOps toolkit with CI/CD pipelines and monitoring solutions.',
-      gradient: 'from-purple-600 to-blue-600',
-      highlights: ['Git integration', 'Automated testing', 'Performance monitoring'],
-    },
-    {
-      icon: '📦',
-      title: 'Container Environment',
-      description: 'Kubernetes-based container orchestration with Docker support.',
+      title: 'Cloud Solutions',
+      description: 'Scalable cloud infrastructure and migration services.',
       gradient: 'from-teal-600 to-green-600',
-      highlights: ['Kubernetes clusters', 'Docker registry', 'Service mesh'],
+      highlights: ['AWS/Azure/GCP', 'Cloud Migration', 'DevOps', 'Serverless Architecture'],
     },
     {
-      icon: '🔄',
-      title: 'CI/CD Pipeline',
-      description: 'Automated deployment pipelines with testing and rollback capabilities.',
+      icon: '🤖',
+      title: 'AI & Machine Learning',
+      description: 'Intelligent solutions powered by artificial intelligence and ML.',
       gradient: 'from-red-600 to-pink-600',
-      highlights: ['Automated builds', 'Zero-downtime deploy', 'Rollback support'],
+      highlights: ['Predictive Analytics', 'Natural Language Processing', 'Computer Vision', 'Chatbots'],
     },
   ];
 
@@ -105,14 +98,14 @@ const Services = () => {
             className="text-center mb-16"
           >
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              SaaS <span className="gradient-text">Products</span>
+              Core <span className="gradient-text">Services</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Ready-to-use software solutions for your business needs
+              Comprehensive technology solutions for your business
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {saasServices.map((service, index) => (
               <ServiceCard key={index} service={service} index={index} />
             ))}
@@ -131,15 +124,15 @@ const Services = () => {
             className="text-center mb-16"
           >
             <h2 className="text-4xl font-bold text-gray-900 mb-4">
-              PaaS <span className="gradient-text">Infrastructure</span>
+              Additional <span className="gradient-text">Services</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Complete platform for building, deploying, and scaling applications
+              Extended capabilities to meet all your technology needs
             </p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {paasServices.map((service, index) => (
+            {additionalServices.map((service, index) => (
               <ServiceCard key={index} service={service} index={index} />
             ))}
           </div>
