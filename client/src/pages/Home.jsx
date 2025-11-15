@@ -5,42 +5,52 @@ import { MdDashboard, MdCloud, MdPhoneIphone, MdAutoAwesome } from 'react-icons/
 import Hero from '../components/Hero';
 
 const Home = () => {
-  const features = [
+  const services = [
     {
-      title: 'Enterprise SaaS Dashboard',
-      description: 'Comprehensive analytics and management tools designed for enterprise-scale operations.',
-      icon: MdDashboard,
+      title: 'Security Consultation',
+      description: 'Penetration Testing, Malware Analysis, and comprehensive Threat Management to protect your digital assets.',
+      icon: '🔒',
     },
     {
-      title: 'Cloud PaaS Infrastructure',
-      description: 'Scalable platform services with automated deployment and container orchestration.',
-      icon: MdCloud,
+      title: 'Web & Mobile Development',
+      description: 'Custom Application Development, Tech Consultation, and Cloud Architecture solutions.',
+      icon: '💻',
     },
     {
-      title: 'Mobile & Web App Delivery',
-      description: 'Cross-platform development with native performance and seamless user experience.',
-      icon: MdPhoneIphone,
-    },
-    {
-      title: 'AI-Driven Automation',
-      description: 'Intelligent workflows that reduce manual tasks and optimize business processes.',
-      icon: MdAutoAwesome,
+      title: 'Industrial Automation',
+      description: 'Warehouse Automation, Supply Chain optimization, and Automated QA systems.',
+      icon: '🏭',
     },
   ];
 
-  const leaders = [
+  const products = [
     {
-      name: 'Abhishek Dubey',
-      role: 'Chief Executive Officer',
-      bio: 'Visionary leader driving innovation and strategic growth at ADRS Technology.',
-      image: '/team/abhishek.jpg',
+      title: 'IDHPS',
+      description: 'Healthcare solution with Appointments, Telemedicine, and Electronic Health Records.',
+      icon: '🏥',
     },
     {
-      name: 'Siddhant Dubey',
-      role: 'Chief Technology Officer',
-      bio: 'Technical architect ensuring cutting-edge solutions and robust infrastructure.',
-      image: '/team/siddhant.jpg',
+      title: 'Jewelry Manager',
+      description: 'Retail management with Inventory, Billing, and Customer Relationship Management.',
+      icon: '💎',
     },
+    {
+      title: 'ADRS Learn Pro',
+      description: 'Learning Management System with Progress tracking and Analytics.',
+      icon: '🎓',
+    },
+    {
+      title: 'Custom ERP',
+      description: 'Enterprise solution with Workflow automation, Reports, and Integration.',
+      icon: '🏢',
+    },
+  ];
+
+  const stats = [
+    { number: '117+', label: 'Projects Completed' },
+    { number: '50+', label: 'Happy Clients' },
+    { number: '10+', label: 'Team Members' },
+    { number: '2024', label: 'Founded' },
   ];
 
   return (
@@ -48,7 +58,7 @@ const Home = () => {
       {/* Hero Component with Background Carousel */}
       <Hero />
 
-      {/* Features Section */}
+      {/* About Section */}
       <section className="py-32 section-bg-alt">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <motion.div
@@ -59,35 +69,18 @@ const Home = () => {
             className="text-center mb-20"
           >
             <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-primary">
-              Core <span className="text-purple-600 dark:text-purple-400">Capabilities</span>
+              About <span className="text-purple-600 dark:text-purple-400">ADRS Techno</span>
             </h2>
-            <p className="text-xl text-secondary max-w-2xl mx-auto">
-              Comprehensive solutions designed for enterprise-scale operations
+            <p className="text-xl text-secondary max-w-3xl mx-auto leading-relaxed">
+              Founded in 2024, ADRS Techno Private Limited is a technology company delivering custom enterprise applications 
+              and user-centric digital platforms. We specialize in innovation and business transformation through cutting-edge 
+              digital solutions.
             </p>
           </motion.div>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            {features.map((feature, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="card-bg p-8 rounded-xl hover:border-purple-500/30 transition-all group"
-              >
-                <feature.icon className="text-5xl text-purple-600 dark:text-purple-400 mb-6" />
-                <h3 className="text-2xl font-bold mb-4 text-primary group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
-                  {feature.title}
-                </h3>
-                <p className="text-secondary leading-relaxed">{feature.description}</p>
-              </motion.div>
-            ))}
-          </div>
         </div>
       </section>
 
-      {/* Leadership Section */}
+      {/* Services Overview */}
       <section className="py-32 section-bg">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <motion.div
@@ -98,36 +91,28 @@ const Home = () => {
             className="text-center mb-20"
           >
             <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-primary">
-              Meet the <span className="text-purple-600 dark:text-purple-400">Leaders</span>
+              Our <span className="text-purple-600 dark:text-purple-400">Services</span>
             </h2>
             <p className="text-xl text-secondary max-w-2xl mx-auto">
-              Experienced executives driving innovation and growth
+              Comprehensive technology solutions for modern businesses
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {leaders.map((leader, index) => (
+          <div className="grid md:grid-cols-3 gap-8">
+            {services.map((service, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="card-bg p-8 rounded-xl text-center"
+                className="card-bg p-8 rounded-xl hover:border-purple-500/30 transition-all group"
               >
-                <img 
-                  src={leader.image} 
-                  alt={leader.name}
-                  className="w-32 h-32 rounded-full mx-auto mb-6 object-cover"
-                  onError={(e) => {
-                    e.target.style.display = 'none';
-                    const initials = leader.name.split(' ').map(n => n[0]).join('');
-                    e.target.parentElement.innerHTML = `<div class="w-32 h-32 bg-purple-100 dark:bg-purple-500/10 rounded-full mx-auto mb-6 flex items-center justify-center text-3xl font-bold text-purple-600 dark:text-purple-400">${initials}</div>` + e.target.parentElement.innerHTML.substring(e.target.outerHTML.length);
-                  }}
-                />
-                <h3 className="text-xl font-bold mb-2 text-primary">{leader.name}</h3>
-                <p className="text-purple-600 dark:text-purple-400 text-sm mb-4">{leader.role}</p>
-                <p className="text-secondary text-sm leading-relaxed">{leader.bio}</p>
+                <div className="text-5xl mb-6">{service.icon}</div>
+                <h3 className="text-2xl font-bold mb-4 text-primary group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+                  {service.title}
+                </h3>
+                <p className="text-secondary leading-relaxed">{service.description}</p>
               </motion.div>
             ))}
           </div>
@@ -137,23 +122,109 @@ const Home = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="mt-16 text-center"
+            className="mt-12 text-center"
           >
-            <Link to="/team" className="inline-block">
-              <div className="card-bg p-12 rounded-xl inline-block hover:border-purple-500/30 transition-all cursor-pointer group">
-                <p className="text-2xl font-bold mb-2 text-primary group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
-                  <span className="text-purple-600 dark:text-purple-400">10+</span> Dedicated Developers
-                </p>
-                <p className="text-secondary mb-4">
-                  Front-end, Back-end, Full-stack, and Mobile specialists
-                </p>
-                <span className="inline-flex items-center text-purple-600 dark:text-purple-400 font-semibold">
-                  Meet Our Team
-                  <FiArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" />
-                </span>
-              </div>
+            <Link
+              to="/services"
+              className="inline-flex items-center px-8 py-3 bg-purple-600 dark:bg-purple-500 text-white font-semibold rounded hover:bg-purple-700 dark:hover:bg-purple-600 transition-colors"
+            >
+              View All Services
+              <FiArrowRight className="ml-2" />
             </Link>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Products Showcase */}
+      <section className="py-32 section-bg-alt">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-20"
+          >
+            <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-primary">
+              Featured <span className="text-purple-600 dark:text-purple-400">Products</span>
+            </h2>
+            <p className="text-xl text-secondary max-w-2xl mx-auto">
+              Innovative solutions across healthcare, retail, education, and enterprise
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {products.map((product, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="card-bg p-6 rounded-xl hover:border-purple-500/30 transition-all group"
+              >
+                <div className="text-4xl mb-4">{product.icon}</div>
+                <h3 className="text-xl font-bold mb-3 text-primary group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+                  {product.title}
+                </h3>
+                <p className="text-secondary text-sm leading-relaxed">{product.description}</p>
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="mt-12 text-center"
+          >
+            <Link
+              to="/products"
+              className="inline-flex items-center px-8 py-3 bg-purple-600 dark:bg-purple-500 text-white font-semibold rounded hover:bg-purple-700 dark:hover:bg-purple-600 transition-colors"
+            >
+              Explore Products
+              <FiArrowRight className="ml-2" />
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Impact Statistics */}
+      <section className="py-32 section-bg">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-20"
+          >
+            <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-primary">
+              Our <span className="text-purple-600 dark:text-purple-400">Impact</span>
+            </h2>
+            <p className="text-xl text-secondary max-w-2xl mx-auto">
+              Delivering results that matter
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-4 gap-8">
+            {stats.map((stat, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="card-bg p-8 rounded-xl text-center"
+              >
+                <div className="text-4xl lg:text-5xl font-bold text-purple-600 dark:text-purple-400 mb-3">
+                  {stat.number}
+                </div>
+                <p className="text-secondary font-medium">{stat.label}</p>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -167,16 +238,16 @@ const Home = () => {
             transition={{ duration: 0.8 }}
           >
             <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-primary">
-              Ready to Transform Your Business?
+              Start Your Journey
             </h2>
             <p className="text-xl text-secondary mb-10">
-              Let's discuss how ADRS Technology can help you scale
+              Transform your business with cutting-edge digital solutions
             </p>
             <Link
               to="/contact"
               className="inline-flex items-center px-10 py-4 bg-purple-600 dark:bg-purple-500 text-white font-semibold rounded hover:bg-purple-700 dark:hover:bg-purple-600 transition-colors"
             >
-              Get Started Today
+              Contact Us Today
               <FiArrowRight className="ml-2" />
             </Link>
           </motion.div>
