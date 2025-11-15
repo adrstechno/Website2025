@@ -8,49 +8,30 @@ const Contact = () => {
     {
       icon: FiMail,
       title: 'Email',
-      primary: 'hello@adrstechnology.com',
-      secondary: 'support@adrstechnology.com',
+      primary: 'support@adrstechno.com',
+      secondary: 'Get in touch with us',
     },
     {
       icon: FiPhone,
       title: 'Phone',
-      primary: '+1 (555) 123-4567',
-      secondary: '+1 (555) 987-6543',
+      primary: '+91 9201347033',
+      secondary: 'Call us anytime',
     },
     {
       icon: FiMapPin,
-      title: 'Office',
-      primary: '123 Innovation Drive',
-      secondary: 'San Francisco, CA 94105',
+      title: 'Location',
+      primary: 'India',
+      secondary: 'Serving clients globally',
     },
     {
       icon: FiClock,
       title: 'Business Hours',
-      primary: 'Mon - Fri: 9AM - 6PM PST',
-      secondary: '24/7 Support Available',
+      primary: 'Mon - Sat: 9AM - 7PM IST',
+      secondary: 'Quick response guaranteed',
     },
   ];
 
-  const offices = [
-    {
-      city: 'San Francisco',
-      country: 'USA',
-      address: '123 Innovation Drive, CA 94105',
-      phone: '+1 (555) 123-4567',
-    },
-    {
-      city: 'London',
-      country: 'UK',
-      address: '45 Tech Street, London EC2A 4DN',
-      phone: '+44 20 1234 5678',
-    },
-    {
-      city: 'Singapore',
-      country: 'Singapore',
-      address: '78 Marina Boulevard, Singapore 018987',
-      phone: '+65 6789 0123',
-    },
-  ];
+
 
   return (
     <div className="section-bg pt-20">
@@ -164,52 +145,6 @@ const Contact = () => {
         </div>
       </section>
 
-      {/* Global Offices */}
-      <section className="py-24 section-bg-alt">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-bold text-primary mb-4">
-              Our <span className="text-purple-600 dark:text-purple-400">Global Offices</span>
-            </h2>
-            <p className="text-xl text-secondary">We're here to serve you worldwide</p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {offices.map((office, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                whileHover={{ y: -10 }}
-                className="card-bg p-8 rounded-xl"
-              >
-                <div className="text-4xl mb-4">🏢</div>
-                <h3 className="text-2xl font-bold text-primary mb-2">{office.city}</h3>
-                <p className="text-purple-600 dark:text-purple-400 font-semibold mb-4">{office.country}</p>
-                <div className="space-y-2 text-secondary">
-                  <p className="flex items-start">
-                    <FiMapPin className="mr-2 mt-1 flex-shrink-0" />
-                    <span>{office.address}</span>
-                  </p>
-                  <p className="flex items-center">
-                    <FiPhone className="mr-2 flex-shrink-0" />
-                    <span>{office.phone}</span>
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Social Links */}
       <section className="py-16 section-bg">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -251,14 +186,17 @@ const Contact = () => {
             transition={{ duration: 0.8 }}
           >
             <h2 className="text-4xl md:text-5xl font-bold text-primary mb-6">
-              Prefer to Talk Directly?
+              Start Your Journey
             </h2>
             <p className="text-xl text-secondary mb-10">
-              Schedule a call with our team to discuss your specific needs
+              Ready to transform your business with cutting-edge technology?
             </p>
-            <button className="px-10 py-4 bg-purple-600 dark:bg-purple-500 text-white font-semibold rounded hover:bg-purple-700 dark:hover:bg-purple-600 transition-all hover:shadow-lg hover:shadow-purple-500/50 hover:-translate-y-0.5">
-              Schedule a Call
-            </button>
+            <a
+              href="mailto:support@adrstechno.com"
+              className="inline-block px-10 py-4 bg-purple-600 dark:bg-purple-500 text-white font-semibold rounded hover:bg-purple-700 dark:hover:bg-purple-600 transition-all hover:shadow-lg hover:shadow-purple-500/50 hover:-translate-y-0.5"
+            >
+              Get Started Today
+            </a>
           </motion.div>
         </div>
       </section>
