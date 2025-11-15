@@ -5,16 +5,21 @@ const Team = () => {
     {
       name: 'Mr. Abhishek Dubey',
       role: 'Founder & CEO',
-      image: '/team/abhishek.jpg',
+      image: '/images/Abhishek.jpg',
     },
   ];
 
   const developers = [
-    { name: 'Piyush Khare', role: 'Full Stack Developer', image: '/team/piyush.jpg' },
-    { name: 'Siddhant Dubey', role: 'Chief Technical Officer', image: '/team/siddhant.jpg' },
-    { name: 'Aman Vishwakarma', role: 'Full Stack Developer', image: '/team/aman.jpg' },
-    { name: 'Ishant Patel', role: 'Team Lead & Full Stack Developer', image: '/team/ishant.jpg' },
-    { name: 'Sapetsh Vishwakarma', role: 'Full Stack Developer', image: '/team/sapetsh.jpg' },
+    { name: 'Siddhant Dubey', role: 'Chief Technical Officer', image: '/images/Siddhant.jpg' },
+    { name: 'Aman Vishwakarma', role: 'Full Stack Developer', image: '/images/Aman.jpg' },
+    { name: 'Ishant Patel', role: 'Team Lead', image: '/images/Ishant.jpg' },
+    { name: 'Sapetsh Vishwakarma', role: 'Team Lead', image: '/images/sapeksh.JPG' },
+    { name: 'Srajal Vishwakarma', role: 'Full Stack Developer', image: '/images/srajal.jpeg' },
+    { name: 'Sparsh Sahu', role: 'Full Stack Developer', image: '/images/sparsh.jpeg' },
+    { name: 'Sachin Sen', role: 'Full Stack Developer', image: '/images/sachin.jpg' },
+    { name: 'Sakshi Jain', role: 'Full Stack Developer', image: '/images/sakshi.jpg' },
+    { name: 'Roshan Sachdev', role: 'Full Stack Developer', image: '/images/roshan.JPG' },
+    { name: 'Danish Khan', role: 'ErpNEXT-Python Developer', image: '/images/danish.JPG' }
   ];
 
   return (
@@ -65,16 +70,18 @@ const Team = () => {
                 whileHover={{ y: -10 }}
                 className="card-bg p-8 rounded-xl text-center"
               >
-                <img 
-                  src={leader.image} 
-                  alt={leader.name}
-                  className="w-32 h-32 rounded-full mx-auto mb-6 object-cover"
-                  onError={(e) => {
-                    e.target.style.display = 'none';
-                    const initials = leader.name.split(' ').map(n => n[0]).join('');
-                    e.target.parentElement.innerHTML = `<div class="w-32 h-32 bg-purple-100 dark:bg-purple-500/10 rounded-full mx-auto mb-6 flex items-center justify-center text-3xl font-bold text-purple-600 dark:text-purple-400">${initials}</div>` + e.target.parentElement.innerHTML.substring(e.target.outerHTML.length);
-                  }}
-                />
+                <div className="relative w-32 h-32 mx-auto mb-6">
+                  <img 
+                    src={leader.image} 
+                    alt={leader.name}
+                    className="w-full h-full rounded-full object-cover border-4 border-purple-200 dark:border-purple-500/30 shadow-lg"
+                    onError={(e) => {
+                      e.target.style.display = 'none';
+                      const initials = leader.name.split(' ').map(n => n[0]).join('');
+                      e.target.parentElement.innerHTML = `<div class="w-32 h-32 bg-purple-100 dark:bg-purple-500/10 rounded-full flex items-center justify-center text-3xl font-bold text-purple-600 dark:text-purple-400 border-4 border-purple-200 dark:border-purple-500/30 shadow-lg">${initials}</div>`;
+                    }}
+                  />
+                </div>
                 <h3 className="text-xl font-bold mb-2 text-primary">{leader.name}</h3>
                 <p className="text-purple-600 dark:text-purple-400 text-sm">{leader.role}</p>
               </motion.div>
@@ -110,16 +117,18 @@ const Team = () => {
                 whileHover={{ y: -10, scale: 1.05 }}
                 className="card-bg p-6 rounded-xl text-center"
               >
-                <img 
-                  src={dev.image} 
-                  alt={dev.name}
-                  className="w-24 h-24 rounded-full mx-auto mb-4 object-cover"
-                  onError={(e) => {
-                    e.target.style.display = 'none';
-                    const initials = dev.name.split(' ').map(n => n[0]).join('');
-                    e.target.parentElement.innerHTML = `<div class="w-24 h-24 bg-purple-100 dark:bg-purple-500/10 rounded-full mx-auto mb-4 flex items-center justify-center text-2xl font-bold text-purple-600 dark:text-purple-400">${initials}</div>` + e.target.parentElement.innerHTML.substring(e.target.outerHTML.length);
-                  }}
-                />
+                <div className="relative w-24 h-24 mx-auto mb-4">
+                  <img 
+                    src={dev.image} 
+                    alt={dev.name}
+                    className="w-full h-full rounded-full object-cover border-4 border-purple-200 dark:border-purple-500/30 shadow-lg"
+                    onError={(e) => {
+                      e.target.style.display = 'none';
+                      const initials = dev.name.split(' ').map(n => n[0]).join('');
+                      e.target.parentElement.innerHTML = `<div class="w-24 h-24 bg-purple-100 dark:bg-purple-500/10 rounded-full flex items-center justify-center text-2xl font-bold text-purple-600 dark:text-purple-400 border-4 border-purple-200 dark:border-purple-500/30 shadow-lg">${initials}</div>`;
+                    }}
+                  />
+                </div>
                 <h3 className="text-lg font-bold mb-1 text-primary">{dev.name}</h3>
                 <p className="text-purple-600 dark:text-purple-400 text-sm">{dev.role}</p>
               </motion.div>
