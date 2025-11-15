@@ -2,41 +2,55 @@ import { motion } from 'framer-motion';
 import { FiCalendar, FiClock, FiMapPin, FiUsers } from 'react-icons/fi';
 
 const Workshop = () => {
-  const upcomingWorkshops = [
+  const workshopFormats = [
     {
-      title: 'Full Stack Development Bootcamp',
-      date: 'December 15, 2024',
-      time: '10:00 AM - 5:00 PM',
-      location: 'ADRS Technology Office',
-      participants: '30 seats',
-      description: 'Learn modern web development with React, Node.js, and MongoDB',
-      image: '/workshops/fullstack.jpg',
+      duration: '3-Day Workshop',
+      topics: ['Full-Stack Development', 'Python & AI Basics', 'Mobile App Development'],
+      format: 'Intensive hands-on training',
+      certification: 'Certificate of Completion',
     },
     {
-      title: 'Cloud Computing with AWS',
-      date: 'December 22, 2024',
-      time: '2:00 PM - 6:00 PM',
-      location: 'Online',
-      participants: '50 seats',
-      description: 'Master AWS services and cloud deployment strategies',
-      image: '/workshops/cloud.jpg',
-    },
-    {
-      title: 'Mobile App Development',
-      date: 'January 5, 2025',
-      time: '10:00 AM - 4:00 PM',
-      location: 'ADRS Technology Office',
-      participants: '25 seats',
-      description: 'Build cross-platform mobile apps with React Native',
-      image: '/workshops/mobile.jpg',
+      duration: '5-Day Workshop',
+      topics: ['Advanced Full-Stack', 'Arduino & IoT', 'Cybersecurity Fundamentals'],
+      format: 'Comprehensive project-based learning',
+      certification: 'Advanced Certificate',
     },
   ];
 
-  const pastWorkshops = [
-    { title: 'AI & Machine Learning Basics', date: 'November 2024', participants: '45' },
-    { title: 'DevOps Fundamentals', date: 'October 2024', participants: '38' },
-    { title: 'UI/UX Design Workshop', date: 'September 2024', participants: '52' },
+  const workshopTopics = [
+    {
+      title: 'Full-Stack Development',
+      description: 'Master modern web development with React, Node.js, and databases',
+      icon: '💻',
+      duration: '3-5 days',
+    },
+    {
+      title: 'Python & AI',
+      description: 'Learn Python programming and artificial intelligence fundamentals',
+      icon: '🤖',
+      duration: '3-5 days',
+    },
+    {
+      title: 'Mobile Apps',
+      description: 'Build cross-platform mobile applications with React Native',
+      icon: '📱',
+      duration: '3-5 days',
+    },
+    {
+      title: 'Arduino & IoT',
+      description: 'Create IoT projects with Arduino and sensor integration',
+      icon: '🔌',
+      duration: '5 days',
+    },
+    {
+      title: 'Cybersecurity',
+      description: 'Understand security principles and ethical hacking basics',
+      icon: '🔒',
+      duration: '5 days',
+    },
   ];
+
+
 
   return (
     <div className="section-bg pt-20">
@@ -50,16 +64,16 @@ const Workshop = () => {
             className="text-center max-w-4xl mx-auto"
           >
             <h1 className="text-5xl lg:text-7xl font-bold mb-6 text-primary">
-              Tech <span className="text-purple-600 dark:text-purple-400">Workshops</span>
+              ADRS <span className="text-purple-600 dark:text-purple-400">Spark</span>
             </h1>
             <p className="text-xl text-secondary leading-relaxed">
-              Learn from industry experts and enhance your technical skills
+              Educational workshops for schools and colleges - Hands-on, project-based learning with certification
             </p>
           </motion.div>
         </div>
       </section>
 
-      {/* Upcoming Workshops */}
+      {/* Workshop Topics */}
       <section className="py-16 section-bg-alt">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <motion.div
@@ -70,13 +84,13 @@ const Workshop = () => {
             className="text-center mb-16"
           >
             <h2 className="text-4xl font-bold mb-4 text-primary">
-              Upcoming <span className="text-purple-600 dark:text-purple-400">Workshops</span>
+              Workshop <span className="text-purple-600 dark:text-purple-400">Topics</span>
             </h2>
-            <p className="text-xl text-secondary">Register now for our upcoming sessions</p>
+            <p className="text-xl text-secondary">Comprehensive technology training programs</p>
           </motion.div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {upcomingWorkshops.map((workshop, index) => (
+            {workshopTopics.map((topic, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 30 }}
@@ -84,37 +98,14 @@ const Workshop = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 whileHover={{ y: -10 }}
-                className="card-bg rounded-xl overflow-hidden"
+                className="card-bg rounded-xl p-8"
               >
-                <div className="h-48 bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center text-6xl">
-                  💻
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold mb-4 text-primary">{workshop.title}</h3>
-                  <p className="text-secondary text-sm mb-4">{workshop.description}</p>
-                  
-                  <div className="space-y-2 mb-6">
-                    <div className="flex items-center text-sm text-secondary">
-                      <FiCalendar className="mr-2 text-purple-600 dark:text-purple-400" />
-                      {workshop.date}
-                    </div>
-                    <div className="flex items-center text-sm text-secondary">
-                      <FiClock className="mr-2 text-purple-600 dark:text-purple-400" />
-                      {workshop.time}
-                    </div>
-                    <div className="flex items-center text-sm text-secondary">
-                      <FiMapPin className="mr-2 text-purple-600 dark:text-purple-400" />
-                      {workshop.location}
-                    </div>
-                    <div className="flex items-center text-sm text-secondary">
-                      <FiUsers className="mr-2 text-purple-600 dark:text-purple-400" />
-                      {workshop.participants}
-                    </div>
-                  </div>
-
-                  <button className="w-full px-6 py-3 bg-purple-600 dark:bg-purple-500 text-white font-semibold rounded hover:bg-purple-700 dark:hover:bg-purple-600 transition-colors">
-                    Register Now
-                  </button>
+                <div className="text-5xl mb-4">{topic.icon}</div>
+                <h3 className="text-xl font-bold mb-3 text-primary">{topic.title}</h3>
+                <p className="text-secondary text-sm mb-4">{topic.description}</p>
+                <div className="flex items-center text-sm text-purple-600 dark:text-purple-400">
+                  <FiClock className="mr-2" />
+                  {topic.duration}
                 </div>
               </motion.div>
             ))}
@@ -122,7 +113,7 @@ const Workshop = () => {
         </div>
       </section>
 
-      {/* Past Workshops */}
+      {/* Workshop Formats */}
       <section className="py-32 section-bg">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <motion.div
@@ -133,13 +124,70 @@ const Workshop = () => {
             className="text-center mb-16"
           >
             <h2 className="text-4xl font-bold mb-4 text-primary">
-              Past <span className="text-purple-600 dark:text-purple-400">Workshops</span>
+              Workshop <span className="text-purple-600 dark:text-purple-400">Formats</span>
             </h2>
-            <p className="text-xl text-secondary">Successfully conducted sessions</p>
+            <p className="text-xl text-secondary">Choose the format that suits your needs</p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-6">
-            {pastWorkshops.map((workshop, index) => (
+          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            {workshopFormats.map((format, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="card-bg p-8 rounded-xl"
+              >
+                <h3 className="text-2xl font-bold text-purple-600 dark:text-purple-400 mb-4">{format.duration}</h3>
+                <div className="space-y-4">
+                  <div>
+                    <h4 className="font-semibold text-primary mb-2">Topics Covered:</h4>
+                    <ul className="space-y-1">
+                      {format.topics.map((topic, idx) => (
+                        <li key={idx} className="flex items-start text-sm text-secondary">
+                          <span className="text-purple-600 dark:text-purple-400 mr-2">•</span>
+                          {topic}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <p className="text-secondary text-sm">
+                    <span className="font-semibold text-primary">Format:</span> {format.format}
+                  </p>
+                  <p className="text-secondary text-sm">
+                    <span className="font-semibold text-primary">Certification:</span> {format.certification}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Key Features */}
+      <section className="py-32 section-bg-alt">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl font-bold mb-4 text-primary">
+              Why Choose <span className="text-purple-600 dark:text-purple-400">ADRS Spark?</span>
+            </h2>
+            <p className="text-xl text-secondary">What makes our workshops special</p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-4 gap-6">
+            {[
+              { icon: '🎯', title: 'Hands-on Learning', description: 'Practical, project-based approach' },
+              { icon: '👨‍🏫', title: 'Expert Instructors', description: 'Learn from industry professionals' },
+              { icon: '📜', title: 'Certification', description: 'Receive completion certificate' },
+              { icon: '🏫', title: 'For Schools & Colleges', description: 'Tailored for educational institutions' },
+            ].map((feature, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, scale: 0.9 }}
@@ -148,9 +196,9 @@ const Workshop = () => {
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="card-bg p-6 rounded-xl text-center"
               >
-                <h3 className="text-lg font-bold mb-2 text-primary">{workshop.title}</h3>
-                <p className="text-purple-600 dark:text-purple-400 text-sm mb-2">{workshop.date}</p>
-                <p className="text-secondary text-sm">{workshop.participants} participants</p>
+                <div className="text-4xl mb-3">{feature.icon}</div>
+                <h3 className="text-lg font-bold mb-2 text-primary">{feature.title}</h3>
+                <p className="text-secondary text-sm">{feature.description}</p>
               </motion.div>
             ))}
           </div>
