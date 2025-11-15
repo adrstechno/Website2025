@@ -19,15 +19,23 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  const [aboutDropdownOpen, setAboutDropdownOpen] = useState(false);
+
   const navLinks = [
     { name: 'Home', path: '/' },
-    { name: 'About', path: '/about' },
     { name: 'Services', path: '/services' },
     { name: 'Products', path: '/products' },
-    { name: 'Team', path: '/team' },
     { name: 'Workshop', path: '/workshop' },
+    { name: 'Career', path: '/career' },
     { name: 'Gallery', path: '/gallery' },
-    { name: 'Portfolio', path: 'https://adrs-techno-portfolio.vercel.app/', external: true },
+    { 
+      name: 'About Us', 
+      dropdown: true,
+      items: [
+        { name: 'Our Mission', path: '/mission' },
+        { name: 'Our Team', path: '/team' }
+      ]
+    },
     { name: 'Contact', path: '/contact' },
   ];
 
@@ -69,41 +77,56 @@ const Navbar = () => {
           {/* DESKTOP NAV */}
           <div className="hidden lg:flex items-center space-x-1">
             {navLinks.map((link, index) =>
-              link.external ? (
-                <motion.a
-                  key={link.path}
-                  href={link.path}
-                  target="_blank"
-                  rel="noopener noreferrer"
+              link.dropdown ? (
+                <motion.div
+                  key={link.name}
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1, duration: 0.5 }}
-                  onMouseEnter={() => setHoveredLink(link.name)}
-                  onMouseLeave={() => setHoveredLink(null)}
-                  className="relative px-4 py-2 text-sm font-medium text-secondary hover:text-primary transition-colors"
+                  onMouseEnter={() => {
+                    setHoveredLink(link.name);
+                    setAboutDropdownOpen(true);
+                  }}
+                  onMouseLeave={() => {
+                    setHoveredLink(null);
+                    setAboutDropdownOpen(false);
+                  }}
+                  className="relative"
                 >
-                  {link.name}
+                  <button className="relative px-4 py-2 text-sm font-medium text-secondary hover:text-primary transition-colors flex items-center gap-1">
+                    {link.name}
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
 
                   <AnimatePresence>
-                    {hoveredLink === link.name && (
-                      <>
-                        <motion.div
-                          initial={{ scale: 0, opacity: 0 }}
-                          animate={{ scale: 1, opacity: 1 }}
-                          exit={{ scale: 0, opacity: 0 }}
-                          className="absolute -top-1 -right-1 w-2 h-2 bg-purple-600 dark:bg-purple-400 rounded-full"
-                        />
-                        <motion.div
-                          initial={{ scaleY: 0, originY: 0 }}
-                          animate={{ scaleY: 1 }}
-                          exit={{ scaleY: 0 }}
-                          transition={{ duration: 0.2 }}
-                          className="absolute left-0 right-0 bottom-0 h-0.5 bg-gradient-to-r from-purple-600 via-blue-500 to-purple-600 dark:from-purple-400 dark:via-blue-400 dark:to-purple-400"
-                        />
-                      </>
+                    {aboutDropdownOpen && (
+                      <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 10 }}
+                        transition={{ duration: 0.2 }}
+                        className="absolute top-full left-0 mt-2 w-48 bg-white dark:bg-dark-secondary rounded-lg shadow-xl border border-gray-200 dark:border-white/10 overflow-hidden"
+                      >
+                        {link.items.map((item, idx) => (
+                          <Link
+                            key={idx}
+                            to={item.path}
+                            onClick={() => setAboutDropdownOpen(false)}
+                            className={`block px-4 py-3 text-sm transition-colors ${
+                              location.pathname === item.path
+                                ? 'bg-purple-50 dark:bg-purple-500/10 text-purple-600 dark:text-purple-400'
+                                : 'text-secondary hover:bg-gray-50 dark:hover:bg-white/5 hover:text-primary'
+                            }`}
+                          >
+                            {item.name}
+                          </Link>
+                        ))}
+                      </motion.div>
                     )}
                   </AnimatePresence>
-                </motion.a>
+                </motion.div>
               ) : (
                 <motion.div
                   key={link.path}
@@ -162,12 +185,13 @@ const Navbar = () => {
           </div>
 
           {/* THEME TOGGLE + BUTTON (DESKTOP) */}
-          <div className="hidden lg:flex items-center gap-4 pr-2">
+          <div className="hidden lg:flex items-center gap-12">
             <motion.button
               whileHover={{ scale: 1.12 }}
               whileTap={{ scale: 0.92 }}
               onClick={toggleTheme}
-              className="relative p-3 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl hover:bg-gray-100 dark:hover:bg-white/5 transition-colors group"
+              className="relative p-3 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl hover:bg-gray-100 dark:hover:bg-white/5 transition-colors group mr-4"
+              aria-label="Toggle theme"
             >
               <AnimatePresence mode="wait">
                 {theme === 'dark' ? (
@@ -197,7 +221,7 @@ const Navbar = () => {
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Link
                 to="/contact"
-                className="relative px-6 py-2.5 bg-purple-600 dark:bg-purple-500 text-white text-sm font-semibold rounded-lg overflow-hidden group"
+                className="relative px-6 py-2.5 bg-purple-600 dark:bg-purple-500 text-white text-sm font-semibold rounded-lg overflow-hidden group whitespace-nowrap"
               >
                 <span className="relative z-10">Get Started</span>
 
@@ -245,20 +269,34 @@ const Navbar = () => {
           >
             <div className="px-6 py-6 space-y-2 max-h-[70vh] overflow-y-auto">
               {navLinks.map((link, index) =>
-                link.external ? (
-                  <motion.a
-                    key={link.path}
-                    href={link.path}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                link.dropdown ? (
+                  <motion.div
+                    key={link.name}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     exit={{ opacity: 0, x: -20 }}
                     transition={{ delay: index * 0.05 }}
-                    className="block py-3 px-4 rounded-lg text-base text-secondary hover:bg-purple-50 dark:hover:bg-purple-500/10 hover:text-purple-600 dark:hover:text-purple-400 transition-all"
                   >
-                    {link.name}
-                  </motion.a>
+                    <div className="py-2 px-4 text-base font-semibold text-primary">
+                      {link.name}
+                    </div>
+                    <div className="pl-4 space-y-1">
+                      {link.items.map((item, idx) => (
+                        <Link
+                          key={idx}
+                          to={item.path}
+                          onClick={() => setMobileMenuOpen(false)}
+                          className={`block py-2 px-4 rounded-lg text-sm transition-all ${
+                            location.pathname === item.path
+                              ? 'bg-purple-50 dark:bg-purple-500/10 text-purple-600 dark:text-purple-400'
+                              : 'text-secondary hover:bg-gray-100 dark:hover:bg-white/5'
+                          }`}
+                        >
+                          {item.name}
+                        </Link>
+                      ))}
+                    </div>
+                  </motion.div>
                 ) : (
                   <motion.div
                     key={link.path}
