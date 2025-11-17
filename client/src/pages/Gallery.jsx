@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { useState } from 'react';
+import CircularGallery from '../components/CircularGallery';
 
 const Gallery = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -23,9 +24,9 @@ const Gallery = () => {
     : images.filter(img => img.category === selectedCategory);
 
   return (
-    <div className="section-bg pt-20">
+    <div className="section-bg pt-8">
       {/* Hero */}
-      <section className="py-32">
+      <section className="py-12">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -44,7 +45,7 @@ const Gallery = () => {
       </section>
 
       {/* Filter */}
-      <section className="py-8 section-bg-alt sticky top-20 z-40 backdrop-blur-xl">
+      <section className="py-4 section-bg-alt sticky top-20 z-40 backdrop-blur-xl">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="flex flex-wrap justify-center gap-4">
             {categories.map((category) => (
@@ -64,44 +65,18 @@ const Gallery = () => {
         </div>
       </section>
 
-      {/* Gallery Grid */}
-      <section className="py-16 section-bg">
+      {/* Circular OGL Gallery */}
+      <section className="py-8 section-bg">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <motion.div 
-            layout
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
-          >
-            {filteredImages.map((image, index) => (
-              <motion.div
-                key={image.id}
-                layout
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.5, delay: index * 0.05 }}
-                whileHover={{ scale: 1.05, y: -10 }}
-                className="card-bg rounded-xl overflow-hidden cursor-pointer group"
-              >
-                <div className="relative h-64 bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center text-6xl overflow-hidden">
-                  <img
-                    src={image.image}
-                    alt={image.title}
-                    className="w-full h-full object-cover"
-                    onError={(e) => {
-                      e.target.style.display = 'none';
-                    }}
-                  />
-                  <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                    <span className="text-white text-lg font-semibold">View</span>
-                  </div>
-                </div>
-                <div className="p-4">
-                  <h3 className="text-lg font-bold text-primary">{image.title}</h3>
-                  <p className="text-sm text-purple-600 dark:text-purple-400 capitalize">{image.category}</p>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
+          <div style={{ height: 600, position: 'relative' }}>
+            <CircularGallery
+              items={filteredImages.map(img => ({ image: img.image, text: img.title }))}
+              bend={3}
+              textColor="#ffffff"
+              borderRadius={0.05}
+              scrollEase={0.02}
+            />
+          </div>
         </div>
       </section>
     </div>

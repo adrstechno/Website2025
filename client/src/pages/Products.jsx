@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import ProductCard from '../components/ProductCard';
-import { useState } from 'react';
 
 const Products = () => {
   const products = [
@@ -129,13 +128,49 @@ const Products = () => {
         </div>
       </section>
 
-      {/* Products Grid */}
-      <section className="py-24 section-bg">
+      {/* Products Showcase — Masonry Grid */}
+      <section className="py-16 section-bg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {products.map((product, index) => (
-              <ProductCard key={index} product={product} index={index} />
-            ))}
+          <div className="flex flex-col lg:flex-row items-start gap-10">
+            <div className="flex-1">
+              <div className="prose max-w-none text-secondary mb-6">
+                <h3 className="text-2xl font-semibold text-primary">Featured Products</h3>
+                <p>Explore our flagship solutions — click a card to learn more or start a trial.</p>
+              </div>
+
+              <div className="w-full">
+                <motion.div
+                  initial="hidden"
+                  whileInView="show"
+                  viewport={{ once: true }}
+                  variants={{
+                    hidden: {},
+                    show: {
+                      transition: { staggerChildren: 0.06 }
+                    }
+                  }}
+                >
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                      {products.map((p, i) => (
+                        <div key={i} className="mb-4">
+                          <ProductCard product={p} index={i} />
+                        </div>
+                      ))}
+                    </div>
+                </motion.div>
+              </div>
+            </div>
+
+            <aside className="w-full lg:w-96 self-start">
+              <div className="card-bg rounded-2xl p-6 shadow-md sticky top-24 lg:top-28">
+                <h4 className="text-lg font-semibold text-primary mb-3">Why ADRS Products?</h4>
+                <p className="text-sm text-secondary mb-4">Built for scale, security and deep integrations. Pick a product and start a free trial.</p>
+                <div className="space-y-3">
+                  <button className="w-full px-4 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-semibold hover:shadow-xl transition-all">Start Free Trial</button>
+                  <button className="w-full px-4 py-3 card-bg text-primary border-2 border-purple-600 dark:border-purple-400 rounded-lg font-semibold hover:bg-purple-600 hover:text-white dark:hover:bg-purple-500 transition-all">Schedule Demo</button>
+                </div>
+              </div>
+            </aside>
           </div>
         </div>
       </section>

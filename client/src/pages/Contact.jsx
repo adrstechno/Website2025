@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import ContactForm from '../components/ContactForm';
 import { FiMail, FiPhone, FiMapPin, FiClock } from 'react-icons/fi';
-import { FaLinkedin, FaGithub, FaTwitter } from 'react-icons/fa';
+import { FaLinkedin, FaGithub, FaInstagram } from 'react-icons/fa';
 
 const Contact = () => {
   const contactInfo = [
@@ -14,14 +14,14 @@ const Contact = () => {
     {
       icon: FiPhone,
       title: 'Phone',
-      primary: '+91 9201347033',
+      primary: '+91 9076927464',
       secondary: 'Call us anytime',
     },
     {
       icon: FiMapPin,
       title: 'Location',
       primary: 'India',
-      secondary: 'Serving clients globally',
+      secondary: '71, Dadda nagar Near katangi highway Jabalpur MP 482001',
     },
     {
       icon: FiClock,
@@ -99,12 +99,25 @@ const Contact = () => {
                 transition={{ duration: 0.8 }}
                 className="card-bg rounded-xl h-80 flex items-center justify-center overflow-hidden"
               >
-                <img 
-                  src="/contact/office-location.jpg" 
-                  alt="Office Location"
-                  className="w-full h-full object-cover"
+                <iframe
+                  title="ADRS Office Location"
+                  src="https://www.google.com/maps?q=71,+Dadda+nagar+Near+katangi+highway+Jabalpur+MP+482001&output=embed"
+                  className="w-full h-full border-0"
+                  loading="lazy"
+                  allowFullScreen
+                  referrerPolicy="no-referrer-when-downgrade"
                 />
               </motion.div>
+              <div className="mt-3 text-sm">
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=71,+Dadda+nagar+Near+katangi+highway+Jabalpur+MP+482001"
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="text-purple-600 dark:text-purple-400 hover:underline"
+                >
+                  Open in Google Maps
+                </a>
+              </div>
 
               {/* Additional Info */}
               <motion.div
@@ -158,13 +171,16 @@ const Contact = () => {
             <h3 className="text-2xl font-bold text-primary mb-8">Connect With Us</h3>
             <div className="flex justify-center gap-6">
               {[
-                { icon: FaLinkedin, label: 'LinkedIn' },
-                { icon: FaGithub, label: 'GitHub' },
-                { icon: FaTwitter, label: 'Twitter' },
+                { icon: FaLinkedin, label: 'LinkedIn', href: 'https://www.linkedin.com/company/adrs-technology/' },
+                { icon: FaGithub, label: 'GitHub', href: 'https://github.com/adrstechno' },
+                { icon: FaInstagram, label: 'Instagram', href: 'https://www.instagram.com/adrstechno?igsh=bjJ1bmE4M21nbjRn' },
               ].map((social, index) => (
                 <motion.a
                   key={index}
-                  href="#"
+                  href={social.href}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  aria-label={social.label}
                   whileHover={{ scale: 1.1, y: -5 }}
                   className="w-16 h-16 card-bg rounded-xl flex items-center justify-center hover:border-purple-500/30 transition-all"
                 >

@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { FaLinkedin, FaGithub, FaTwitter } from 'react-icons/fa';
+import { FaLinkedin, FaGithub, FaInstagram } from 'react-icons/fa';
 import { useTheme } from '../context/ThemeContext';
 
 const Footer = () => {
@@ -43,22 +43,26 @@ const Footer = () => {
             <div className="flex items-center space-x-3 mb-4">
               <img src={logoSrc} alt="ADRS Technology logo" className="h-10 w-auto" />
             </div>
-            <div className="text-lg font-bold mb-4">
+            <div className="text-lg font-bold mb-2">
               <span className="text-primary">ADRS</span>
               <span className="text-purple-600 dark:text-purple-400"> Technology</span>
             </div>
-            <p className="text-sm text-secondary leading-relaxed mb-6">
+            <p className="text-sm text-secondary leading-relaxed mb-3">
               Enterprise-grade SaaS & PaaS solutions for modern businesses.
             </p>
+            <div className="text-sm text-secondary mb-4">
+              <div>Address: <a href="https://www.google.com/maps/search/?api=1&query=71,+Dadda+nagar+Near+katangi+highway+Jabalpur+MP+482001" target="_blank" rel="noreferrer noopener" className="hover:underline text-primary">71, Dadda nagar Near katangi highway, Jabalpur MP 482001</a></div>
+              <div>Phone: <a className="text-primary hover:underline" href="tel:+919076927464">+91 90769 27464</a></div>
+            </div>
             <div className="flex space-x-4">
-              <a href="#" className="text-secondary hover:text-purple-600 dark:hover:text-purple-400 transition-colors">
+              <a href="https://www.linkedin.com/company/adrs-technology/" target="_blank" rel="noreferrer noopener" aria-label="LinkedIn" className="text-secondary hover:text-purple-600 dark:hover:text-purple-400 transition-colors">
                 <FaLinkedin className="w-5 h-5" />
               </a>
-              <a href="#" className="text-secondary hover:text-purple-600 dark:hover:text-purple-400 transition-colors">
+              <a href="https://github.com/adrstechno" target="_blank" rel="noreferrer noopener" aria-label="GitHub" className="text-secondary hover:text-purple-600 dark:hover:text-purple-400 transition-colors">
                 <FaGithub className="w-5 h-5" />
               </a>
-              <a href="#" className="text-secondary hover:text-purple-600 dark:hover:text-purple-400 transition-colors">
-                <FaTwitter className="w-5 h-5" />
+              <a href="https://www.instagram.com/adrstechno" target="_blank" rel="noreferrer noopener" aria-label="Instagram" className="text-secondary hover:text-purple-600 dark:hover:text-purple-400 transition-colors">
+                <FaInstagram className="w-5 h-5" />
               </a>
             </div>
           </div>
