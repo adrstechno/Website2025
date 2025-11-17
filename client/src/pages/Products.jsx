@@ -76,6 +76,29 @@ const Products = () => {
     'White-label Options',
   ];
 
+  const upcoming = [
+    {
+      name: 'Test Series',
+      image: 'Testseries.png',
+      desc: 'A full-featured assessment and testing platform for training and certification.',
+    },
+    {
+      name: 'ADRS LMS',
+      image: 'Lms.png',
+      desc: 'Learning management system for course delivery, tracking, and reporting.',
+    },
+    {
+      name: 'Adrs Spark',
+      image: 'spark.png',
+      desc: 'Lightweight low-code automation platform to spark rapid integrations and workflows.',
+    },
+    {
+      name: 'Festyfi',
+      image: 'Festyfi.png',
+      desc: 'Event management product for ticketing, schedules, and on-site check-in.',
+    },
+  ];
+
   const faqs = [
     {
       question: 'What is included in the free trial?',
@@ -125,6 +148,47 @@ const Products = () => {
               </button>
             </div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Upcoming Products */}
+      <section className="py-16 section-bg-alt">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-8"
+          >
+            <h3 className="text-2xl font-semibold text-primary">Upcoming Products</h3>
+            <p className="text-secondary mt-2">Exciting new products coming soon — stay tuned and request early access.</p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {upcoming.map((u, idx) => (
+              <motion.div
+                key={u.name}
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: idx * 0.06 }}
+                className="card-bg p-6 rounded-2xl text-center"
+              >
+                {u.image ? (
+                  <img src={`/upcoming/${u.image}`} alt={u.name} className="mx-auto w-24 h-24 object-contain mb-3 rounded-md" />
+                ) : (
+                  <div className="text-4xl mb-3">{u.icon}</div>
+                )}
+                <h4 className="text-lg font-semibold text-primary mb-2">{u.name}</h4>
+                <p className="text-secondary text-sm mb-4">{u.desc}</p>
+                <div className="flex items-center justify-center gap-3">
+                  <button className="px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-md text-sm">Notify Me</button>
+                  <a href="#" className="text-sm text-primary hover:underline">Learn</a>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 

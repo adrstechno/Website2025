@@ -18,8 +18,8 @@ const Team = () => {
     { name: 'Sparsh Sahu', role: 'Full Stack Developer', image: '/images/sparsh.jpeg' },
     { name: 'Sachin Sen', role: 'Full Stack Developer', image: '/images/sachin.jpg' },
     { name: 'Sakshi Jain', role: 'Full Stack Developer', image: '/images/sakshi.jpg' },
-    { name: 'Roshan Sachdev', role: 'Full Stack Developer', image: '/images/roshan.JPG' },
-    { name: 'Danish Khan', role: 'ErpNEXT-Python Developer', image: '/images/danish.JPG' }
+    { name: 'Roshan Sachdev', role: 'Full Stack Developer', image: '/images/roshan.jpeg' },
+    { name: 'Danish Khan', role: 'ErpNEXT-Python Developer', image: '/images/danish.jpeg' }
   ];
 
   return (

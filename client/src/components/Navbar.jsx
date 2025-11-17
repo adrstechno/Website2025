@@ -71,7 +71,7 @@ const Navbar = () => {
           </Link>
 
           {/* DESKTOP NAV */}
-          <div className="hidden lg:flex items-center space-x-1">
+          <div className="hidden lg:flex items-center space-x-1 flex-1">
             {navLinks.map((link, index) =>
               link.dropdown ? (
                 <motion.div
@@ -188,7 +188,7 @@ const Navbar = () => {
                 e.stopPropagation();
                 toggleTheme();
               }}
-              className="relative p-3 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl hover:bg-gray-100 dark:hover:bg-white/5 transition-all hover:scale-110 active:scale-95 mr-4"
+              className="relative z-30 p-3 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-xl hover:bg-gray-100 dark:hover:bg-white/5 transition-all hover:scale-110 active:scale-95 mr-6"
               aria-label="Toggle theme"
               type="button"
             >
@@ -199,7 +199,7 @@ const Navbar = () => {
               )}
             </button>
 
-            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <motion.div className="relative z-10" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Link
                 to="/contact"
                 className="relative px-6 py-2.5 bg-purple-600 dark:bg-purple-500 text-white text-sm font-semibold rounded-lg overflow-hidden group whitespace-nowrap"
@@ -207,13 +207,13 @@ const Navbar = () => {
                 <span className="relative z-10">Get Started</span>
 
                 <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none"
                   initial={{ x: '-100%' }}
                   whileHover={{ x: '100%' }}
                   transition={{ duration: 0.6 }}
                 />
 
-                <div className="absolute inset-0 bg-purple-600 dark:bg-purple-500 blur-xl opacity-0 group-hover:opacity-50 transition-opacity" />
+                <div className="absolute inset-0 bg-purple-600 dark:bg-purple-500 blur-xl opacity-0 group-hover:opacity-50 transition-opacity pointer-events-none" />
               </Link>
             </motion.div>
           </div>
