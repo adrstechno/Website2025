@@ -6,23 +6,23 @@ const Testimonials = () => {
 
   const testimonials = [
     {
-      name: 'Sarah Johnson',
+      name: 'Himank Jhanjhire',
       role: 'CTO, TechCorp Inc.',
-      image: 'SJ',
+      image: 'hJ',
       content: 'ADRS Technology transformed our infrastructure. Their PaaS solution reduced our deployment time by 80% and significantly improved our system reliability.',
       rating: 5,
     },
     {
-      name: 'Michael Chen',
-      role: 'CEO, DataFlow Systems',
-      image: 'MC',
+      name: 'brajesh Loagma ',
+      role: 'CEO, Loagma ',
+      image: 'BL',
       content: 'The AI-powered automation tools have revolutionized our workflow. We\'ve seen a 60% increase in productivity since implementing their solutions.',
       rating: 5,
     },
     {
-      name: 'Emily Rodriguez',
-      role: 'VP Engineering, CloudScale',
-      image: 'ER',
+      name: 'Ramkumar jaishwal',
+      role: ' MLM',
+      image: 'RJ',
       content: 'Outstanding support and enterprise-grade security. ADRS Technology is our trusted partner for all cloud infrastructure needs.',
       rating: 5,
     },

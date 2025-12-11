@@ -1,51 +1,65 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { FiArrowRight } from 'react-icons/fi';
-import { MdDashboard, MdCloud, MdPhoneIphone, MdAutoAwesome } from 'react-icons/md';
+
+// React Icons (Replacements for emojis)
+import { MdDevices, MdSecurity, MdFactory } from 'react-icons/md';
+import { MdAssignment, MdEvent, MdAutoAwesome } from "react-icons/md";
+import { PiGraduationCapFill } from "react-icons/pi";
+
+
 import Hero from '../components/Hero';
 
 const Home = () => {
+
+  /* ---------------------- SERVICES ---------------------- */
   const services = [
     {
-      title: 'Security Consultation',
-      description: 'Penetration Testing, Malware Analysis, and comprehensive Threat Management to protect your digital assets.',
-      icon: '🔒',
+      title: 'Web & Mobile Development',
+      description:
+        'Custom application development, technical consulting, UI/UX engineering, and cloud-ready architectures.',
+      icon: <MdDevices className="text-5xl text-purple-600 dark:text-purple-400" />,
     },
     {
-      title: 'Web & Mobile Development',
-      description: 'Custom Application Development, Tech Consultation, and Cloud Architecture solutions.',
-      icon: '💻',
+      title: 'Security Consultation',
+      description:
+        'Advanced penetration testing, vulnerability analysis, threat detection, and enterprise-grade security solutions.',
+      icon: <MdSecurity className="text-5xl text-purple-600 dark:text-purple-400" />,
     },
     {
       title: 'Industrial Automation',
-      description: 'Warehouse Automation, Supply Chain optimization, and Automated QA systems.',
-      icon: '🏭',
+      description:
+        'Automation-driven systems for warehousing, supply chain, robotics, and smart manufacturing.',
+      icon: <MdFactory className="text-5xl text-purple-600 dark:text-purple-400" />,
     },
   ];
 
-  const products = [
-    {
-      title: 'IDHPS',
-      description: 'Healthcare solution with Appointments, Telemedicine, and Electronic Health Records.',
-      icon: '🏥',
-    },
-    {
-      title: 'Jewelry Manager',
-      description: 'Retail management with Inventory, Billing, and Customer Relationship Management.',
-      icon: '💎',
-    },
-    {
-      title: 'ADRS Learn Pro',
-      description: 'Learning Management System with Progress tracking and Analytics.',
-      icon: '🎓',
-    },
-    {
-      title: 'Custom ERP',
-      description: 'Enterprise solution with Workflow automation, Reports, and Integration.',
-      icon: '🏢',
-    },
-  ];
+  /* ---------------------- PRODUCTS ---------------------- */
+const products = [
+  {
+    title: 'Test Series',
+    description: 'A full-featured assessment and testing platform for training and certification.',
+    icon: <MdAssignment className="text-4xl text-purple-600 dark:text-purple-400" />,
+  },
+  {
+    title: 'ADRS LMS',
+    description: 'Learning management system for course delivery, progress tracking, and reporting.',
+    icon: <PiGraduationCapFill className="text-4xl text-purple-600 dark:text-purple-400" />,
+  },
+  {
+    title: 'Adrs Spark',
+    description: 'Low-code automation platform that accelerates workflows and smart integrations.',
+    icon: <MdAutoAwesome className="text-4xl text-purple-600 dark:text-purple-400" />,
+  },
+  {
+    title: 'GoEventify',
+    description: 'Event management suite for ticketing, scheduling, check-in, and real-time analytics.',
+    icon: <MdEvent className="text-4xl text-purple-600 dark:text-purple-400" />,
+  },
+];
 
+
+  /* ---------------------- STATISTICS ---------------------- */
   const stats = [
     { number: '117+', label: 'Projects Completed' },
     { number: '50+', label: 'Happy Clients' },
@@ -55,38 +69,44 @@ const Home = () => {
 
   return (
     <div className="section-bg">
-      {/* Hero Component with Background Carousel */}
+
+      {/* ---------------------- HERO ---------------------- */}
       <Hero />
 
-      {/* About Section */}
+      {/* ---------------------- ABOUT SECTION ---------------------- */}
       <section className="py-32 section-bg-alt">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
+
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
             transition={{ duration: 0.8 }}
             className="text-center mb-20"
           >
+
             <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-primary">
               About <span className="text-purple-600 dark:text-purple-400">ADRS Techno</span>
             </h2>
+
             <p className="text-xl text-secondary max-w-3xl mx-auto leading-relaxed">
-              Founded in 2024, ADRS Techno Private Limited is a technology company delivering custom enterprise applications 
-              and user-centric digital platforms. We specialize in innovation and business transformation through cutting-edge 
-              digital solutions.
+              Established in 2024, ADRS Techno Pvt. Ltd. delivers enterprise-grade software,
+              automation systems, and digital transformation solutions that empower businesses
+              to grow in a modern digital ecosystem.
             </p>
+
           </motion.div>
+
         </div>
       </section>
 
-      {/* Services Overview */}
+      {/* ---------------------- SERVICES OVERVIEW ---------------------- */}
       <section className="py-32 section-bg">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
+
+          {/* Section Header */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
             transition={{ duration: 0.8 }}
             className="text-center mb-20"
           >
@@ -94,117 +114,135 @@ const Home = () => {
               Our <span className="text-purple-600 dark:text-purple-400">Services</span>
             </h2>
             <p className="text-xl text-secondary max-w-2xl mx-auto">
-              Comprehensive technology solutions for modern businesses
+              Cutting-edge solutions engineered for reliability and scalability.
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          {/* Service Cards */}
+          <div className="grid md:grid-cols-3 gap-10">
             {services.map((service, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="card-bg p-8 rounded-xl hover:border-purple-500/30 transition-all group"
+                className="
+                  card-bg p-10 rounded-2xl group 
+                  hover:border-purple-500/30 transition-all shadow-xl 
+                  hover:shadow-purple-500/20
+                "
               >
-                <div className="text-5xl mb-6">{service.icon}</div>
-                <h3 className="text-2xl font-bold mb-4 text-primary group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+                <div className="mb-6">{service.icon}</div>
+
+                <h3 className="
+                  text-2xl font-bold mb-4 text-primary 
+                  group-hover:text-purple-600 dark:group-hover:text-purple-400 
+                  transition-colors
+                ">
                   {service.title}
                 </h3>
+
                 <p className="text-secondary leading-relaxed">{service.description}</p>
               </motion.div>
             ))}
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="mt-12 text-center"
-          >
+          {/* View Services CTA */}
+          <div className="mt-12 text-center">
             <Link
               to="/services"
-              className="inline-flex items-center px-8 py-3 bg-purple-600 dark:bg-purple-500 text-white font-semibold rounded hover:bg-purple-700 dark:hover:bg-purple-600 transition-colors"
+              className="inline-flex items-center px-8 py-3 
+              bg-purple-600 dark:bg-purple-500 text-white font-semibold rounded-lg 
+              hover:bg-purple-700 dark:hover:bg-purple-600 transition"
             >
               View All Services
               <FiArrowRight className="ml-2" />
             </Link>
-          </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* Products Showcase */}
+      {/* ---------------------- PRODUCTS SHOWCASE ---------------------- */}
       <section className="py-32 section-bg-alt">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
+
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
             transition={{ duration: 0.8 }}
             className="text-center mb-20"
           >
             <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-primary">
               Featured <span className="text-purple-600 dark:text-purple-400">Products</span>
             </h2>
+
             <p className="text-xl text-secondary max-w-2xl mx-auto">
-              Innovative solutions across healthcare, retail, education, and enterprise
+              Industry-ready digital products designed for speed, security & efficiency.
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* Product Cards */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {products.map((product, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="card-bg p-6 rounded-xl hover:border-purple-500/30 transition-all group"
+                className="
+                  card-bg p-6 rounded-xl group 
+                  hover:border-purple-500/30 transition-all shadow-lg hover:shadow-purple-600/20
+                "
               >
-                <div className="text-4xl mb-4">{product.icon}</div>
-                <h3 className="text-xl font-bold mb-3 text-primary group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+                <div className="mb-4">{product.icon}</div>
+
+                <h3 className="
+                  text-xl font-bold mb-3 text-primary 
+                  group-hover:text-purple-600 dark:group-hover:text-purple-400 
+                  transition-colors
+                ">
                   {product.title}
                 </h3>
-                <p className="text-secondary text-sm leading-relaxed">{product.description}</p>
+
+                <p className="text-secondary leading-relaxed text-sm">
+                  {product.description}
+                </p>
+
               </motion.div>
             ))}
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="mt-12 text-center"
-          >
+          {/* Explore Products CTA */}
+          <div className="mt-12 text-center">
             <Link
               to="/products"
-              className="inline-flex items-center px-8 py-3 bg-purple-600 dark:bg-purple-500 text-white font-semibold rounded hover:bg-purple-700 dark:hover:bg-purple-600 transition-colors"
+              className="inline-flex items-center px-8 py-3 bg-purple-600 
+              dark:bg-purple-500 text-white font-semibold rounded-lg hover:bg-purple-700 
+              dark:hover:bg-purple-600 transition"
             >
               Explore Products
               <FiArrowRight className="ml-2" />
             </Link>
-          </motion.div>
+          </div>
         </div>
       </section>
 
-      {/* Impact Statistics */}
+      {/* ---------------------- STAT SECTION ---------------------- */}
       <section className="py-32 section-bg">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
+
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
             transition={{ duration: 0.8 }}
             className="text-center mb-20"
           >
             <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-primary">
               Our <span className="text-purple-600 dark:text-purple-400">Impact</span>
             </h2>
+
             <p className="text-xl text-secondary max-w-2xl mx-auto">
-              Delivering results that matter
+              Delivering measurable value through innovation.
             </p>
           </motion.div>
 
@@ -214,43 +252,56 @@ const Home = () => {
                 key={index}
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="card-bg p-8 rounded-xl text-center"
+                className="
+                  card-bg p-8 rounded-xl text-center shadow-md 
+                  hover:shadow-purple-500/20 transition
+                "
               >
                 <div className="text-4xl lg:text-5xl font-bold text-purple-600 dark:text-purple-400 mb-3">
                   {stat.number}
                 </div>
-                <p className="text-secondary font-medium">{stat.label}</p>
+
+                <p className="text-secondary font-medium">
+                  {stat.label}
+                </p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* ---------------------- CTA SECTION ---------------------- */}
       <section className="py-32 section-bg-alt">
         <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
+
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
             <h2 className="text-4xl lg:text-5xl font-bold mb-6 text-primary">
               Start Your Journey
             </h2>
+
             <p className="text-xl text-secondary mb-10">
-              Transform your business with cutting-edge digital solutions
+              Transform your business with scalable, secure, and modern digital solutions.
             </p>
+
             <Link
               to="/contact"
-              className="inline-flex items-center px-10 py-4 bg-purple-600 dark:bg-purple-500 text-white font-semibold rounded hover:bg-purple-700 dark:hover:bg-purple-600 transition-colors"
+              className="
+                inline-flex items-center px-10 py-4 bg-purple-600 
+                dark:bg-purple-500 text-white font-semibold rounded-lg 
+                hover:bg-purple-700 dark:hover:bg-purple-600 
+                transition
+              "
             >
               Contact Us Today
               <FiArrowRight className="ml-2" />
             </Link>
           </motion.div>
+
         </div>
       </section>
     </div>

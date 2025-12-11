@@ -1,5 +1,3 @@
-
-
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -10,7 +8,6 @@ const Hero = () => {
 
   const background = {
     url: "/hero-bg/bg-1.jpg",
-    gradient: "linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%)",
   };
 
   useEffect(() => {
@@ -27,56 +24,75 @@ const Hero = () => {
   ];
 
   return (
-    <section className="relative min-h-[85vh] flex items-center py-10 overflow-hidden">
+    <section className="relative min-h-[90vh] flex items-center py-10 overflow-hidden">
 
-      {/* Background */}
+      {/* BACKGROUND IMAGE */}
       <div className="absolute inset-0 -z-10">
         {imageLoaded ? (
-          <img src={background.url} className="w-full h-full object-cover" />
+          <img
+            src={background.url}
+            className="w-full h-full object-cover"
+            alt="Background"
+          />
         ) : (
-          <div style={{ background: background.gradient }} className="w-full h-full" />
+          <div className="w-full h-full bg-gray-300 dark:bg-gray-900" />
         )}
-        <div className="absolute inset-0 bg-gradient-to-b from-white/40 via-white/30 to-white/40 dark:from-black/40 dark:via-black/30 dark:to-black/40" />
+
+        {/* OVERLAY FOR LIGHT & DARK MODES */}
+        <div className="
+          absolute inset-0 
+          bg-white/50 dark:bg-black/50 
+          backdrop-blur-[2px]
+        " />
       </div>
 
-      {/* Content Container */}
-      <div className="relative z-10 max-w-6xl mx-auto px-6 lg:px-8 w-full flex flex-col gap-12">
+      {/* MAIN CONTAINER */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 w-full">
 
-        {/* MAIN ROW (LEFT = TEXT, RIGHT = IMAGE) */}
-        <div className="grid lg:grid-cols-2 gap-14 items-center">
+        {/* MAIN GRID */}
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
           {/* LEFT SIDE */}
           <div>
+            {/* BADGE */}
             <motion.div
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="inline-block px-4 py-2 bg-purple-50 dark:bg-purple-500/10 
-              border border-purple-200 dark:border-purple-500/20 rounded-full mb-5"
+              className="
+                inline-block px-4 py-2 
+                bg-purple-100/50 dark:bg-purple-600/20 
+                border border-purple-300 dark:border-purple-400/30
+                rounded-full mb-5
+              "
             >
-              <span className="text-sm text-purple-600 dark:text-purple-400 font-medium">
+              <span className="text-sm text-purple-700 dark:text-purple-300 font-medium">
                 Trusted Technology for Modern Enterprises
               </span>
             </motion.div>
 
+            {/* TITLE */}
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="text-4xl lg:text-6xl font-bold text-primary leading-tight"
+              className="
+                text-4xl lg:text-6xl font-bold leading-tight 
+                text-black dark:text-white drop-shadow-xl
+              "
             >
-            
-              <span className="bg-gradient-to-r from-purple-600 via-indigo-500 to-purple-600 
-              bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-purple-500 via-purple-400 to-purple-500 
+                bg-clip-text text-transparent">
                 Advanced Digital Reliable Solutions
               </span>
             </motion.h1>
 
+            {/* DESCRIPTION */}
             <motion.p
               initial={{ opacity: 0, y: 15 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="text-lg text-secondary mt-6"
+              className="text-lg text-gray-700 dark:text-gray-200 mt-6 max-w-xl leading-relaxed"
             >
               ADRS delivers secure, scalable and intelligent cloud platforms that help enterprises
               automate, innovate and transform their digital ecosystem.
@@ -89,21 +105,34 @@ const Hero = () => {
               transition={{ delay: 0.4 }}
               className="flex flex-wrap gap-4 mt-8"
             >
+              {/* PRIMARY BUTTON */}
               <Link
                 to="/contact"
-                className="group inline-flex items-center px-7 py-3 bg-purple-600 
-                dark:bg-purple-500 text-white font-semibold rounded-lg hover:bg-purple-700 
-                dark:hover:bg-purple-600 transition"
+                className="
+                  group inline-flex items-center px-7 py-3 
+                  bg-purple-600 text-white 
+                  dark:bg-purple-500 
+                  font-semibold rounded-lg 
+                  hover:bg-purple-700 dark:hover:bg-purple-600 
+                  transition
+                "
               >
-                Book a Demo 
+                Book a Demo
                 <FiArrowRight className="ml-2 group-hover:translate-x-1 transition" />
               </Link>
 
+              {/* SECONDARY BUTTON */}
               <Link
                 to="/services"
-                className="px-7 py-3 bg-white/70 dark:bg-white/5 border border-gray-200 
-                dark:border-white/10 font-semibold rounded-lg hover:bg-white dark:hover:bg-white/10 
-                transition"
+                className="
+                  px-7 py-3 
+                  bg-white/70 dark:bg-white/10 
+                  border border-gray-300 dark:border-white/20 
+                  text-black dark:text-white 
+                  font-semibold rounded-lg 
+                  hover:bg-white dark:hover:bg-white/20 
+                  transition
+                "
               >
                 Our Services
               </Link>
@@ -116,32 +145,44 @@ const Hero = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.3 }}
           >
-            <div className="relative rounded-2xl border border-purple-200 
-            dark:border-purple-500/20 bg-white/60 dark:bg-white/5 backdrop-blur-sm shadow-xl p-6">
+            <div className="
+              relative rounded-2xl 
+              border border-gray-300 dark:border-white/20 
+              bg-white/60 dark:bg-white/10 
+              backdrop-blur-sm shadow-xl 
+              p-4 lg:p-6
+            ">
               <img
-                src="/hero-image.jpg"
+                src="https://images.pexels.com/photos/5475763/pexels-photo-5475763.jpeg"
                 alt="Enterprise Architecture"
-                className="rounded-xl w-full"
+                className="rounded-xl w-full object-cover shadow-lg"
               />
             </div>
           </motion.div>
+
         </div>
 
-        {/* STATS ROW — NOW INSIDE SAME PAGE AREA */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+        {/* STATS SECTION */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-14">
           {stats.map((s, i) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.5 + i * 0.1 }}
-              className="text-center py-6 rounded-xl bg-white/70 dark:bg-white/5 
-              border border-gray-200 dark:border-white/10 backdrop-blur-sm shadow"
+              className="
+                text-center py-6 rounded-xl 
+                bg-white/70 dark:bg-white/10 
+                border border-gray-300 dark:border-white/20 
+                backdrop-blur-sm shadow-lg
+              "
             >
-              <div className="text-3xl font-bold text-purple-600 dark:text-purple-400">
+              <div className="text-3xl font-bold text-purple-700 dark:text-purple-300">
                 {s.value}
               </div>
-              <div className="text-sm text-secondary mt-1">{s.label}</div>
+              <div className="text-sm text-gray-700 dark:text-gray-300 mt-1">
+                {s.label}
+              </div>
             </motion.div>
           ))}
         </div>
