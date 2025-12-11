@@ -10,6 +10,7 @@ import Team from '../pages/Team';
 import Workshop from '../pages/Workshop';
 import Gallery from '../pages/Gallery';
 import Career from '../pages/Career';
+import Apply from '../pages/Apply';
 
 export const router = createBrowserRouter([
   {
@@ -47,6 +48,10 @@ export const router = createBrowserRouter([
       {
         path: 'career',
         element: <Career />,
+      },
+      {
+        path: 'apply',
+        element: <Apply />,
       },
       {
         path: 'gallery',
