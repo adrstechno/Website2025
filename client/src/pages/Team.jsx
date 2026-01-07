@@ -11,15 +11,13 @@ const Team = () => {
 
   const developers = [
     { name: 'Siddhant Dubey', role: 'Chief Technical Officer', image: '/images/Siddhant.jpg' },
-    { name: 'Aman Vishwakarma', role: 'Project Manager (Full Stack Developer)', image: '/images/Aman.jpg' },
-    { name: 'Piyush Khare', role: 'Full Stack Developer', image: '/images/piyush.jpeg' },
+    { name: 'Aman Vishwakarma', role: 'Chief Operating Officer', image: '/images/Aman.jpg' },
     { name: 'Ishant Patel', role: 'Team Lead', image: '/images/Ishant.jpg' },
     { name: 'Sapeksh Vishwakarma', role: 'Team Lead', image: '/images/sapeksh.JPG' },
     { name: 'Srajal Vishwakarma', role: 'Full Stack Developer', image: '/images/srajal.jpeg' },
     { name: 'Sparsh Sahu', role: 'Full Stack Developer', image: '/images/sparsh.jpeg' },
     { name: 'Sachin Sen', role: 'Full Stack Developer', image: '/images/sachin.jpg' },
     { name: 'Sakshi Jain', role: 'Full Stack Developer', image: '/images/sakshi.jpg' },
-    { name: 'Roshan Sachdev', role: 'Full Stack Developer', image: '/images/roshan.jpeg' },
     { name: 'Danish Khan', role: 'ErpNEXT-Python Developer', image: '/images/danish.jpeg' },
      { name: 'Abhay Mishra', role: 'BDA (Business Development Administrator)', image: '/images/abhay.jpeg' }
 
