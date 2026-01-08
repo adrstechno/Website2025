@@ -43,33 +43,38 @@ const Layout = () => {
   useEffect(() => {
     if (!isMobile) return;
 
-    // 🔥 popup on FIRST website open
-    const timer = setTimeout(() => {
-      setShowInstallPopup(true);
-    }, 2000); // 2 sec delay
+    // ✅ popup tabhi aayega jab install possible ho
+    if (deferredPrompt || isIOS) {
+      const timer = setTimeout(() => {
+        setShowInstallPopup(true);
+      }, 1500); // 1.5 sec after site open
 
-    return () => clearTimeout(timer);
-  }, []);
+      return () => clearTimeout(timer);
+    }
+  }, [deferredPrompt, isMobile, isIOS]);
 
   const handleInstall = async () => {
-    // 🍎 iOS logic
+    // 🍎 iOS behavior (expected)
     if (isIOS) {
       alert("Tap Share → Add to Home Screen");
       return;
     }
 
     // 🤖 Android / Chrome
-    if (deferredPrompt) {
-      deferredPrompt.prompt();
-      await deferredPrompt.userChoice;
-      setShowInstallPopup(false);
+    if (!deferredPrompt) {
+      alert("Install option not ready yet. Please try again.");
+      return;
     }
+
+    deferredPrompt.prompt();
+    await deferredPrompt.userChoice;
+    setShowInstallPopup(false);
   };
   /* ================================================================ */
 
   return (
     <div className="min-h-screen flex flex-col">
-      {/* 🔥 AUTO SCROLL FIX */}
+      {/* AUTO SCROLL FIX */}
       <ScrollToTop />
 
       <CustomCursor />
@@ -95,7 +100,14 @@ const Layout = () => {
             <div className="flex gap-3">
               <button
                 onClick={handleInstall}
-                className="bg-purple-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-purple-700 transition"
+                disabled={!deferredPrompt && !isIOS}
+                className={`px-4 py-2 rounded-lg font-semibold transition
+                  ${
+                    !deferredPrompt && !isIOS
+                      ? "bg-gray-600 cursor-not-allowed"
+                      : "bg-purple-600 hover:bg-purple-700 text-white"
+                  }
+                `}
               >
                 Install
               </button>
