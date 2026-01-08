@@ -345,13 +345,29 @@ const Home = () => {
   }, []);
 
   useEffect(() => {
+  let shown = false;
+
+  const showPopup = () => {
+    if (shown) return;
+
     if (isInstallable || isIOS) {
-      const timer = setTimeout(() => {
-        setShowInstallPopup(true);
-      }, 2500);
-      return () => clearTimeout(timer);
+      setShowInstallPopup(true);
+      shown = true;
+      window.removeEventListener("scroll", showPopup);
+      window.removeEventListener("click", showPopup);
     }
-  }, [isInstallable, isIOS]);
+  };
+
+  // User engagement triggers
+  window.addEventListener("scroll", showPopup);
+  window.addEventListener("click", showPopup);
+
+  return () => {
+    window.removeEventListener("scroll", showPopup);
+    window.removeEventListener("click", showPopup);
+  };
+}, [isInstallable, isIOS]);
+
   /* =================================================================== */
 
   /* ---------------------- SERVICES ---------------------- */
