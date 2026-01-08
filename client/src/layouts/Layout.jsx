@@ -33,28 +33,25 @@ import ScrollToTop from "../components/ScrollToTop";
 import usePWAInstall from "../hooks/usePWAInstall";
 
 const Layout = () => {
-  /* ======================= PWA GLOBAL LOGIC ======================= */
   const { deferredPrompt } = usePWAInstall();
   const [showInstallPopup, setShowInstallPopup] = useState(false);
 
   const isMobile = /android|iphone|ipad|ipod/i.test(navigator.userAgent);
   const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
 
+  // ✅ ALWAYS show popup on mobile after page load
   useEffect(() => {
     if (!isMobile) return;
 
-    // ✅ popup tabhi aayega jab install possible ho
-    if (deferredPrompt || isIOS) {
-      const timer = setTimeout(() => {
-        setShowInstallPopup(true);
-      }, 1500); // 1.5 sec after site open
+    const timer = setTimeout(() => {
+      setShowInstallPopup(true);
+    }, 1200); // 1.2 sec
 
-      return () => clearTimeout(timer);
-    }
-  }, [deferredPrompt, isMobile, isIOS]);
+    return () => clearTimeout(timer);
+  }, [isMobile]);
 
   const handleInstall = async () => {
-    // 🍎 iOS behavior (expected)
+    // 🍎 iOS (Safari limitation)
     if (isIOS) {
       alert("Tap Share → Add to Home Screen");
       return;
@@ -62,7 +59,7 @@ const Layout = () => {
 
     // 🤖 Android / Chrome
     if (!deferredPrompt) {
-      alert("Install option not ready yet. Please try again.");
+      alert("Install option will appear from browser menu");
       return;
     }
 
@@ -70,11 +67,9 @@ const Layout = () => {
     await deferredPrompt.userChoice;
     setShowInstallPopup(false);
   };
-  /* ================================================================ */
 
   return (
     <div className="min-h-screen flex flex-col">
-      {/* AUTO SCROLL FIX */}
       <ScrollToTop />
 
       <CustomCursor />
@@ -84,30 +79,23 @@ const Layout = () => {
         <Outlet />
       </main>
 
-      {/* ======================= PWA INSTALL POPUP ======================= */}
+      {/* 🔥 PWA POPUP */}
       {showInstallPopup && (
         <div className="fixed bottom-4 left-4 right-4 z-[9999]">
-          <div className="bg-black border border-white/20 rounded-xl p-4 flex items-center justify-between shadow-xl">
+          <div className="bg-black border border-white/20 rounded-xl p-4 flex justify-between items-center shadow-xl">
             <div>
               <p className="text-white font-semibold">
                 Install ADRS Techno App 🚀
               </p>
               <p className="text-gray-400 text-sm">
-                Faster access & app-like experience
+                Faster access & offline support
               </p>
             </div>
 
             <div className="flex gap-3">
               <button
                 onClick={handleInstall}
-                disabled={!deferredPrompt && !isIOS}
-                className={`px-4 py-2 rounded-lg font-semibold transition
-                  ${
-                    !deferredPrompt && !isIOS
-                      ? "bg-gray-600 cursor-not-allowed"
-                      : "bg-purple-600 hover:bg-purple-700 text-white"
-                  }
-                `}
+                className="bg-purple-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-purple-700"
               >
                 Install
               </button>
@@ -122,7 +110,6 @@ const Layout = () => {
           </div>
         </div>
       )}
-      {/* ================================================================ */}
 
       <SocialPopup />
       <Footer />
