@@ -476,6 +476,18 @@ const Home = () => {
                 </motion.div>
               ))}
             </div>
+
+            <div className="mt-12 text-center">
+                         <Link
+              to="/services"
+             className="inline-flex items-center px-8 py-3 
+               bg-purple-600 dark:bg-purple-500 text-white font-semibold rounded-lg 
+               hover:bg-purple-700 dark:hover:bg-purple-600 transition"
+             >
+               View All Services
+               <FiArrowRight className="ml-2" />
+             </Link>
+           </div>
           </div>
         </section>
 
@@ -515,6 +527,18 @@ const Home = () => {
                 </motion.div>
               ))}
             </div>
+
+            <div className="mt-12 text-center">
+            <Link
+               to="/products"
+               className="inline-flex items-center px-8 py-3 bg-purple-600 
+               dark:bg-purple-500 text-white font-semibold rounded-lg hover:bg-purple-700 
+               dark:hover:bg-purple-600 transition"
+             >
+               Explore Products
+               <FiArrowRight className="ml-2" />
+             </Link>
+           </div>
           </div>
         </section>
 

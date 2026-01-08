@@ -29,7 +29,7 @@ createRoot(document.getElementById("root")).render(
 if ("serviceWorker" in navigator) {
   window.addEventListener("load", () => {
     navigator.serviceWorker
-      .register("/service-worker.js")
+      .register("/service_worker.js")
       .then(() => {
         console.log("✅ ADRS TECHNO PWA Service Worker registered");
       })
