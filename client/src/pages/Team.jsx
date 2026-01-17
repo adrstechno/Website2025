@@ -7,6 +7,10 @@ const Team = () => {
       role: 'Founder & CEO',
       image: '/images/Abhishek.jpg',
     },
+    { name: 'Mr.Prateek Gupta',
+       role: 'Co-Founder & Chief Strategy Officer(CSO).',
+       image: '/images/PrateekGupta.jpeg' },
+
   ];
 
   const developers = [
@@ -19,7 +23,7 @@ const Team = () => {
     { name: 'Sachin Sen', role: 'Full Stack Developer', image: '/images/sachin.jpg' },
     { name: 'Sakshi Jain', role: 'Full Stack Developer', image: '/images/sakshi.jpg' },
     { name: 'Danish Khan', role: 'ErpNEXT-Python Developer', image: '/images/danish.jpeg' },
-     { name: 'Abhay Mishra', role: 'BDA (Business Development Administrator)', image: '/images/abhay.jpeg' }
+    { name: 'Abhay Mishra', role: 'BDA (Business Development Administrator)', image: '/images/abhay.jpeg' }
 
     
   ];
@@ -61,34 +65,46 @@ const Team = () => {
             <p className="text-xl text-secondary">Guiding ADRS Technology to success</p>
           </motion.div>
 
-          <div className="grid md:grid-cols-1 gap-8 max-w-md mx-auto">
-            {leaders.map((leader, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                whileHover={{ y: -10 }}
-                className="card-bg p-8 rounded-xl text-center"
-              >
-                <div className="relative w-32 h-32 mx-auto mb-6">
-                  <img 
-                    src={leader.image} 
-                    alt={leader.name}
-                    className="w-full h-full rounded-full object-cover border-4 border-purple-200 dark:border-purple-500/30 shadow-lg"
-                    onError={(e) => {
-                      e.target.style.display = 'none';
-                      const initials = leader.name.split(' ').map(n => n[0]).join('');
-                      e.target.parentElement.innerHTML = `<div class="w-32 h-32 bg-purple-100 dark:bg-purple-500/10 rounded-full flex items-center justify-center text-3xl font-bold text-purple-600 dark:text-purple-400 border-4 border-purple-200 dark:border-purple-500/30 shadow-lg">${initials}</div>`;
-                    }}
-                  />
-                </div>
-                <h3 className="text-xl font-bold mb-2 text-primary">{leader.name}</h3>
-                <p className="text-purple-600 dark:text-purple-400 text-sm">{leader.role}</p>
-              </motion.div>
-            ))}
-          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+  {leaders.map((leader, index) => (
+    <motion.div
+      key={index}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6, delay: index * 0.1 }}
+      whileHover={{ y: -10 }}
+      className="card-bg p-8 rounded-xl text-center"
+    >
+      <div className="relative w-32 h-32 mx-auto mb-6">
+        <img 
+          src={leader.image} 
+          alt={leader.name}
+          className="w-full h-full rounded-full object-cover border-4 border-purple-200 dark:border-purple-500/30 shadow-lg"
+          onError={(e) => {
+            e.target.style.display = 'none';
+            const initials = leader.name
+              .split(' ')
+              .map(n => n[0])
+              .join('');
+            e.target.parentElement.innerHTML = `
+              <div class="w-32 h-32 bg-purple-100 dark:bg-purple-500/10 rounded-full flex items-center justify-center text-3xl font-bold text-purple-600 dark:text-purple-400 border-4 border-purple-200 dark:border-purple-500/30 shadow-lg">
+                ${initials}
+              </div>`;
+          }}
+        />
+      </div>
+
+      <h3 className="text-xl font-bold mb-2 text-primary">
+        {leader.name}
+      </h3>
+      <p className="text-purple-600 dark:text-purple-400 text-sm">
+        {leader.role}
+      </p>
+    </motion.div>
+  ))}
+</div>
+
         </div>
       </section>
 
