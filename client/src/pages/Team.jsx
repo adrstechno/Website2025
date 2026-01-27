@@ -3,9 +3,9 @@ import { motion } from 'framer-motion';
 const Team = () => {
   const leaders = [
     {
-      name: 'Abhishek Dubey',
+      name: 'Mr. Abhishek Dubey',
       role: 'Founder & CEO',
-      image: '/images/',
+      // image: '/images/Abhishek.jpg',
     },
     { name: 'Mr.Prateek Gupta',
        role: 'Co-Founder & Chief Strategy Officer(CSO).',
