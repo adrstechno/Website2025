@@ -20,7 +20,7 @@ const Team = () => {
     // { name: 'Sapeksh Vishwakarma', role: 'Team Lead', image: '/images/sapeksh.JPG' },
     // { name: 'Srajal Vishwakarma', role: 'Full Stack Developer', image: '/images/srajal.jpeg' },
     // { name: 'Sparsh Sahu', role: 'Full Stack Developer', image: '/images/sparsh.jpeg' },
-    { name: 'Sachin Sen', role: 'Full Stack Developer', image: '/images/sachin.jpg' },
+    // { name: 'Sachin Sen', role: 'Full Stack Developer', image: '/images/sachin.jpg' },
     // { name: 'Sakshi Jain', role: 'Full Stack Developer', image: '/images/sakshi.jpg' },
     { name: 'Danish Khan', role: 'ErpNEXT-Python Developer', image: '/images/danish.jpeg' },
     { name: 'Abhay Mishra', role: 'BDA (Business Development Administrator)', image: '/images/abhay.jpeg' }
