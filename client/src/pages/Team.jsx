@@ -5,7 +5,7 @@ const Team = () => {
     {
       name: 'Mr. Abhishek Dubey',
       role: 'Founder & CEO',
-      // image: '/images/Abhishek.jpg',
+      image: '/images/Abhishek.jpg',
     },
     { name: 'Mr.Prateek Gupta',
        role: 'Co-Founder & Chief Strategy Officer(CSO).',
