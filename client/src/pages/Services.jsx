@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import ServiceCard from '../components/ServiceCard';
 
@@ -12,7 +13,8 @@ import {
   FiTarget,
   FiSend,
   FiHeadphones,
-  FiShield
+  FiShield,
+  FiArrowRight
 } from "react-icons/fi";
 
 import { LuFactory, LuBrainCircuit } from "react-icons/lu";
@@ -329,6 +331,40 @@ const Services = () => {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* BPO CTA */}
+      <section className="py-24 section-bg">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="card-bg rounded-3xl p-8 md:p-12 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-8"
+          >
+            <div className="max-w-3xl">
+              <p className="text-sm font-semibold uppercase tracking-[0.2em] text-purple-600 dark:text-purple-400 mb-4">
+                Business Process Outsourcing
+              </p>
+              <h2 className="text-3xl md:text-4xl font-bold text-primary mb-4">
+                Need scalable operational support beyond software?
+              </h2>
+              <p className="text-lg text-secondary leading-relaxed">
+                Explore our BPO services for customer support, back-office operations,
+                finance, HR, moderation, and more built to match the same quality-first approach.
+              </p>
+            </div>
+
+            <Link
+              to="/bpo-services"
+              className="inline-flex items-center justify-center px-8 py-3 bg-purple-600 dark:bg-purple-500 text-white font-semibold rounded-lg hover:bg-purple-700 dark:hover:bg-purple-600 transition-all whitespace-nowrap"
+            >
+              View BPO Services
+              <FiArrowRight className="ml-2" />
+            </Link>
+          </motion.div>
         </div>
       </section>
 

@@ -18,6 +18,7 @@ const Footer = () => {
     Solutions: [
       { name: 'SaaS Platform', path: '/products' },
       { name: 'PaaS Infrastructure', path: '/services' },
+      { name: 'BPO Services', path: '/bpo-services' },
       { name: 'Cloud Solutions', path: '/services' },
       { name: 'Enterprise Tools', path: '/products' },
     ],

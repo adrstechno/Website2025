@@ -4,6 +4,7 @@ import Home from '../pages/Home';
 import Mission from '../pages/Mission';
 import About from '../pages/About';
 import Services from '../pages/Services';
+import BpoServices from '../pages/BpoServices';
 import Products from '../pages/Products';
 import Contact from '../pages/Contact';
 import Team from '../pages/Team';
@@ -32,6 +33,10 @@ export const router = createBrowserRouter([
       {
         path: 'services',
         element: <Services />,
+      },
+      {
+        path: 'bpo-services',
+        element: <BpoServices />,
       },
       {
         path: 'products',
