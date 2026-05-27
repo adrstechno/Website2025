@@ -4,11 +4,9 @@ import Home from '../pages/Home';
 import Mission from '../pages/Mission';
 import About from '../pages/About';
 import Services from '../pages/Services';
-import BpoServices from '../pages/BpoServices';
 import Products from '../pages/Products';
 import Contact from '../pages/Contact';
 import Team from '../pages/Team';
-import Workshop from '../pages/Workshop';
 import Gallery from '../pages/Gallery';
 import Career from '../pages/Career';
 import Apply from '../pages/Apply';
@@ -26,17 +24,13 @@ export const router = createBrowserRouter([
         path: 'mission',
         element: <Mission />,
       },
-        {
-          path: 'about',
-          element: <About />,
-        },
+      {
+        path: 'about',
+        element: <About />,
+      },
       {
         path: 'services',
         element: <Services />,
-      },
-      {
-        path: 'bpo-services',
-        element: <BpoServices />,
       },
       {
         path: 'products',
@@ -45,10 +39,6 @@ export const router = createBrowserRouter([
       {
         path: 'team',
         element: <Team />,
-      },
-      {
-        path: 'workshop',
-        element: <Workshop />,
       },
       {
         path: 'career',

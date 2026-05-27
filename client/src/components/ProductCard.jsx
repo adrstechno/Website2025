@@ -1,83 +1,71 @@
 import { motion } from 'framer-motion';
-import AnimatedButton from './AnimatedButton';
-
-const headerGradientAnim = {
-  backgroundPosition: ['0% 50%', '100% 50%'],
-};
+import { FiCheck, FiArrowUpRight } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
 
 const ProductCard = ({ product, index }) => {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 40, scale: 0.98 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.6, delay: index * 0.06, ease: 'easeOut' }}
-      whileHover={{ y: -8, scale: 1.01 }}
-      className="relative group h-full"
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      className="group bg-white dark:bg-[#111827] flex flex-col h-full hover:bg-blue-600 dark:hover:bg-blue-600 transition-colors duration-300 border border-slate-200 dark:border-[#1E293B] rounded-2xl shadow-sm overflow-hidden"
     >
-      {/* Glow effect */}
-      <div className={`absolute inset-0 bg-gradient-to-br ${product.gradient} opacity-0 group-hover:opacity-12 rounded-2xl blur-2xl transition-opacity duration-500`}></div>
-
-      {/* Card - supports both light and dark modes */}
-      <div className="relative bg-white/60 dark:bg-dark-secondary/50 backdrop-blur-sm border border-gray-100 dark:border-white/10 group-hover:border-cyan-500/30 rounded-2xl overflow-hidden h-full flex flex-col transition-all duration-300">
-        {/* Header with Icon */}
-        <motion.div
-          className={`h-36 bg-gradient-to-br ${product.gradient} flex items-center justify-center text-5xl relative overflow-hidden`}
-          animate={headerGradientAnim}
-          transition={{ duration: 6, repeat: Infinity, repeatType: 'mirror', ease: 'linear' }}
-        >
-          <div className="absolute inset-0 bg-white/10 dark:bg-black/20"></div>
-          <span className="relative z-10">{product.icon}</span>
-        </motion.div>
-
-        {/* Content */}
-        <div className="p-6 flex-1 flex flex-col">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="text-xl font-bold text-primary">{product.name}</h3>
-            {product.badge && (
-              <span className="px-3 py-1 bg-cyan-500/10 border border-cyan-500/30 text-cyan-600 dark:text-cyan-300 text-xs font-semibold rounded-full">
-                {product.badge}
-              </span>
-            )}
+      <div className="p-8 flex-grow flex flex-col">
+        {/* Header: Icon + Badge */}
+        <div className="flex items-start justify-between mb-8">
+          <div className="w-14 h-14 bg-blue-50 dark:bg-[#131C2E] group-hover:bg-white/20 flex items-center justify-center text-blue-600 dark:text-blue-400 group-hover:text-white transition-colors">
+            <div className="text-2xl">
+              {product.icon}
+            </div>
           </div>
-
-          <p className="text-secondary mb-4 leading-relaxed text-sm">
-            {product.description}
-          </p>
-
-          {/* Features */}
-          <div className="mb-4 flex-1">
-            <h4 className="font-semibold text-primary mb-2 text-sm">Key Features:</h4>
-            <ul className="space-y-2">
-              {product.features.map((feature, idx) => (
-                <li key={idx} className="flex items-start">
-                  <svg
-                    className="w-5 h-5 text-cyan-500 mr-2 mt-0.5 flex-shrink-0"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  <span className="text-secondary text-sm">{feature}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Buttons */}
-          <div className="flex gap-3">
-            <AnimatedButton variant="primary" size="small" className="flex-1">
-              Try Demo
-            </AnimatedButton>
-            <AnimatedButton variant="outline" size="small" className="flex-1">
-              Learn More
-            </AnimatedButton>
-          </div>
+          {product.badge && (
+            <span className="px-3 py-1 bg-slate-100 dark:bg-[#131C2E] group-hover:bg-white/20 text-slate-600 dark:text-slate-300 group-hover:text-white text-xs font-bold uppercase tracking-wider transition-colors">
+              {product.badge}
+            </span>
+          )}
         </div>
+
+        {/* Title & Description */}
+        <h3 className="text-2xl font-bold font-display text-slate-900 dark:text-white group-hover:text-white mb-3 transition-colors">
+          {product.name}
+        </h3>
+        <p className="text-slate-500 dark:text-slate-400 group-hover:text-blue-100 text-sm leading-relaxed mb-8 transition-colors">
+          {product.description}
+        </p>
+
+        {/* Features List */}
+        <div className="mb-8 flex-grow">
+          <p className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white group-hover:text-white mb-4 transition-colors">
+            Key Features
+          </p>
+          <ul className="space-y-3">
+            {product.features.map((feature, idx) => (
+              <li key={idx} className="flex items-start gap-3">
+                <FiCheck className="w-4 h-4 text-blue-600 dark:text-blue-400 group-hover:text-white mt-0.5 flex-shrink-0 transition-colors" />
+                <span className="text-sm text-slate-600 dark:text-slate-400 group-hover:text-blue-50 transition-colors">
+                  {feature}
+                </span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+
+      {/* Footer Actions */}
+      <div className="grid grid-cols-2 border-t border-slate-200 dark:border-[#1E293B] group-hover:border-white/20 transition-colors">
+        <Link 
+          to="/contact" 
+          className="flex items-center justify-center gap-2 py-4 text-sm font-bold text-slate-900 dark:text-white group-hover:text-white border-r border-slate-200 dark:border-[#1E293B] group-hover:border-white/20 transition-colors hover:bg-slate-50 dark:hover:bg-[#131C2E] group-hover:hover:bg-white/10"
+        >
+          Try Demo
+        </Link>
+        <Link 
+          to="/contact" 
+          className="flex items-center justify-center gap-2 py-4 text-sm font-bold text-blue-600 dark:text-blue-400 group-hover:text-white transition-colors hover:bg-slate-50 dark:hover:bg-[#131C2E] group-hover:hover:bg-white/10"
+        >
+          Details <FiArrowUpRight className="w-4 h-4" />
+        </Link>
       </div>
     </motion.div>
   );

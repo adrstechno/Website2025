@@ -1,15 +1,35 @@
 import { motion } from 'framer-motion';
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';
+import { 
+  FiCheckCircle, 
+  FiChevronDown, 
+  FiPlus, 
+  FiMinus, 
+  FiArrowRight, 
+  FiArrowUpRight,
+  FiBox
+} from 'react-icons/fi';
+import { MdHealthAndSafety, MdSchool, MdBusinessCenter } from 'react-icons/md';
+import { IoDiamondOutline } from 'react-icons/io5';
+
+/* ── Reusable section label ── */
+const SectionLabel = ({ number, text }) => (
+  <div className="flex items-center gap-3 mb-8">
+    <span className="text-xs font-bold text-blue-600 dark:text-blue-400 font-display tabular-nums">{number}</span>
+    <span className="h-[1px] w-8 bg-blue-600 dark:bg-blue-400" />
+    <span className="text-xs font-bold uppercase tracking-[0.2em] text-blue-600 dark:text-blue-400 font-display">{text}</span>
+  </div>
+);
 
 const Products = () => {
   const products = [
     {
       name: 'IDHPS',
       description: 'Comprehensive healthcare solution for modern medical facilities with appointment management, telemedicine, and electronic health records.',
-      icon: '🏥',
-      gradient: 'from-blue-500 to-cyan-500',
+      icon: <MdHealthAndSafety />,
       badge: 'Healthcare',
-      category: 'saas',
       features: [
         'Appointment Scheduling',
         'Telemedicine Integration',
@@ -21,10 +41,8 @@ const Products = () => {
     {
       name: 'Jewelry Manager',
       description: 'Complete retail management solution designed specifically for jewelry businesses with inventory, billing, and CRM capabilities.',
-      icon: '💎',
-      gradient: 'from-purple-500 to-pink-500',
+      icon: <IoDiamondOutline />,
       badge: 'Retail',
-      category: 'saas',
       features: [
         'Inventory Management',
         'Point of Sale (POS)',
@@ -36,10 +54,8 @@ const Products = () => {
     {
       name: 'ADRS Learn Pro',
       description: 'Advanced learning management system with progress tracking, analytics, and interactive course delivery.',
-      icon: '🎓',
-      gradient: 'from-green-500 to-teal-500',
+      icon: <MdSchool />,
       badge: 'Education',
-      category: 'saas',
       features: [
         'Course Management',
         'Progress Tracking',
@@ -51,10 +67,8 @@ const Products = () => {
     {
       name: 'Custom ERP',
       description: 'Tailored enterprise resource planning solution with workflow automation, comprehensive reporting, and seamless integration.',
-      icon: '🏢',
-      gradient: 'from-blue-600 to-indigo-600',
+      icon: <MdBusinessCenter />,
       badge: 'Enterprise',
-      category: 'saas',
       features: [
         'Workflow Automation',
         'Custom Reports',
@@ -64,8 +78,6 @@ const Products = () => {
       ],
     },
   ];
-
-
 
   const comparisonFeatures = [
     'Real-time Analytics',
@@ -77,26 +89,10 @@ const Products = () => {
   ];
 
   const upcoming = [
-    {
-      name: 'Test Series',
-      image: 'Testseries.png',
-      desc: 'A full-featured assessment and testing platform for training and certification.',
-    },
-    {
-      name: 'ADRS LMS',
-      image: 'Lms.png',
-      desc: 'Learning management system for course delivery, tracking, and reporting.',
-    },
-    {
-      name: 'Adrs Spark',
-      image: 'spark.png',
-      desc: 'Lightweight low-code automation platform to spark rapid integrations and workflows.',
-    },
-    {
-      name: 'Festyfi',
-      image: 'Festyfi.png',
-      desc: 'Event management product for ticketing, schedules, and on-site check-in.',
-    },
+    { name: 'Test Series', desc: 'A full-featured assessment and testing platform for training and certification.' },
+    { name: 'ADRS LMS',    desc: 'Learning management system for course delivery, tracking, and reporting.' },
+    { name: 'Adrs Spark',  desc: 'Lightweight low-code automation platform to spark rapid integrations.' },
+    { name: 'GoEventify',  desc: 'Event management product for ticketing, schedules, and on-site check-in.' },
   ];
 
   const faqs = [
@@ -122,116 +118,96 @@ const Products = () => {
     },
   ];
 
+  const [openFaqIndex, setOpenFaqIndex] = useState(null);
+  const toggleFaq = (index) => setOpenFaqIndex(openFaqIndex === index ? null : index);
+
+
   return (
-    <div className="section-bg pt-20">
-      {/* Hero Section */}
-      <section className="py-24 section-bg-alt">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="bg-[#F8FAFC] dark:bg-[#0B1120] pt-20 transition-colors duration-300">
+      
+      {/* ── HERO SECTION ── */}
+      <section className="py-24 bg-white dark:bg-[#111827] border-b border-slate-200 dark:border-[#1E293B]">
+        <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center max-w-4xl mx-auto"
+            transition={{ duration: 0.7 }}
+            className="max-w-4xl"
           >
-            <h1 className="text-5xl md:text-6xl font-bold text-primary mb-6">
-              Powerful <span className="text-purple-600 dark:text-purple-400">Products</span> for Modern Business
+            <SectionLabel number="00" text="SaaS Ecosystem" />
+            <h1 className="text-5xl md:text-7xl font-extrabold font-display text-slate-900 dark:text-white leading-tight mb-6">
+              Powerful <span className="text-blue-600 dark:text-blue-400">Products</span><br/>for Modern Business
             </h1>
-            <p className="text-xl text-secondary leading-relaxed mb-8">
-              Enterprise-grade solutions designed to transform your operations
+            <p className="text-xl text-slate-500 dark:text-slate-400 leading-relaxed mb-10 max-w-2xl">
+              Enterprise-grade solutions engineered to transform and automate your daily business operations. Secure, scalable, and ready to deploy.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-semibold hover:shadow-xl transition-all">
+            <div className="flex flex-wrap gap-4">
+              <Link
+                to="/contact"
+                className="group inline-flex items-center gap-2 px-8 py-4 bg-blue-600 text-white font-bold text-sm uppercase tracking-wider hover:bg-blue-700 transition-colors"
+              >
                 Start Free Trial
-              </button>
-              <button className="px-8 py-4 card-bg text-primary border-2 border-purple-600 dark:border-purple-400 rounded-lg font-semibold hover:bg-purple-600 hover:text-white dark:hover:bg-purple-500 transition-all">
+                <FiArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
+              <Link
+                to="/contact"
+                className="group inline-flex items-center gap-2 px-8 py-4 border border-slate-300 dark:border-[#1E293B] text-slate-700 dark:text-slate-300 font-bold text-sm uppercase tracking-wider hover:border-blue-600 dark:hover:border-blue-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              >
                 Schedule Demo
-              </button>
+              </Link>
             </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Upcoming Products */}
-      <section className="py-16 section-bg-alt">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-8"
-          >
-            <h3 className="text-2xl font-semibold text-primary">Upcoming Products</h3>
-            <p className="text-secondary mt-2">Exciting new products coming soon — stay tuned and request early access.</p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {upcoming.map((u, idx) => (
+      {/* ── FEATURED PLATFORMS (CORE PRODUCTS) ── */}
+      <section className="py-24 bg-[#F8FAFC] dark:bg-[#0B1120]">
+        <div className="max-w-7xl mx-auto px-6 lg:px-10">
+          <div className="flex flex-col lg:flex-row gap-12 items-start">
+            
+            {/* Products Grid */}
+            <div className="flex-1 w-full">
               <motion.div
-                key={u.name}
-                initial={{ opacity: 0, y: 12 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: idx * 0.06 }}
-                className="card-bg p-6 rounded-2xl text-center"
+                transition={{ duration: 0.7 }}
+                className="mb-12"
               >
-                {u.image ? (
-                  <img src={`/upcoming/${u.image}`} alt={u.name} className="mx-auto w-24 h-24 object-contain mb-3 rounded-md" />
-                ) : (
-                  <div className="text-4xl mb-3">{u.icon}</div>
-                )}
-                <h4 className="text-lg font-semibold text-primary mb-2">{u.name}</h4>
-                <p className="text-secondary text-sm mb-4">{u.desc}</p>
-                <div className="flex items-center justify-center gap-3">
-                  <button className="px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-md text-sm">Notify Me</button>
-                  <a href="#" className="text-sm text-primary hover:underline">Learn</a>
-                </div>
+                <SectionLabel number="01" text="Featured Platforms" />
+                <h2 className="text-4xl font-extrabold font-display text-slate-900 dark:text-white leading-tight">
+                  Production-Ready<br/>Software Solutions
+                </h2>
               </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* Products Showcase — Masonry Grid */}
-      <section className="py-16 section-bg">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col lg:flex-row items-start gap-10">
-            <div className="flex-1">
-              <div className="prose max-w-none text-secondary mb-6">
-                <h3 className="text-2xl font-semibold text-primary">Featured Products</h3>
-                <p>Explore our flagship solutions — click a card to learn more or start a trial.</p>
-              </div>
-
-              <div className="w-full">
-                <motion.div
-                  initial="hidden"
-                  whileInView="show"
-                  viewport={{ once: true }}
-                  variants={{
-                    hidden: {},
-                    show: {
-                      transition: { staggerChildren: 0.06 }
-                    }
-                  }}
-                >
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                      {products.map((p, i) => (
-                        <div key={i} className="mb-4">
-                          <ProductCard product={p} index={i} />
-                        </div>
-                      ))}
-                    </div>
-                </motion.div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                {products.map((p, i) => (
+                  <ProductCard key={i} product={p} index={i} />
+                ))}
               </div>
             </div>
 
-            <aside className="w-full lg:w-96 self-start">
-              <div className="card-bg rounded-2xl p-6 shadow-md sticky top-24 lg:top-28">
-                <h4 className="text-lg font-semibold text-primary mb-3">Why ADRS Products?</h4>
-                <p className="text-sm text-secondary mb-4">Built for scale, security and deep integrations. Pick a product and start a free trial.</p>
+            {/* Sticky Callout Sidebar */}
+            <aside className="w-full lg:w-80 flex-shrink-0 self-start lg:sticky lg:top-28 lg:mt-[140px]">
+              <div className="bg-white dark:bg-[#111827] border border-slate-200 dark:border-[#1E293B] p-8 relative overflow-hidden group hover:border-blue-600 dark:hover:border-blue-500 transition-colors duration-300">
+                <div className="absolute top-0 left-0 right-0 h-1 bg-blue-600" />
+                <h3 className="text-lg font-bold font-display text-slate-900 dark:text-white mb-4">Why ADRS Products?</h3>
+                <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-8">
+                  Our products are built on highly scalable cloud infrastructure with SOC 2 compliance, bank-grade encryption protocols, and a focus on intuitive user workflows.
+                </p>
                 <div className="space-y-3">
-                  <button className="w-full px-4 py-3 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg font-semibold hover:shadow-xl transition-all">Start Free Trial</button>
-                  <button className="w-full px-4 py-3 card-bg text-primary border-2 border-purple-600 dark:border-purple-400 rounded-lg font-semibold hover:bg-purple-600 hover:text-white dark:hover:bg-purple-500 transition-all">Schedule Demo</button>
+                  <Link
+                    to="/contact"
+                    className="flex items-center justify-between w-full py-3 px-4 bg-slate-100 dark:bg-[#131C2E] text-slate-900 dark:text-white text-sm font-bold uppercase tracking-wider hover:bg-blue-600 hover:text-white transition-colors"
+                  >
+                    Free Trial <FiArrowRight />
+                  </Link>
+                  <Link
+                    to="/contact"
+                    className="flex items-center justify-between w-full py-3 px-4 bg-transparent border border-slate-200 dark:border-[#1E293B] text-slate-600 dark:text-slate-400 text-sm font-bold uppercase tracking-wider hover:border-blue-600 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+                  >
+                    Demo <FiArrowRight />
+                  </Link>
                 </div>
               </div>
             </aside>
@@ -239,121 +215,186 @@ const Products = () => {
         </div>
       </section>
 
-      {/* Comparison Table */}
-      <section className="py-24 section-bg-alt">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* ── UPCOMING PRODUCTS ── */}
+      <section className="py-24 bg-white dark:bg-[#111827] border-t border-b border-slate-200 dark:border-[#1E293B]">
+        <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-16"
+            className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6"
           >
-            <h2 className="text-4xl font-bold text-primary mb-4">
-              Compare <span className="text-purple-600 dark:text-purple-400">Plans</span>
-            </h2>
-            <p className="text-xl text-secondary">Choose the right plan for your needs</p>
-          </motion.div>
-
-          <div className="card-bg rounded-2xl shadow-xl overflow-hidden">
-            <div className="overflow-x-auto">
-              <table className="w-full">
-                <thead className="bg-gradient-to-r from-blue-600 to-purple-600 text-white">
-                  <tr>
-                    <th className="px-6 py-4 text-left">Features</th>
-                    <th className="px-6 py-4 text-center">Starter</th>
-                    <th className="px-6 py-4 text-center">Professional</th>
-                    <th className="px-6 py-4 text-center">Enterprise</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-200 dark:divide-white/10">
-                  {comparisonFeatures.map((feature, index) => (
-                    <tr key={index} className="hover:bg-gray-50 dark:hover:bg-white/5">
-                      <td className="px-6 py-4 font-medium text-primary">{feature}</td>
-                      <td className="px-6 py-4 text-center">
-                        {index < 2 ? (
-                          <svg className="w-6 h-6 text-green-500 mx-auto" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                          </svg>
-                        ) : (
-                          <span className="text-gray-400">—</span>
-                        )}
-                      </td>
-                      <td className="px-6 py-4 text-center">
-                        {index < 4 ? (
-                          <svg className="w-6 h-6 text-green-500 mx-auto" fill="currentColor" viewBox="0 0 20 20">
-                            <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                          </svg>
-                        ) : (
-                          <span className="text-gray-400">—</span>
-                        )}
-                      </td>
-                      <td className="px-6 py-4 text-center">
-                        <svg className="w-6 h-6 text-green-500 mx-auto" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
-                        </svg>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+            <div>
+              <SectionLabel number="02" text="In Development" />
+              <h2 className="text-4xl font-extrabold font-display text-slate-900 dark:text-white leading-tight">
+                Upcoming Releases
+              </h2>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ Section */}
-      <section className="py-24 section-bg">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-4xl font-bold text-primary mb-4">
-              Frequently Asked <span className="text-purple-600 dark:text-purple-400">Questions</span>
-            </h2>
-            <p className="text-xl text-secondary">Everything you need to know</p>
+            <Link
+              to="/contact"
+              className="text-sm font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400 hover:text-blue-800 transition-colors flex items-center gap-2"
+            >
+              Get Early Access <FiArrowRight />
+            </Link>
           </motion.div>
 
-          <div className="space-y-6">
-            {faqs.map((faq, index) => (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {upcoming.map((u, idx) => (
               <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
+                key={idx}
+                initial={{ opacity: 0, y: 15 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="card-bg rounded-xl p-6 hover:shadow-lg transition-shadow"
+                transition={{ duration: 0.5, delay: idx * 0.08 }}
+                className="bg-white dark:bg-[#111827] border border-slate-200 dark:border-[#1E293B] rounded-2xl shadow-sm p-8 flex flex-col hover:border-blue-600 dark:hover:border-blue-500 transition-colors duration-300"
               >
-                <h3 className="text-lg font-bold text-primary mb-3">{faq.question}</h3>
-                <p className="text-secondary leading-relaxed">{faq.answer}</p>
+                <div className="w-12 h-12 bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 flex items-center justify-center mb-6">
+                  <FiBox className="w-5 h-5" />
+                </div>
+                <h3 className="text-lg font-bold font-display text-slate-900 dark:text-white mb-3">{u.name}</h3>
+                <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed flex-grow mb-6">{u.desc}</p>
+                <div className="mt-auto border-t border-slate-200 dark:border-[#1E293B] pt-4">
+                  <span className="text-xs font-bold uppercase tracking-wider text-slate-400">Coming Soon</span>
+                </div>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-24 bg-gradient-to-br from-blue-600 to-purple-600">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      {/* ── COMPARISON TABLE ── */}
+      <section className="py-24 bg-[#F8FAFC] dark:bg-[#0B1120]">
+        <div className="max-w-7xl mx-auto px-6 lg:px-10">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="mb-16"
+          >
+            <SectionLabel number="03" text="Compare Plans" />
+            <h2 className="text-4xl font-extrabold font-display text-slate-900 dark:text-white leading-tight">
+              Service Levels
+            </h2>
+          </motion.div>
+
+          <div className="bg-white dark:bg-[#111827] border border-slate-200 dark:border-[#1E293B] overflow-x-auto">
+            <table className="w-full min-w-[600px] text-left">
+              <thead>
+                <tr className="border-b border-slate-200 dark:border-[#1E293B]">
+                  <th className="px-8 py-6 text-sm font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400 w-1/3">Features</th>
+                  <th className="px-8 py-6 text-sm font-bold uppercase tracking-wider text-slate-900 dark:text-white text-center">Starter</th>
+                  <th className="px-8 py-6 text-sm font-bold uppercase tracking-wider text-slate-900 dark:text-white text-center border-x border-slate-200 dark:border-[#1E293B] bg-slate-50 dark:bg-[#0B1120]">Professional</th>
+                  <th className="px-8 py-6 text-sm font-bold uppercase tracking-wider text-blue-600 dark:text-blue-400 text-center">Enterprise</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-slate-100 dark:divide-[#1E293B]">
+                {comparisonFeatures.map((feature, index) => (
+                  <tr key={index} className="hover:bg-slate-50 dark:hover:bg-[#131C2E] transition-colors">
+                    <td className="px-8 py-5 text-sm font-medium text-slate-700 dark:text-slate-300">{feature}</td>
+                    
+                    {/* Starter */}
+                    <td className="px-8 py-5 text-center">
+                      {index < 2 ? (
+                        <FiCheckCircle className="w-5 h-5 text-slate-400 mx-auto" />
+                      ) : (
+                        <FiMinus className="w-5 h-5 text-slate-300 dark:text-slate-700 mx-auto" />
+                      )}
+                    </td>
+                    
+                    {/* Professional */}
+                    <td className="px-8 py-5 text-center border-x border-slate-200 dark:border-[#1E293B] bg-slate-50 dark:bg-[#0B1120]">
+                      {index < 4 ? (
+                        <FiCheckCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 mx-auto" />
+                      ) : (
+                        <FiMinus className="w-5 h-5 text-slate-300 dark:text-slate-700 mx-auto" />
+                      )}
+                    </td>
+                    
+                    {/* Enterprise */}
+                    <td className="px-8 py-5 text-center">
+                      <FiCheckCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 mx-auto" />
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      {/* ── FAQ ── */}
+      <section className="py-24 bg-white dark:bg-[#111827] border-t border-b border-slate-200 dark:border-[#1E293B]">
+        <div className="max-w-4xl mx-auto px-6 lg:px-10">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <SectionLabel number="04" text="FAQ" />
+            <h2 className="text-4xl font-extrabold font-display text-slate-900 dark:text-white leading-tight">
+              Frequently Asked<br/>Questions
+            </h2>
+          </motion.div>
+
+          <div className="divide-y divide-slate-200 dark:divide-[#1E293B] border-y border-slate-200 dark:border-[#1E293B]">
+            {faqs.map((faq, index) => {
+              const isOpen = openFaqIndex === index;
+              return (
+                <div key={index} className="bg-white dark:bg-[#111827]">
+                  <button
+                    onClick={() => toggleFaq(index)}
+                    className="w-full flex items-center justify-between py-6 text-left focus:outline-none group"
+                  >
+                    <span className="text-base font-bold font-display text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                      {faq.question}
+                    </span>
+                    <span className="text-slate-400 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors flex-shrink-0 ml-4">
+                      {isOpen ? <FiMinus className="w-5 h-5" /> : <FiPlus className="w-5 h-5" />}
+                    </span>
+                  </button>
+                  <motion.div
+                    initial={false}
+                    animate={{ height: isOpen ? 'auto' : 0, opacity: isOpen ? 1 : 0 }}
+                    transition={{ duration: 0.3 }}
+                    className="overflow-hidden"
+                  >
+                    <div className="pb-6 text-sm text-slate-500 dark:text-slate-400 leading-relaxed max-w-3xl">
+                      {faq.answer}
+                    </div>
+                  </motion.div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ── CTA SECTION ── */}
+      <section className="py-24 bg-blue-600">
+        <div className="max-w-4xl mx-auto px-6 lg:px-10 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            <p className="text-blue-200 text-xs font-bold uppercase tracking-[0.2em] mb-4">Start Today</p>
+            <h2 className="text-4xl sm:text-5xl font-extrabold font-display text-white mb-6 leading-tight">
               Ready to Get Started?
             </h2>
-            <p className="text-xl text-blue-100 mb-10">
-              Try any product free for 14 days. No credit card required.
+            <p className="text-xl text-blue-100 max-w-2xl mx-auto mb-10 leading-relaxed">
+              Try any platform free for 14 days. No credit card required. Cancel anytime.
             </p>
-            <button className="px-10 py-4 bg-white text-blue-600 rounded-lg text-lg font-semibold hover:shadow-2xl transform hover:-translate-y-1 transition-all">
-              Start Your Free Trial
-            </button>
+            <Link
+              to="/contact"
+              className="inline-flex items-center gap-2 px-10 py-4 bg-white text-blue-700 font-bold uppercase tracking-wider text-sm hover:bg-blue-50 transition-colors"
+            >
+              Start Your Free Trial <FiArrowUpRight className="w-4 h-4" />
+            </Link>
           </motion.div>
         </div>
       </section>

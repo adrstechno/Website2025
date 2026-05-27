@@ -4,16 +4,22 @@
 
 @layer base {
   body {
-    @apply antialiased transition-colors duration-300;
+    @apply antialiased transition-colors duration-300 font-sans;
     font-feature-settings: 'kern' 1, 'liga' 1;
   }
-  
+
   body.dark {
-    @apply bg-[#0a0a0a] text-white;
+    background-color: #0B1120;
+    color: #F1F5F9;
   }
-  
+
   body.light {
-    @apply bg-white text-gray-900;
+    background-color: #F8FAFC;
+    color: #0F172A;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Outfit', sans-serif;
   }
 }
 
@@ -21,76 +27,42 @@
   .text-balance {
     text-wrap: balance;
   }
-  
-  .accent-primary {
-    @apply text-purple-600 dark:text-purple-400;
-  }
-  
-  .bg-accent-primary {
-    @apply bg-purple-600 dark:bg-purple-500;
-  }
-  
-  .border-accent-primary {
-    @apply border-purple-600 dark:border-purple-400;
-  }
-  
-  .section-bg {
-    @apply bg-white dark:bg-[#0a0a0a];
-  }
-  
-  .section-bg-alt {
-    @apply bg-gray-50 dark:bg-[#141414];
-  }
-  
+
+  /* Accent */
+  .accent-primary        { @apply text-blue-600 dark:text-blue-400; }
+  .bg-accent-primary     { @apply bg-blue-600; }
+  .border-accent-primary { @apply border-blue-600 dark:border-blue-400; }
+
+  /* Backgrounds */
+  .section-bg      { @apply bg-[#F8FAFC] dark:bg-[#0B1120]; }
+  .section-bg-alt  { @apply bg-white dark:bg-[#111827]; }
+  .section-bg-dark { background-color: #0B1120; }
+
+  /* Cards */
   .card-bg {
-    @apply bg-white dark:bg-[#141414] border border-gray-200 dark:border-white/5;
+    @apply bg-white dark:bg-[#111827] border border-slate-200 dark:border-[#1E293B];
   }
-  
-  .text-primary {
-    @apply text-gray-900 dark:text-white;
-  }
-  
-  .text-secondary {
-    @apply text-gray-600 dark:text-gray-400;
-  }
+
+  /* Text */
+  .text-primary   { @apply text-slate-900 dark:text-slate-100; }
+  .text-secondary { @apply text-slate-500 dark:text-slate-400; }
 }
 
 /* Smooth scrolling */
-html {
-  scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 /* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-track {
-  @apply bg-gray-100 dark:bg-[#0a0a0a];
-}
-
-::-webkit-scrollbar-thumb {
-  @apply bg-purple-600 dark:bg-purple-500;
-  border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  @apply bg-purple-700 dark:bg-purple-400;
-}
+::-webkit-scrollbar       { width: 5px; }
+::-webkit-scrollbar-track { background: #0B1120; }
+::-webkit-scrollbar-thumb { background: #2563EB; border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: #1D4ED8; }
 
 /* Selection */
-::selection {
-  @apply bg-purple-600 dark:bg-purple-500 text-white;
-}
+::selection { background: #2563EB; color: #ffffff; }
 
 /* Custom Cursor */
-* {
-  cursor: none !important;
-}
+* { cursor: none !important; }
 
-/* Show default cursor on mobile */
 @media (max-width: 768px) {
-  * {
-    cursor: auto !important;
-  }
+  * { cursor: auto !important; }
 }
