@@ -5,7 +5,7 @@ import { FiArrowRight, FiArrowUpRight } from "react-icons/fi";
 import { MdDevices, MdSecurity, MdFactory, MdAssignment, MdEvent, MdAutoAwesome } from "react-icons/md";
 import { PiGraduationCapFill } from "react-icons/pi";
 import Hero from "../components/Hero";
-import usePWAInstall from "../hooks/usePWAInstall";
+import CountUp from "react-countup";
 
 /* ── Reusable section label ── */
 const SectionLabel = ({ number, text }) => (
@@ -17,28 +17,6 @@ const SectionLabel = ({ number, text }) => (
 );
 
 const Home = () => {
-  const { isInstallable, installApp } = usePWAInstall();
-  const [showInstallPopup, setShowInstallPopup] = useState(false);
-  const [isIOS, setIsIOS] = useState(false);
-
-  useEffect(() => {
-    const ua = navigator.userAgent.toLowerCase();
-    setIsIOS(/iphone|ipad|ipod/.test(ua) && !window.matchMedia("(display-mode: standalone)").matches);
-  }, []);
-
-  useEffect(() => {
-    let shown = false;
-    const show = () => {
-      if (shown || (!isInstallable && !isIOS)) return;
-      setShowInstallPopup(true);
-      shown = true;
-      window.removeEventListener("scroll", show);
-      window.removeEventListener("click", show);
-    };
-    window.addEventListener("scroll", show);
-    window.addEventListener("click", show);
-    return () => { window.removeEventListener("scroll", show); window.removeEventListener("click", show); };
-  }, [isInstallable, isIOS]);
 
   const services = [
     { number: "01", title: "Web & Mobile Development", description: "Custom application development, technical consulting, UI/UX engineering, and cloud-ready architectures.", icon: <MdDevices /> },
@@ -54,10 +32,10 @@ const Home = () => {
   ];
 
   const stats = [
-    { number: "117+", label: "Projects Completed" },
-    { number: "50+",  label: "Happy Clients" },
-    { number: "10+",  label: "Team Members" },
-    { number: "2024", label: "Year Founded" },
+    { number: 117, suffix: "+", label: "Projects Completed" },
+    { number: 50,  suffix: "+", label: "Happy Clients" },
+    { number: 50,  suffix: "+", label: "Team Members" },
+    { number: 2024, suffix: "", label: "Year Founded", noCount: true },
   ];
 
   return (
@@ -107,7 +85,7 @@ const Home = () => {
               >
                 {[
                   { value: "2024", label: "Year Founded" },
-                  { value: "10+",  label: "Specialists" },
+                  { value: "50+",  label: "Specialists" },
                   { value: "50+",  label: "Enterprise Clients" },
                   { value: "117+", label: "Projects Delivered" },
                 ].map((item, i) => (
@@ -234,8 +212,14 @@ const Home = () => {
                   transition={{ duration: 0.5, delay: i * 0.1 }}
                   className="py-10 px-8 text-center"
                 >
-                  <div className="text-5xl sm:text-6xl font-extrabold font-display text-blue-600 dark:text-blue-400 mb-2">{stat.number}</div>
-                  <div className="text-xs text-slate-500 dark:text-slate-400 font-bold uppercase tracking-wider">{stat.label}</div>
+                  <div className="text-5xl sm:text-6xl font-extrabold font-display text-blue-600 dark:text-blue-400 leading-none">
+                    {stat.noCount ? (
+                      `${stat.number}${stat.suffix}`
+                    ) : (
+                      <CountUp end={stat.number} suffix={stat.suffix} duration={2.5} enableScrollSpy scrollSpyOnce separator="," />
+                    )}
+                  </div>
+                  <div className="text-xs text-slate-500 dark:text-slate-400 font-bold uppercase tracking-wider mt-1.5">{stat.label}</div>
                 </motion.div>
               ))}
             </div>
@@ -278,28 +262,6 @@ const Home = () => {
 
       </div>
 
-      {/* ───────────── PWA POPUP ───────────── */}
-      {showInstallPopup && (
-        <div className="fixed bottom-4 left-4 right-4 z-[9999] md:left-auto md:w-96">
-          <div className="bg-white dark:bg-[#111827] border border-slate-200 dark:border-[#1E293B] p-4 shadow-2xl flex items-center justify-between gap-4">
-            <div>
-              <h4 className="text-slate-900 dark:text-white font-bold text-sm">Install ADRS App</h4>
-              <p className="text-slate-500 dark:text-slate-400 text-xs mt-0.5">Faster access and offline experience</p>
-            </div>
-            <div className="flex gap-2 items-center flex-shrink-0">
-              {!isIOS && isInstallable && (
-                <button onClick={installApp} className="bg-blue-600 hover:bg-blue-700 text-white text-xs px-3.5 py-2 font-medium transition-colors">
-                  Install
-                </button>
-              )}
-              {isIOS && <span className="text-slate-600 dark:text-slate-300 text-xs">Tap <b>Share</b> → <b>Add</b></span>}
-              <button onClick={() => setShowInstallPopup(false)} className="text-slate-400 hover:text-slate-600 dark:hover:text-slate-300 text-xs px-2.5 py-2 transition-colors">
-                Later
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </>
   );
 };

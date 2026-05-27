@@ -2,7 +2,6 @@ import { Outlet } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import CustomCursor from '../components/CustomCursor';
-import SocialPopup from '../components/SocialPopup';
 import ScrollToTop from '../components/ScrollToTop';
 
 const Layout = () => {
@@ -14,11 +13,9 @@ const Layout = () => {
       <main className="flex-grow pt-20">
         <Outlet />
       </main>
-      <SocialPopup />
       <Footer />
     </div>
   );
 };
 
 export default Layout;
-

@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import { FiMapPin, FiBriefcase, FiClock, FiArrowRight, FiSend } from "react-icons/fi";
 import {
   MdPalette,
@@ -260,14 +261,13 @@ const Career = () => {
 
                   {/* Apply Button */}
                   <div className="lg:w-48 flex-shrink-0 flex items-center lg:items-start">
-                    <motion.button
-                      whileHover={{ scale: 1.04 }}
-                      whileTap={{ scale: 0.96 }}
-                      className="w-full group/btn inline-flex items-center justify-center gap-2 px-6 py-3 bg-blue-500 hover:bg-blue-400 text-black font-semibold rounded-xl transition-all shadow-lg shadow-blue-500/20"
+                    <Link
+                      to="/apply"
+                      className="w-full group/btn inline-flex items-center justify-center gap-2 px-6 py-3 bg-blue-500 hover:bg-blue-400 text-white font-semibold rounded-xl transition-all shadow-lg shadow-blue-500/20"
                     >
                       Apply Now
                       <FiArrowRight className="group-hover/btn:translate-x-1 transition-transform" />
-                    </motion.button>
+                    </Link>
                   </div>
                 </div>
               </motion.div>
@@ -346,15 +346,13 @@ const Career = () => {
               and we'll keep you in mind for future opportunities.
             </p>
 
-            <motion.a
-              href="mailto:support@adrstechno.com"
-              whileHover={{ scale: 1.05, y: -2 }}
-              whileTap={{ scale: 0.97 }}
-              className="inline-flex items-center gap-2 px-10 py-4 bg-blue-500 hover:bg-blue-400 text-black font-bold rounded-xl transition-all shadow-xl shadow-blue-500/30"
+            <Link
+              to="/apply"
+              className="inline-flex items-center gap-2 px-10 py-4 bg-blue-500 hover:bg-blue-400 text-white font-bold rounded-xl transition-all shadow-xl shadow-blue-500/30 group"
             >
               Send Your Resume
               <FiArrowRight className="group-hover:translate-x-1 transition-transform" />
-            </motion.a>
+            </Link>
           </motion.div>
         </div>
       </section>

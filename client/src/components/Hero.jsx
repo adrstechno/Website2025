@@ -1,17 +1,17 @@
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { FiArrowRight, FiArrowUpRight } from "react-icons/fi";
+import CountUp from "react-countup";
 
 const Hero = () => {
   const stats = [
-    { value: "10+",   label: "Expert Engineers" },
-    { value: "99.9%", label: "Service Reliability" },
-    { value: "50+",   label: "Enterprise Deployments" },
-    { value: "24/7",  label: "Global Support" },
+    { end: 50,   decimals: 0, suffix: "+", label: "Expert Engineers" },
+    { end: 99.9, decimals: 1, suffix: "%", label: "Service Reliability" },
+    { end: 50,   decimals: 0, suffix: "+", label: "Enterprise Deployments" },
+    { end: 24,   decimals: 0, suffix: "/7", label: "Global Support" },
   ];
-
   return (
-    <section className="relative min-h-screen flex items-center bg-[#F8FAFC] dark:bg-[#0B1120] transition-colors duration-300 pt-[56px]">
+    <section className="relative bg-[#F8FAFC] dark:bg-[#0B1120] transition-colors duration-300 py-12 lg:py-16">
 
       {/* Dot-grid background */}
       <div
@@ -29,8 +29,8 @@ const Hero = () => {
         }}
       />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 w-full py-20">
-        <div className="grid lg:grid-cols-12 min-h-[75vh] items-stretch">
+      <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-10 w-full">
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-0 items-center">
 
           {/* ── LEFT — Main content ── */}
           <div className="lg:col-span-8 flex flex-col justify-center space-y-10 lg:pr-16 lg:border-r border-slate-200 dark:border-[#1E293B]">
@@ -55,9 +55,8 @@ const Hero = () => {
               transition={{ duration: 0.7, delay: 0.1 }}
               className="text-5xl sm:text-6xl lg:text-[5.5rem] font-extrabold leading-[1.0] tracking-tight font-display text-slate-900 dark:text-white"
             >
-              Powering<br />
-              <span className="text-blue-600 dark:text-blue-400">Digital</span><br />
-              Transformation
+              Advanced Digital<br />
+              <span className="text-blue-600 dark:text-blue-400">Reliable Solutions</span>
             </motion.h1>
 
             {/* Description */}
@@ -105,10 +104,10 @@ const Hero = () => {
                   initial={{ opacity: 0, x: 24 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.6, delay: 0.3 + i * 0.1 }}
-                  className="py-7 border-b border-slate-200 dark:border-[#1E293B] first:border-t"
+                  className="py-6 border-b border-slate-200 dark:border-[#1E293B] first:pt-0 first:border-t-0"
                 >
                   <div className="text-5xl font-extrabold font-display text-slate-900 dark:text-white leading-none">
-                    {stat.value}
+                    <CountUp end={stat.end} decimals={stat.decimals} suffix={stat.suffix} duration={2.5} enableScrollSpy scrollSpyOnce />
                   </div>
                   <div className="text-sm text-slate-500 dark:text-slate-400 mt-1.5 font-medium">
                     {stat.label}

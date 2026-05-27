@@ -2,12 +2,12 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';
-import { 
-  FiCheckCircle, 
-  FiChevronDown, 
-  FiPlus, 
-  FiMinus, 
-  FiArrowRight, 
+import {
+  FiCheckCircle,
+  FiChevronDown,
+  FiPlus,
+  FiMinus,
+  FiArrowRight,
   FiArrowUpRight,
   FiBox
 } from 'react-icons/fi';
@@ -89,10 +89,11 @@ const Products = () => {
   ];
 
   const upcoming = [
-    { name: 'Test Series', desc: 'A full-featured assessment and testing platform for training and certification.' },
-    { name: 'ADRS LMS',    desc: 'Learning management system for course delivery, tracking, and reporting.' },
-    { name: 'Adrs Spark',  desc: 'Lightweight low-code automation platform to spark rapid integrations.' },
-    { name: 'GoEventify',  desc: 'Event management product for ticketing, schedules, and on-site check-in.' },
+    { name: 'Test With Spark', desc: 'A full-featured assessment and testing platform for training and certification.' },
+    { name: 'LMS/CRM', desc: 'Education and Relationship Management.' },
+    { name: 'GemControl', desc: 'Jewelry billing, Inventory & Analytics.' },
+    { name: 'GoEventify', desc: 'Event management product for ticketing, schedules, and on-site check-in.' },
+    { name: 'Inventory Management System', desc: 'Manage stock and supply flow.' },
   ];
 
   const faqs = [
@@ -124,7 +125,7 @@ const Products = () => {
 
   return (
     <div className="bg-[#F8FAFC] dark:bg-[#0B1120] pt-20 transition-colors duration-300">
-      
+
       {/* ── HERO SECTION ── */}
       <section className="py-24 bg-white dark:bg-[#111827] border-b border-slate-200 dark:border-[#1E293B]">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
@@ -136,7 +137,7 @@ const Products = () => {
           >
             <SectionLabel number="00" text="SaaS Ecosystem" />
             <h1 className="text-5xl md:text-7xl font-extrabold font-display text-slate-900 dark:text-white leading-tight mb-6">
-              Powerful <span className="text-blue-600 dark:text-blue-400">Products</span><br/>for Modern Business
+              Powerful <span className="text-blue-600 dark:text-blue-400">Products</span><br />for Modern Business
             </h1>
             <p className="text-xl text-slate-500 dark:text-slate-400 leading-relaxed mb-10 max-w-2xl">
               Enterprise-grade solutions engineered to transform and automate your daily business operations. Secure, scalable, and ready to deploy.
@@ -164,7 +165,7 @@ const Products = () => {
       <section className="py-24 bg-[#F8FAFC] dark:bg-[#0B1120]">
         <div className="max-w-7xl mx-auto px-6 lg:px-10">
           <div className="flex flex-col lg:flex-row gap-12 items-start">
-            
+
             {/* Products Grid */}
             <div className="flex-1 w-full">
               <motion.div
@@ -176,7 +177,7 @@ const Products = () => {
               >
                 <SectionLabel number="01" text="Featured Platforms" />
                 <h2 className="text-4xl font-extrabold font-display text-slate-900 dark:text-white leading-tight">
-                  Production-Ready<br/>Software Solutions
+                  Production-Ready<br />Software Solutions
                 </h2>
               </motion.div>
 
@@ -254,9 +255,6 @@ const Products = () => {
                 </div>
                 <h3 className="text-lg font-bold font-display text-slate-900 dark:text-white mb-3">{u.name}</h3>
                 <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed flex-grow mb-6">{u.desc}</p>
-                <div className="mt-auto border-t border-slate-200 dark:border-[#1E293B] pt-4">
-                  <span className="text-xs font-bold uppercase tracking-wider text-slate-400">Coming Soon</span>
-                </div>
               </motion.div>
             ))}
           </div>
@@ -293,7 +291,7 @@ const Products = () => {
                 {comparisonFeatures.map((feature, index) => (
                   <tr key={index} className="hover:bg-slate-50 dark:hover:bg-[#131C2E] transition-colors">
                     <td className="px-8 py-5 text-sm font-medium text-slate-700 dark:text-slate-300">{feature}</td>
-                    
+
                     {/* Starter */}
                     <td className="px-8 py-5 text-center">
                       {index < 2 ? (
@@ -302,7 +300,7 @@ const Products = () => {
                         <FiMinus className="w-5 h-5 text-slate-300 dark:text-slate-700 mx-auto" />
                       )}
                     </td>
-                    
+
                     {/* Professional */}
                     <td className="px-8 py-5 text-center border-x border-slate-200 dark:border-[#1E293B] bg-slate-50 dark:bg-[#0B1120]">
                       {index < 4 ? (
@@ -311,7 +309,7 @@ const Products = () => {
                         <FiMinus className="w-5 h-5 text-slate-300 dark:text-slate-700 mx-auto" />
                       )}
                     </td>
-                    
+
                     {/* Enterprise */}
                     <td className="px-8 py-5 text-center">
                       <FiCheckCircle className="w-5 h-5 text-blue-600 dark:text-blue-400 mx-auto" />
@@ -336,7 +334,7 @@ const Products = () => {
           >
             <SectionLabel number="04" text="FAQ" />
             <h2 className="text-4xl font-extrabold font-display text-slate-900 dark:text-white leading-tight">
-              Frequently Asked<br/>Questions
+              Frequently Asked<br />Questions
             </h2>
           </motion.div>
 

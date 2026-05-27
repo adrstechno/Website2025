@@ -12,6 +12,7 @@ import {
 } from "react-icons/md"
 import { FiCheckCircle } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import CountUp from "react-countup";
 
 const Mission = () => {
   /* ---------------------- CORE VALUES ---------------------- */
@@ -216,10 +217,10 @@ const Mission = () => {
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
             {[
-              { number: "117+", label: "Projects Completed" },
-              { number: "50+", label: "Happy Clients" },
-              { number: "10+", label: "Team Members" },
-              { number: "2024", label: "Founded" },
+              { number: 117, suffix: "+", label: "Projects Completed" },
+              { number: 50,  suffix: "+", label: "Happy Clients" },
+              { number: 50,  suffix: "+", label: "Team Members" },
+              { number: 2024, suffix: "", label: "Founded", noCount: true },
             ].map((stat, index) => (
               <motion.div
                 key={index}
@@ -230,7 +231,11 @@ const Mission = () => {
                 className="card-bg p-8 rounded-2xl text-center hover:border-blue-500/20 transition-all duration-300 shadow-sm"
               >
                 <div className="text-4xl sm:text-5xl font-extrabold font-display text-blue-600 dark:text-blue-400 mb-2">
-                  {stat.number}
+                  {stat.noCount ? (
+                    `${stat.number}${stat.suffix}`
+                  ) : (
+                    <CountUp end={stat.number} suffix={stat.suffix} duration={2.5} enableScrollSpy scrollSpyOnce separator="," />
+                  )}
                 </div>
                 <p className="text-slate-500 dark:text-slate-400 text-xs sm:text-sm font-semibold">{stat.label}</p>
               </motion.div>

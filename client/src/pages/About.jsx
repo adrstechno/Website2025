@@ -13,10 +13,10 @@ const SectionLabel = ({ number, text }) => (
 
 const About = () => {
   const timeline = [
-    { year: '2024', event: 'Company Founded', description: 'ADRS Techno Pvt. Ltd. established with a vision to deliver scalable enterprise-grade software and automation solutions.' },
-    { year: '2024', event: 'Initial Launch', description: 'Launched core products including IDHPS, Jewelry Manager, and specialized BPO services.' },
-    { year: '2025', event: 'Team & Services Expansion', description: 'Grew a dedicated team of developers and expanded into cloud infrastructure and custom enterprise solutions.' },
-    { year: '2026', event: 'Enterprise Partner', description: 'Recognized as a trusted technology partner delivering robust digital transformation for global clients.' },
+    { year: '2018', event: 'Company Founded', description: 'ADRS Technology established with a vision to deliver enterprise-grade solutions' },
+    { year: '2020', event: 'Team Expansion', description: 'Grew to 10+ specialized developers across multiple technology stacks' },
+    { year: '2022', event: 'Enterprise Focus', description: 'Shifted focus to scalable SaaS and PaaS solutions for large organizations' },
+    { year: '2024', event: 'Innovation Leader', description: 'Recognized as a trusted partner for cloud infrastructure and automation' },
   ];
 
   const leaders = [
