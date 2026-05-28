@@ -72,8 +72,7 @@ const Navbar = () => {
           }}
         >
           <Link to="/" className="flex-shrink-0">
-            <img src="/logo.png" className="h-9 w-auto dark:hidden object-contain" alt="ADRS Techno" />
-            <img src="/logo-dark.png" className="h-9 w-auto hidden dark:block object-contain" alt="ADRS Techno" />
+            <img src="/logo-dark.png" className="h-10 w-auto object-contain" alt="ADRS Techno" />
           </Link>
 
           <div className="hidden lg:flex items-center gap-2">
@@ -146,8 +145,7 @@ const Navbar = () => {
             >
               {/* Logo */}
               <Link to="/" onClick={() => setMobileOpen(false)}>
-                <img src="/logo.png"      className="h-8 w-auto dark:hidden object-contain" alt="ADRS Techno" />
-                <img src="/logo-dark.png" className="h-8 w-auto hidden dark:block object-contain" alt="ADRS Techno" />
+                <img src="/logo-dark.png" className="h-9 w-auto object-contain" alt="ADRS Techno" />
               </Link>
 
               {/* Close button — prominent, easy to tap */}
