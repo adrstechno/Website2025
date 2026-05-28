@@ -1,15 +1,46 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { HiSun, HiMoon } from "react-icons/hi";
-import { FiMenu, FiX, FiArrowRight } from "react-icons/fi";
-import { useTheme } from "../context/ThemeContext";
+import { FiMenu, FiX, FiPhone } from "react-icons/fi";
+import { BsWhatsapp } from "react-icons/bs";
+import CalendlyButton from "./CalendlyButton";
+
+const primaryNavLinks = [
+  { name: "Home", path: "/" },
+  { name: "Services", path: "/services" },
+  { name: "Products", path: "/products" },
+  { name: "Hire Developers", path: "/hire-developers" },
+];
+
+const navGroups = [
+  {
+    name: "Company",
+    items: [
+      { name: "About Us", path: "/about" },
+      { name: "Our Mission", path: "/mission" },
+      { name: "Our Team", path: "/team" },
+      { name: "Industries", path: "/industries" },
+      { name: "Technologies", path: "/technologies" },
+      { name: "Gallery", path: "/gallery" },
+      { name: "Career", path: "/career" },
+    ],
+  },
+  {
+    name: "Resources",
+    items: [
+      { name: "Blog", path: "/blog" },
+      { name: "FAQ", path: "/faq" },
+      { name: "Contact", path: "/contact" },
+      { name: "Privacy Policy", path: "/privacy-policy" },
+      { name: "Terms", path: "/terms" },
+    ],
+  },
+];
 
 const Navbar = () => {
-  const [scrolled, setScrolled]       = useState(false);
-  const [mobileOpen, setMobileOpen]   = useState(false);
-  const { theme, toggleTheme }        = useTheme();
-  const location                      = useLocation();
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -17,108 +48,87 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Close on route change
-  useEffect(() => { setMobileOpen(false); }, [location.pathname]);
+  useEffect(() => {
+    setMobileOpen(false);
+  }, [location.pathname]);
 
-  const navLinks = [
-    { name: "Home",     path: "/" },
-    { name: "Services", path: "/services" },
-    { name: "Products", path: "/products" },
-    { name: "Career",   path: "/career" },
-    { name: "Gallery",  path: "/gallery" },
-    {
-      name: "About",
-      dropdown: true,
-      items: [
-        { name: "Our Mission", path: "/mission" },
-        { name: "Our Team",    path: "/team" },
-      ],
-    },
-    { name: "Contact", path: "/contact" },
-  ];
+  const navStyle = scrolled
+    ? {
+        background: "rgba(8, 9, 11, 0.88)",
+        backdropFilter: "blur(20px)",
+        WebkitBackdropFilter: "blur(20px)",
+        borderBottom: "1px solid rgba(255,255,255,0.08)",
+      }
+    : { background: "transparent" };
 
   return (
     <>
-      {/* ── Top blue accent stripe ── */}
-      <div className="fixed top-0 left-0 right-0 h-[3px] bg-blue-600 z-[60]" />
-
-      {/* ── Main navbar ── */}
-      <nav
-        className={`fixed top-[3px] w-full z-50 transition-all duration-300 ${
-          scrolled
-            ? "py-3 bg-white dark:bg-[#0B1120] border-b border-slate-200 dark:border-[#1E293B] shadow-sm"
-            : "py-5 bg-white/98 dark:bg-[#0B1120]/98"
-        }`}
-      >
-        <div className="max-w-7xl mx-auto px-6 lg:px-10 flex items-center justify-between gap-6">
-
-          {/* Logo */}
-          <Link to="/" className="flex items-center flex-shrink-0 group">
-            <img src="/logo.png"      className="h-9 w-auto dark:hidden object-contain" alt="ADRS" />
-            <img src="/logo-dark.png" className="h-9 w-auto hidden dark:block object-contain" alt="ADRS" />
+      <nav className="fixed top-0 w-full z-50 transition-all duration-300" style={navStyle}>
+        <div
+          className="max-w-7xl mx-auto px-6 lg:px-10 flex items-center justify-between gap-4"
+          style={{
+            paddingTop: scrolled ? "10px" : "16px",
+            paddingBottom: scrolled ? "10px" : "16px",
+          }}
+        >
+          <Link to="/" className="flex-shrink-0">
+            <img src="/logo.png" className="h-9 w-auto dark:hidden object-contain" alt="ADRS Techno" />
+            <img src="/logo-dark.png" className="h-9 w-auto hidden dark:block object-contain" alt="ADRS Techno" />
           </Link>
 
-          {/* Desktop nav */}
-          <div className="hidden lg:flex items-center">
-            {navLinks.map((link, i) =>
-              link.dropdown ? (
-                <DesktopDropdown key={i} link={link} location={location} />
-              ) : (
-                <Link
-                  key={i}
-                  to={link.path}
-                  className={`relative px-3 py-2 text-sm font-medium transition-colors ${
-                    location.pathname === link.path
-                      ? "text-blue-600 dark:text-blue-400"
-                      : "text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white"
-                  }`}
-                >
-                  {link.name}
-                  {location.pathname === link.path && (
-                    <motion.span
-                      layoutId="navBar"
-                      className="absolute bottom-0 left-2 right-2 h-[2px] bg-blue-600 dark:bg-blue-400"
-                      transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                    />
-                  )}
-                </Link>
-              )
-            )}
+          <div className="hidden lg:flex items-center gap-2">
+            {primaryNavLinks.map((link) => (
+              <Link
+                key={link.path}
+                to={link.path}
+                className={`px-3 py-2 text-sm font-medium transition-colors rounded-md ${
+                  location.pathname === link.path
+                    ? "text-[#E5E7EB] bg-white/[0.05]"
+                    : "text-slate-300 hover:text-white hover:bg-white/[0.04]"
+                }`}
+              >
+                {link.name}
+              </Link>
+            ))}
+
+            <div className="w-px h-5 bg-white/10 mx-1" />
+
+            {navGroups.map((group) => (
+              <DesktopDropdown key={group.name} group={group} currentPath={location.pathname} />
+            ))}
           </div>
 
-          {/* Controls */}
-          <div className="flex items-center gap-3 flex-shrink-0">
-            <button
-              onClick={toggleTheme}
-              className="p-2 border border-slate-200 dark:border-[#1E293B] hover:bg-slate-100 dark:hover:bg-[#1E293B] transition-colors"
-              aria-label="Toggle theme"
+          <div className="flex items-center gap-2 flex-shrink-0">
+            <a
+              href="https://wa.me/919201347033?text=Hi%20ADRS%20Techno%2C%20I%27m%20interested%20in%20your%20services"
+              target="_blank"
+              rel="noreferrer noopener"
+              aria-label="WhatsApp"
+              className="hidden sm:flex p-2 rounded-lg text-emerald-400 hover:text-emerald-300 transition-colors"
+              style={{ background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.2)" }}
             >
-              {theme === "dark"
-                ? <HiSun  className="w-4 h-4 text-blue-400" />
-                : <HiMoon className="w-4 h-4 text-blue-600" />}
-            </button>
+              <BsWhatsapp className="w-4 h-4" />
+            </a>
 
-            <Link
-              to="/contact"
-              className="hidden sm:inline-flex items-center gap-2 px-5 py-2 bg-blue-600 text-white font-semibold text-sm hover:bg-blue-700 transition-colors"
+            <CalendlyButton
+              className="hidden sm:inline-flex items-center gap-1.5 px-5 py-2 text-black font-semibold text-sm rounded-lg transition-colors bg-[#E5E7EB] hover:bg-white"
+              showIcon={false}
             >
-              Get Started
-            </Link>
+              Book Consultation
+            </CalendlyButton>
 
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="lg:hidden p-2 border border-slate-200 dark:border-[#1E293B] hover:bg-slate-100 dark:hover:bg-[#1E293B] transition-colors"
               aria-label="Toggle menu"
+              className="lg:hidden p-2 rounded-lg transition-colors"
+              style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)" }}
             >
-              {mobileOpen
-                ? <FiX    className="w-5 h-5 text-slate-700 dark:text-white" />
-                : <FiMenu className="w-5 h-5 text-slate-700 dark:text-white" />}
+              {mobileOpen ? <FiX className="w-5 h-5 text-white" /> : <FiMenu className="w-5 h-5 text-white" />}
             </button>
           </div>
         </div>
       </nav>
 
-      {/* ── Mobile full-screen overlay ── */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
@@ -126,38 +136,79 @@ const Navbar = () => {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ duration: 0.22, ease: "easeInOut" }}
-            className="fixed inset-0 z-[55] bg-white dark:bg-[#0B1120] pt-[62px] flex flex-col overflow-y-auto"
+            className="fixed inset-0 z-[60] flex flex-col overflow-y-auto"
+            style={{ background: "rgba(8,9,11,0.98)", backdropFilter: "blur(20px)" }}
           >
-            <div className="px-6 py-8 flex-1">
-              <div className="space-y-0.5">
-                {navLinks.map((link, i) =>
-                  link.dropdown ? (
-                    <MobileDropdown key={i} link={link} />
-                  ) : (
-                    <Link
-                      key={i}
-                      to={link.path}
-                      onClick={() => setMobileOpen(false)}
-                      className={`flex items-center justify-between py-4 border-b border-slate-100 dark:border-[#1E293B] text-lg font-semibold font-display transition-colors ${
-                        location.pathname === link.path
-                          ? "text-blue-600 dark:text-blue-400"
-                          : "text-slate-800 dark:text-slate-100"
-                      }`}
-                    >
-                      {link.name}
-                      <FiArrowRight className="w-4 h-4 text-slate-300 dark:text-slate-600" />
-                    </Link>
-                  )
-                )}
+            {/* ── Drawer header — logo + close button ── */}
+            <div
+              className="flex items-center justify-between px-6 border-b flex-shrink-0"
+              style={{ height: 64, borderColor: "rgba(255,255,255,0.08)" }}
+            >
+              {/* Logo */}
+              <Link to="/" onClick={() => setMobileOpen(false)}>
+                <img src="/logo.png"      className="h-8 w-auto dark:hidden object-contain" alt="ADRS Techno" />
+                <img src="/logo-dark.png" className="h-8 w-auto hidden dark:block object-contain" alt="ADRS Techno" />
+              </Link>
+
+              {/* Close button — prominent, easy to tap */}
+              <button
+                onClick={() => setMobileOpen(false)}
+                aria-label="Close menu"
+                className="flex items-center justify-center rounded-xl transition-colors active:scale-95"
+                style={{
+                  width: 44, height: 44,
+                  background: "rgba(255,255,255,0.08)",
+                  border: "1px solid rgba(255,255,255,0.15)",
+                }}
+              >
+                <FiX className="w-5 h-5 text-white" />
+              </button>
+            </div>
+
+            <div className="px-6 py-6 flex-1">
+              <div className="space-y-1">
+                {primaryNavLinks.map((link) => (
+                  <Link
+                    key={link.path}
+                    to={link.path}
+                    onClick={() => setMobileOpen(false)}
+                    className={`block py-4 border-b text-lg font-semibold transition-colors ${
+                      location.pathname === link.path
+                        ? "border-[#E5E7EB]/70 text-[#E5E7EB]"
+                        : "border-slate-800/60 text-slate-100 hover:text-white"
+                    }`}
+                  >
+                    {link.name}
+                  </Link>
+                ))}
+
+                {navGroups.map((group) => (
+                  <MobileDropdown
+                    key={group.name}
+                    group={group}
+                    currentPath={location.pathname}
+                    onClose={() => setMobileOpen(false)}
+                  />
+                ))}
               </div>
-              <div className="mt-8">
+
+              <div className="mt-8 space-y-3">
                 <Link
-                  to="/contact"
+                  to="/hire-developers"
                   onClick={() => setMobileOpen(false)}
-                  className="block w-full py-4 bg-blue-600 text-white text-center font-bold text-lg hover:bg-blue-700 transition-colors"
+                  className="flex items-center justify-center gap-2 w-full py-4 rounded-xl text-white font-bold"
+                  style={{ background: "rgba(255,255,255,0.16)", border: "1px solid rgba(255,255,255,0.35)" }}
                 >
-                  Get Started
+                  <FiPhone className="w-4 h-4" /> Hire Developers
                 </Link>
+
+                <CalendlyButton
+                  onBeforeOpen={() => setMobileOpen(false)}
+                  className="block w-full py-4 text-black text-center font-bold rounded-xl transition-colors bg-[#E5E7EB] hover:bg-white"
+                  showIcon={false}
+                >
+                  Book Free Consultation
+                </CalendlyButton>
               </div>
             </div>
           </motion.div>
@@ -167,29 +218,19 @@ const Navbar = () => {
   );
 };
 
-/* ── Desktop dropdown ── */
-const DesktopDropdown = ({ link, location }) => {
+const DesktopDropdown = ({ group, currentPath }) => {
   const [open, setOpen] = useState(false);
-  const isActive = link.items.some(i => i.path === location.pathname);
+  const isActive = group.items.some((item) => item.path === currentPath);
 
   return (
-    <div
-      className="relative"
-      onMouseEnter={() => setOpen(true)}
-      onMouseLeave={() => setOpen(false)}
-    >
+    <div className="relative" onMouseEnter={() => setOpen(true)} onMouseLeave={() => setOpen(false)}>
       <button
-        className={`px-3 py-2 text-sm font-medium flex items-center gap-1 transition-colors ${
-          isActive
-            ? "text-blue-600 dark:text-blue-400"
-            : "text-slate-600 dark:text-slate-300 hover:text-slate-900 dark:hover:text-white"
+        className={`px-3 py-2 text-sm font-medium flex items-center gap-1 transition-colors rounded-md ${
+          isActive ? "text-[#E5E7EB]" : "text-slate-300 hover:text-white hover:bg-white/5"
         }`}
       >
-        {link.name}
-        <svg
-          className={`w-3 h-3 transition-transform ${open ? "rotate-180" : ""}`}
-          fill="none" stroke="currentColor" viewBox="0 0 24 24"
-        >
+        {group.name}
+        <svg className={`w-3 h-3 transition-transform ${open ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M19 9l-7 7-7-7" />
         </svg>
       </button>
@@ -197,21 +238,28 @@ const DesktopDropdown = ({ link, location }) => {
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{ opacity: 0, y: 6 }}
+            initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: 6 }}
-            transition={{ duration: 0.12 }}
-            className="absolute top-full left-0 mt-0.5 w-44 bg-white dark:bg-[#111827] border border-slate-200 dark:border-[#1E293B] shadow-xl"
+            exit={{ opacity: 0, y: 8 }}
+            transition={{ duration: 0.14 }}
+            className="absolute top-full left-0 mt-1 w-64 rounded-xl overflow-hidden"
+            style={{
+              background: "rgba(13, 15, 19, 0.98)",
+              backdropFilter: "blur(20px)",
+              border: "1px solid rgba(255,255,255,0.1)",
+              boxShadow: "0 20px 60px rgba(0,0,0,0.5)",
+            }}
           >
-            {link.items.map((item, i) => (
+            {group.items.map((item) => (
               <Link
-                key={i}
+                key={item.path}
                 to={item.path}
-                className={`block px-4 py-3 text-sm border-b border-slate-100 dark:border-[#1E293B] last:border-0 transition-colors ${
-                  location.pathname === item.path
-                    ? "text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/10"
-                    : "text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-[#1E293B]"
+                className={`block px-4 py-2.5 text-sm border-b last:border-0 transition-colors ${
+                  currentPath === item.path
+                    ? "text-[#E5E7EB] bg-white/[0.05]"
+                    : "text-slate-300 hover:text-white hover:bg-white/[0.04]"
                 }`}
+                style={{ borderColor: "rgba(255,255,255,0.06)" }}
               >
                 {item.name}
               </Link>
@@ -223,32 +271,35 @@ const DesktopDropdown = ({ link, location }) => {
   );
 };
 
-/* ── Mobile dropdown ── */
-const MobileDropdown = ({ link }) => {
+const MobileDropdown = ({ group, currentPath, onClose }) => {
   const [open, setOpen] = useState(false);
+  const hasActiveItem = group.items.some((item) => item.path === currentPath);
 
   return (
     <div>
       <button
         onClick={() => setOpen(!open)}
-        className="w-full flex items-center justify-between py-4 border-b border-slate-100 dark:border-[#1E293B] text-lg font-semibold font-display text-slate-800 dark:text-slate-100"
+        className={`w-full flex items-center justify-between py-4 border-b text-lg font-semibold text-slate-100 ${
+          hasActiveItem ? "border-[#E5E7EB]/70 text-[#E5E7EB]" : "border-slate-800/60"
+        }`}
       >
-        {link.name}
-        <svg
-          className={`w-4 h-4 transition-transform text-slate-300 dark:text-slate-600 ${open ? "rotate-180" : ""}`}
-          fill="none" stroke="currentColor" viewBox="0 0 24 24"
-        >
+        {group.name}
+        <svg className={`w-4 h-4 transition-transform text-slate-500 ${open ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
         </svg>
       </button>
 
       {open && (
-        <div className="pl-5 bg-slate-50 dark:bg-[#131C2E]">
-          {link.items.map((item, i) => (
+        <div className="pl-4" style={{ background: "rgba(255,255,255,0.02)" }}>
+          {group.items.map((item) => (
             <Link
-              key={i}
+              key={item.path}
               to={item.path}
-              className="block py-3 px-4 text-base text-slate-600 dark:text-slate-400 border-b border-slate-100 dark:border-[#1E293B] last:border-0 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+              onClick={onClose}
+              className={`block py-3 px-4 text-sm border-b last:border-0 transition-colors ${
+                currentPath === item.path ? "text-[#E5E7EB]" : "text-slate-400 hover:text-[#E5E7EB]"
+              }`}
+              style={{ borderColor: "rgba(255,255,255,0.05)" }}
             >
               {item.name}
             </Link>
@@ -260,4 +311,3 @@ const MobileDropdown = ({ link }) => {
 };
 
 export default Navbar;
-

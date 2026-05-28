@@ -1,74 +1,65 @@
 import { motion } from 'framer-motion';
-import { FiCheck, FiArrowUpRight } from 'react-icons/fi';
+import { Check, ArrowUpRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-const ProductCard = ({ product, index }) => {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="group bg-white dark:bg-[#111827] flex flex-col h-full hover:bg-blue-600 dark:hover:bg-blue-600 transition-colors duration-300 border border-slate-200 dark:border-[#1E293B] rounded-2xl shadow-sm overflow-hidden"
-    >
-      <div className="p-8 flex-grow flex flex-col">
-        {/* Header: Icon + Badge */}
-        <div className="flex items-start justify-between mb-8">
-          <div className="w-14 h-14 bg-blue-50 dark:bg-[#131C2E] group-hover:bg-white/20 flex items-center justify-center text-blue-600 dark:text-blue-400 group-hover:text-white transition-colors">
-            <div className="text-2xl">
-              {product.icon}
-            </div>
-          </div>
-          {product.badge && (
-            <span className="px-3 py-1 bg-slate-100 dark:bg-[#131C2E] group-hover:bg-white/20 text-slate-600 dark:text-slate-300 group-hover:text-white text-xs font-bold uppercase tracking-wider transition-colors">
-              {product.badge}
-            </span>
-          )}
+const ProductCard = ({ product, index }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true }}
+    transition={{ duration: 0.5, delay: index * 0.1 }}
+    className="group flex flex-col h-full card-lift overflow-hidden"
+    style={{ background: 'rgba(17,17,20,0.6)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 16 }}
+  >
+    <div className="p-8 flex-grow flex flex-col">
+      {/* Header */}
+      <div className="flex items-start justify-between mb-7">
+        <div className="w-14 h-14 rounded-xl flex items-center justify-center text-blue-400 text-2xl group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300"
+          style={{ background: 'rgba(255,255,255,0.15)' }}>
+          {product.icon}
         </div>
-
-        {/* Title & Description */}
-        <h3 className="text-2xl font-bold font-display text-slate-900 dark:text-white group-hover:text-white mb-3 transition-colors">
-          {product.name}
-        </h3>
-        <p className="text-slate-500 dark:text-slate-400 group-hover:text-blue-100 text-sm leading-relaxed mb-8 transition-colors">
-          {product.description}
-        </p>
-
-        {/* Features List */}
-        <div className="mb-8 flex-grow">
-          <p className="text-xs font-bold uppercase tracking-wider text-slate-900 dark:text-white group-hover:text-white mb-4 transition-colors">
-            Key Features
-          </p>
-          <ul className="space-y-3">
-            {product.features.map((feature, idx) => (
-              <li key={idx} className="flex items-start gap-3">
-                <FiCheck className="w-4 h-4 text-blue-600 dark:text-blue-400 group-hover:text-white mt-0.5 flex-shrink-0 transition-colors" />
-                <span className="text-sm text-slate-600 dark:text-slate-400 group-hover:text-blue-50 transition-colors">
-                  {feature}
-                </span>
-              </li>
-            ))}
-          </ul>
-        </div>
+        {product.badge && (
+          <span className="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider text-blue-400"
+            style={{ background: 'rgba(255,255,255,0.15)', border: '1px solid rgba(229,231,235,0.25)' }}>
+            {product.badge}
+          </span>
+        )}
       </div>
 
-      {/* Footer Actions */}
-      <div className="grid grid-cols-2 border-t border-slate-200 dark:border-[#1E293B] group-hover:border-white/20 transition-colors">
-        <Link 
-          to="/contact" 
-          className="flex items-center justify-center gap-2 py-4 text-sm font-bold text-slate-900 dark:text-white group-hover:text-white border-r border-slate-200 dark:border-[#1E293B] group-hover:border-white/20 transition-colors hover:bg-slate-50 dark:hover:bg-[#131C2E] group-hover:hover:bg-white/10"
-        >
-          Try Demo
-        </Link>
-        <Link 
-          to="/contact" 
-          className="flex items-center justify-center gap-2 py-4 text-sm font-bold text-blue-600 dark:text-blue-400 group-hover:text-white transition-colors hover:bg-slate-50 dark:hover:bg-[#131C2E] group-hover:hover:bg-white/10"
-        >
-          Details <FiArrowUpRight className="w-4 h-4" />
-        </Link>
+      <h3 className="text-2xl font-bold font-display text-white group-hover:text-blue-400 mb-3 transition-colors">
+        {product.name}
+      </h3>
+      <p className="text-slate-400 text-sm leading-relaxed mb-7">{product.description}</p>
+
+      <div className="flex-grow mb-7">
+        <p className="text-xs font-bold uppercase tracking-wider text-slate-300 mb-4">Key Features</p>
+        <ul className="space-y-2.5">
+          {product.features.map((f, i) => (
+            <li key={i} className="flex items-start gap-3">
+              <Check className="w-4 h-4 text-blue-400 mt-0.5 flex-shrink-0" />
+              <span className="text-sm text-slate-400">{f}</span>
+            </li>
+          ))}
+        </ul>
       </div>
-    </motion.div>
-  );
-};
+    </div>
+
+    {/* Footer */}
+    <div className="grid grid-cols-2 border-t" style={{ borderColor: 'rgba(255,255,255,0.07)' }}>
+      <Link to="/contact"
+        className="flex items-center justify-center gap-2 py-4 text-sm font-bold text-slate-300 hover:text-white border-r hover:bg-white/5 transition-colors"
+        style={{ borderColor: 'rgba(255,255,255,0.07)' }}>
+        Try Demo
+      </Link>
+      <Link to="/contact"
+        className="flex items-center justify-center gap-2 py-4 text-sm font-bold text-blue-400 hover:text-blue-300 hover:bg-white/5 transition-colors">
+        Details <ArrowUpRight className="w-4 h-4" />
+      </Link>
+    </div>
+  </motion.div>
+);
 
 export default ProductCard;
+
+
+

@@ -1,265 +1,217 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { MdShield, MdTrendingUp, MdLock, MdLightbulb } from 'react-icons/md';
-import { FiCode } from 'react-icons/fi';
+import { ArrowRight, MapPin } from 'lucide-react';
+import CountUp from 'react-countup';
+import { STATS, OFFICES, COMPANY } from '../constants/company';
 
-/* ── Reusable section label ── */
-const SectionLabel = ({ number, text }) => (
-  <div className="flex items-center gap-3 mb-8">
-    <span className="text-xs font-bold text-blue-600 dark:text-blue-400 font-display tabular-nums">{number}</span>
-    <span className="h-[1px] w-8 bg-blue-600 dark:bg-blue-400" />
-    <span className="text-xs font-bold uppercase tracking-[0.2em] text-blue-600 dark:text-blue-400 font-display">{text}</span>
+/* ── Shared dark-theme section wrapper ── */
+const Section = ({ children, className = '', alt = false, id }) => (
+  <section id={id}
+    className={`py-24 ${className}`}
+    style={alt
+      ? { background: 'rgba(12,12,14,0.6)', borderTop: '1px solid rgba(255,255,255,0.06)', borderBottom: '1px solid rgba(255,255,255,0.06)' }
+      : {}
+    }
+  >
+    {children}
+  </section>
+);
+
+const Wrap = ({ children }) => (
+  <div className="max-w-7xl mx-auto px-6 lg:px-10">{children}</div>
+);
+
+const SLabel = ({ text }) => (
+  <div className="mb-5">
+    <span className="section-label">{text}</span>
   </div>
 );
 
 const About = () => {
-  const timeline = [
-    { year: '2018', event: 'Company Founded', description: 'ADRS Technology established with a vision to deliver enterprise-grade solutions' },
-    { year: '2020', event: 'Team Expansion', description: 'Grew to 10+ specialized developers across multiple technology stacks' },
-    { year: '2022', event: 'Enterprise Focus', description: 'Shifted focus to scalable SaaS and PaaS solutions for large organizations' },
-    { year: '2024', event: 'Innovation Leader', description: 'Recognized as a trusted partner for cloud infrastructure and automation' },
-  ];
 
   const leaders = [
-    {
-      name: 'Abhishek Dubey',
-      role: 'Chief Executive Officer',
-      bio: 'Abhishek leads ADRS Technology with a vision for innovation and sustainable growth. With extensive experience in enterprise software, he drives strategic initiatives and client relationships.',
-      initials: 'AD',
-    },
-    {
-      name: 'Siddhant Dubey',
-      role: 'Chief Technology Officer',
-      bio: 'Siddhant oversees all technical operations and architecture decisions. His expertise in cloud infrastructure and scalable systems ensures ADRS delivers robust, future-proof solutions.',
-      initials: 'SD',
-    },
+    { name: 'Abhishek Dubey', role: 'Chief Executive Officer', initials: 'AD', bio: 'Abhishek leads ADRS Technology with a vision for innovation and sustainable growth. With extensive experience in enterprise software, he drives strategic initiatives and client relationships.' },
+    { name: 'Siddhant Dubey', role: 'Chief Technology Officer', initials: 'SD', bio: 'Siddhant oversees all technical operations and architecture decisions. His expertise in cloud infrastructure and scalable systems ensures ADRS delivers robust, future-proof solutions.' },
   ];
 
   const values = [
-    {
-      title: 'Reliability',
-      description: 'We build systems that work consistently, with 99.9% uptime guarantees.',
-      icon: <MdShield className="w-6 h-6" />,
-    },
-    {
-      title: 'Scalability',
-      description: 'Our solutions grow with your business, from startup to enterprise.',
-      icon: <MdTrendingUp className="w-6 h-6" />,
-    },
-    {
-      title: 'Security',
-      description: 'Enterprise-grade security protocols protect your data and operations.',
-      icon: <MdLock className="w-6 h-6" />,
-    },
-    {
-      title: 'Innovation',
-      description: 'We stay ahead with cutting-edge technologies and modern practices.',
-      icon: <MdLightbulb className="w-6 h-6" />,
-    },
+    { title: 'Reliability',  description: 'We build systems that work consistently, with 99.9% uptime guarantees.',        icon: <MdShield    className="w-6 h-6" /> },
+    { title: 'Scalability',  description: 'Our solutions grow with your business, from startup to enterprise.',           icon: <MdTrendingUp className="w-6 h-6" /> },
+    { title: 'Security',     description: 'Enterprise-grade security protocols protect your data and operations.',         icon: <MdLock      className="w-6 h-6" /> },
+    { title: 'Innovation',   description: 'We stay ahead with cutting-edge technologies and modern practices.',           icon: <MdLightbulb className="w-6 h-6" /> },
   ];
 
+  /* Stats from canonical source — never hardcode here */
+  const cardStyle = { background: 'rgba(19,28,46,0.6)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 16 };
+
   return (
-    <div className="bg-[#F8FAFC] dark:bg-[#0B1120] pt-20 transition-colors duration-300">
-      
-      {/* ── HERO SECTION ── */}
-      <section className="py-24 bg-white dark:bg-[#111827] border-b border-slate-200 dark:border-[#1E293B]">
-        <div className="max-w-7xl mx-auto px-6 lg:px-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="max-w-4xl space-y-6"
-          >
-            <SectionLabel number="00" text="About Us" />
-            <h1 className="text-5xl lg:text-7xl font-extrabold font-display leading-tight text-slate-900 dark:text-white">
-              Building the Future of <br/>
-              <span className="text-blue-600 dark:text-blue-400">Enterprise Technology</span>
+    <div className="bg-[#08090B] min-h-screen">
+
+      {/* ── HERO ── */}
+      <section className="pt-24 pb-20 relative overflow-hidden"
+        style={{ background: 'linear-gradient(180deg, #0B0D12 0%, #08090B 100%)' }}>
+        <div className="absolute inset-0 opacity-[0.04]"
+          style={{ backgroundImage: 'linear-gradient(rgba(148,163,184,1) 1px, transparent 1px), linear-gradient(90deg, rgba(148,163,184,1) 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
+        <div className="absolute pointer-events-none"
+          style={{ width: 600, height: 400, top: -100, left: -100, borderRadius: '50%', background: 'radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%)' }} />
+        <Wrap>
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8 }}
+            className="max-w-4xl relative z-10">
+            <SLabel text="About Us" />
+            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-extrabold font-display leading-tight text-white mb-6">
+              Building the Future of<br />
+              <span className="gradient-text">Enterprise Technology</span>
             </h1>
-            <p className="text-xl text-slate-500 dark:text-slate-400 leading-relaxed font-sans max-w-3xl">
-              ADRS Techno is a forward-looking software company delivering enterprise-grade 
-              SaaS and PaaS solutions. We combine technical excellence with business understanding 
-              to create platforms that drive real results.
+            <p className="text-xl text-slate-400 leading-relaxed max-w-3xl">
+              ADRS Techno is a forward-looking software company delivering enterprise-grade SaaS and PaaS solutions.
+              We combine technical excellence with business understanding to create platforms that drive real results.
             </p>
           </motion.div>
-        </div>
+        </Wrap>
+      </section>
+
+      {/* ── STATS ── */}
+      <section className="py-16 border-y" style={{ borderColor: 'rgba(255,255,255,0.06)', background: 'rgba(17,17,20,0.4)' }}>
+        <Wrap>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-px">
+            {STATS.map((s, i) => (
+              <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }} transition={{ delay: i * 0.08 }}
+                className="text-center py-8 px-4">
+                <div className="text-4xl sm:text-5xl font-extrabold font-display stat-number mb-1">
+                  <CountUp end={s.end} suffix={s.suffix} duration={2.5} enableScrollSpy scrollSpyOnce />
+                </div>
+                <div className="text-xs text-slate-400 font-semibold uppercase tracking-wider">{s.label}</div>
+              </motion.div>
+            ))}
+          </div>
+        </Wrap>
       </section>
 
       {/* ── MISSION & VISION ── */}
-      <section className="py-24 bg-[#F8FAFC] dark:bg-[#0B1120]">
-        <div className="max-w-7xl mx-auto px-6 lg:px-10">
+      <Section>
+        <Wrap>
           <div className="grid md:grid-cols-2 gap-6">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8 }}
-              className="bg-white dark:bg-[#111827] border border-slate-200 dark:border-[#1E293B] rounded-2xl p-10 hover:border-blue-600 transition-colors duration-300"
-            >
-              <h2 className="text-2xl font-bold font-display text-slate-900 dark:text-white mb-6 uppercase tracking-wider">
-                Our Mission
-              </h2>
-              <p className="text-slate-500 dark:text-slate-400 leading-relaxed text-base font-sans">
-                To empower businesses with reliable, scalable, and secure technology solutions 
-                that drive growth and operational excellence. We believe in building software 
-                that solves real problems and delivers measurable value.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.8, delay: 0.1 }}
-              className="bg-white dark:bg-[#111827] border border-slate-200 dark:border-[#1E293B] rounded-2xl p-10 hover:border-blue-600 transition-colors duration-300"
-            >
-              <h2 className="text-2xl font-bold font-display text-slate-900 dark:text-white mb-6 uppercase tracking-wider">
-                Our Vision
-              </h2>
-              <p className="text-slate-500 dark:text-slate-400 leading-relaxed text-base font-sans">
-                To be the trusted technology partner for enterprises worldwide, known for 
-                innovation, reliability, and human-centric solutions. We envision a future 
-                where technology seamlessly enables business success.
-              </p>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
-      {/* ── TIMELINE ── */}
-      <section className="py-24 bg-white dark:bg-[#111827] border-t border-b border-slate-200 dark:border-[#1E293B]">
-        <div className="max-w-7xl mx-auto px-6 lg:px-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="mb-16"
-          >
-            <SectionLabel number="01" text="Our Journey" />
-            <h2 className="text-4xl sm:text-5xl font-extrabold font-display text-slate-900 dark:text-white">
-              Growth & Milestones
-            </h2>
-          </motion.div>
-
-          <div className="relative border-l-2 border-slate-200 dark:border-[#1E293B] ml-4 md:ml-[140px] space-y-12 py-2">
-            {timeline.map((item, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="relative pl-8 md:pl-16 group"
-              >
-                {/* Node Dot */}
-                <div className="absolute -left-[9px] top-1.5 w-4 h-4 bg-white dark:bg-[#111827] border-2 border-blue-600 dark:border-blue-500 rounded-full group-hover:bg-blue-600 transition-colors" />
-
-                <div className="bg-[#F8FAFC] dark:bg-[#0B1120] border border-slate-200 dark:border-[#1E293B] p-8 rounded-2xl hover:border-blue-600 transition-colors duration-300">
-                  <div className="flex flex-col md:flex-row md:items-start gap-4 md:gap-8">
-                    <div className="text-3xl font-extrabold font-display text-blue-600 dark:text-blue-400 md:w-24 mt-[-4px]">
-                      {item.year}
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-xl font-bold font-display mb-2 text-slate-900 dark:text-white">
-                        {item.event}
-                      </h3>
-                      <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed">
-                        {item.description}
-                      </p>
-                    </div>
-                  </div>
-                </div>
+            {[
+              { title: 'Our Mission', body: 'To empower businesses with reliable, scalable, and secure technology solutions that drive growth and operational excellence. We believe in building software that solves real problems and delivers measurable value.' },
+              { title: 'Our Vision',  body: 'To be the trusted technology partner for enterprises worldwide, known for innovation, reliability, and human-centric solutions. We envision a future where technology seamlessly enables business success.' },
+            ].map((item, i) => (
+              <motion.div key={i} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }} transition={{ duration: 0.7, delay: i * 0.12 }}
+                className="p-10 rounded-2xl card-lift" style={cardStyle}>
+                <h2 className="text-2xl font-bold font-display text-white mb-5 uppercase tracking-wider">{item.title}</h2>
+                <p className="text-slate-400 leading-relaxed">{item.body}</p>
               </motion.div>
             ))}
           </div>
-        </div>
-      </section>
+        </Wrap>
+      </Section>
 
-      {/* ── LEADERSHIP TEAM ── */}
-      <section className="py-24 bg-[#F8FAFC] dark:bg-[#0B1120]">
-        <div className="max-w-7xl mx-auto px-6 lg:px-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <SectionLabel number="02" text="Executive Team" />
-            <h2 className="text-4xl sm:text-5xl font-extrabold font-display text-slate-900 dark:text-white">
-              Leadership
-            </h2>
-          </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            {leaders.map((leader, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.15 }}
-                className="bg-white dark:bg-[#111827] border border-slate-200 dark:border-[#1E293B] rounded-2xl p-10 flex flex-col items-center hover:border-blue-600 transition-colors duration-300"
-              >
-                <div className="w-20 h-20 bg-blue-50 dark:bg-[#131C2E] text-blue-600 dark:text-blue-400 rounded-full mb-6 flex items-center justify-center">
-                  <span className="text-2xl font-extrabold font-display">{leader.initials}</span>
+      {/* ── LEADERSHIP ── */}
+      <Section>
+        <Wrap>
+          <div className="text-center mb-14">
+            <SLabel text="Executive Team" />
+            <h2 className="text-4xl sm:text-5xl font-extrabold font-display text-white">Leadership</h2>
+          </div>
+          <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+            {leaders.map((leader, i) => (
+              <motion.div key={i} initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }} transition={{ duration: 0.6, delay: i * 0.15 }}
+                className="p-10 rounded-2xl flex flex-col items-center text-center card-lift" style={cardStyle}>
+                <div className="w-20 h-20 rounded-full flex items-center justify-center mb-5 text-2xl font-extrabold font-display text-blue-400"
+                  style={{ background: 'rgba(255,255,255,0.2)', border: '2px solid rgba(229,231,235,0.4)' }}>
+                  {leader.initials}
                 </div>
-                <h3 className="text-2xl font-bold font-display mb-1 text-slate-900 dark:text-white text-center">
-                  {leader.name}
-                </h3>
-                <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-6 text-center">
-                  {leader.role}
-                </p>
-                <p className="text-slate-500 dark:text-slate-400 text-sm leading-relaxed text-center font-sans">
-                  {leader.bio}
-                </p>
+                <h3 className="text-xl font-bold font-display text-white mb-1">{leader.name}</h3>
+                <p className="text-xs font-bold text-blue-400 uppercase tracking-wider mb-5">{leader.role}</p>
+                <p className="text-slate-400 text-sm leading-relaxed">{leader.bio}</p>
               </motion.div>
             ))}
           </div>
-        </div>
-      </section>
+        </Wrap>
+      </Section>
 
       {/* ── VALUES ── */}
-      <section className="py-24 bg-white dark:bg-[#111827] border-t border-slate-200 dark:border-[#1E293B]">
-        <div className="max-w-7xl mx-auto px-6 lg:px-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="mb-16"
-          >
-            <SectionLabel number="03" text="Core Values" />
-            <h2 className="text-4xl sm:text-5xl font-extrabold font-display text-slate-900 dark:text-white">
-              Principles & Values
-            </h2>
+      <Section alt>
+        <Wrap>
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }} className="mb-14">
+            <SLabel text="Core Values" />
+            <h2 className="text-4xl sm:text-5xl font-extrabold font-display text-white">Principles &amp; Values</h2>
           </motion.div>
-
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {values.map((value, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="group bg-[#F8FAFC] dark:bg-[#0B1120] border border-slate-200 dark:border-[#1E293B] p-8 rounded-2xl hover:bg-blue-600 dark:hover:bg-blue-600 transition-colors duration-300"
-              >
-                <div className="w-12 h-12 bg-white dark:bg-[#111827] group-hover:bg-white/20 rounded-lg flex items-center justify-center text-blue-600 dark:text-blue-400 group-hover:text-white mb-6 transition-colors shadow-sm">
-                  {value.icon}
+            {values.map((v, i) => (
+              <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="group p-8 rounded-2xl card-lift" style={cardStyle}>
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center text-blue-400 mb-5 group-hover:bg-blue-600 group-hover:text-white transition-colors"
+                  style={{ background: 'rgba(255,255,255,0.15)' }}>
+                  {v.icon}
                 </div>
-                <h3 className="text-lg font-bold font-display mb-3 text-slate-900 dark:text-white group-hover:text-white transition-colors">
-                  {value.title}
-                </h3>
-                <p className="text-slate-500 dark:text-slate-400 group-hover:text-blue-50 text-sm leading-relaxed font-sans transition-colors">
-                  {value.description}
-                </p>
+                <h3 className="text-lg font-bold font-display text-white mb-2">{v.title}</h3>
+                <p className="text-slate-400 text-sm leading-relaxed">{v.description}</p>
               </motion.div>
             ))}
           </div>
+        </Wrap>
+      </Section>
+
+      {/* ── CTA ── */}
+      {/* ── OFFICES ── */}
+      <Section alt>
+        <Wrap>
+          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }} className="mb-12">
+            <SLabel text="Our Locations" />
+            <h2 className="text-4xl sm:text-5xl font-extrabold font-display text-white">Offices Across India</h2>
+          </motion.div>
+          <div className="grid md:grid-cols-3 gap-6">
+            {OFFICES.map((office, i) => (
+              <motion.div key={i} initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }} transition={{ delay: i * 0.12 }}
+                className="p-7 rounded-2xl card-lift" style={cardStyle}>
+                <div className="flex items-start justify-between mb-4">
+                  <div className="w-10 h-10 rounded-xl flex items-center justify-center text-blue-400 flex-shrink-0"
+                    style={{ background: 'rgba(37,99,235,0.15)' }}>
+                    <MapPin className="w-5 h-5" />
+                  </div>
+                  <span className="text-xs font-bold px-2.5 py-1 rounded-full text-blue-400"
+                    style={{ background: 'rgba(37,99,235,0.15)', border: '1px solid rgba(59,130,246,0.25)' }}>
+                    {office.type}
+                  </span>
+                </div>
+                <h3 className="text-lg font-bold font-display text-white mb-2">{office.name}</h3>
+                <p className="text-slate-400 text-sm leading-relaxed mb-4">{office.address}</p>
+                <a href={office.mapUrl} target="_blank" rel="noreferrer noopener"
+                  className="text-xs font-semibold text-blue-400 hover:text-blue-300 transition-colors">
+                  View on Google Maps →
+                </a>
+              </motion.div>
+            ))}
+          </div>
+        </Wrap>
+      </Section>
+
+      <section className="py-20 text-center border-t" style={{ borderColor: 'rgba(255,255,255,0.07)' }}>
+        <div className="max-w-lg mx-auto px-6">
+          <h2 className="text-3xl font-extrabold font-display text-white mb-4">Ready to Build Together?</h2>
+          <p className="text-slate-400 mb-7">Let's start scoping the right software solution for your business.</p>
+          <Link to="/contact"
+            className="btn-glow inline-flex items-center gap-2 px-8 py-4 bg-blue-600 text-white font-bold text-sm rounded-xl hover:bg-blue-700 transition-colors">
+            Start Your Journey <ArrowRight className="w-4 h-4" />
+          </Link>
         </div>
       </section>
+
     </div>
   );
 };
 
 export default About;
+
+
+
+

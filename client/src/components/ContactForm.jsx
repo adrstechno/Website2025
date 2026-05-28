@@ -1,153 +1,107 @@
-import { motion, AnimatePresence } from 'framer-motion';
-import { useState } from 'react';
-import { FiArrowRight, FiCheckCircle } from 'react-icons/fi';
+/* ContactForm upgraded to React Hook Form + Zod + GSAP */
+import { useState, useRef, useEffect } from 'react';
+import { useForm } from 'react-hook-form';
+import { z } from 'zod';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { gsap } from 'gsap';
+import { CheckCircle, AlertCircle, ArrowRight, Loader } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
-const ContactForm = () => {
-  const [formData, setFormData] = useState({ name: '', email: '', company: '', message: '' });
-  const [focused,   setFocused]   = useState('');
-  const [submitted, setSubmitted] = useState(false);
-  const [loading,   setLoading]   = useState(false);
+/* ── Zod schema ── */
+const schema = z.object({
+  name:        z.string().min(2, 'Name must be at least 2 characters'),
+  email:       z.string().email('Enter a valid email address'),
+  phone:       z.string().optional(),
+  company:     z.string().optional(),
+  projectType: z.string().optional(),
+  budget:      z.string().optional(),
+  message:     z.string().min(10, 'Please add at least 10 characters'),
+});
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setTimeout(() => { setLoading(false); setSubmitted(true); }, 1200);
+const PROJECT_TYPES = ['Web Development','Mobile App','AI Automation','SaaS Product','BPO Services','Cloud / DevOps','Hire Developers','Other'];
+const BUDGETS = ['< $1,000','$1,000 – $5,000','$5,000 – $20,000','$20,000 – $50,000','$50,000+',"Let's discuss"];
+
+const iStyle = { background:'rgba(255,255,255,0.05)', border:'1px solid rgba(255,255,255,0.1)', borderRadius:10, color:'#f1f5f9', width:'100%', padding:'11px 14px', fontSize:'0.875rem', transition:'border-color 0.2s', outline:'none' };
+const fBorder = (e) => (e.target.style.borderColor = 'rgba(229,231,235,0.55)');
+const bBorder = (e) => (e.target.style.borderColor = 'rgba(255,255,255,0.1)');
+
+const Field = ({ label, error, children }) => (
+  <div>
+    <label style={{ display:'block', fontSize:'0.7rem', fontWeight:700, color:'#94a3b8', marginBottom:5, textTransform:'uppercase', letterSpacing:'0.08em' }}>{label}</label>
+    {children}
+    {error && <p style={{ fontSize:'0.7rem', color:'#D1D5DB', marginTop:3 }}>{error}</p>}
+  </div>
+);
+
+const ContactForm = ({ compact = false }) => {
+  const formRef    = useRef(null);
+  const successRef = useRef(null);
+  const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm({ resolver: zodResolver(schema) });
+  const [serverError, setServerError] = useState('');
+  const [submitted, setSubmitted]     = useState(false);
+
+  useEffect(() => {
+    if (formRef.current) gsap.fromTo(formRef.current, { opacity:0, y:20 }, { opacity:1, y:0, duration:0.55, ease:'power3.out', delay:0.1 });
+  }, []);
+
+  const onSubmit = async (data) => {
+    setServerError('');
+    try {
+      const ep = import.meta.env.VITE_CONTACT_ENDPOINT;
+      if (ep) {
+        const res = await fetch(ep, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ ...data, _source:'contact-form' }) });
+        if (!res.ok) throw new Error('server');
+      } else { await new Promise(r => setTimeout(r, 900)); }
+      setSubmitted(true); reset();
+      if (successRef.current) gsap.fromTo(successRef.current, { opacity:0, scale:0.93 }, { opacity:1, scale:1, duration:0.4, ease:'back.out(1.5)' });
+    } catch { setServerError('Something went wrong. Please try WhatsApp or email us directly.'); }
   };
 
-  const handleChange = (e) => setFormData({ ...formData, [e.target.name]: e.target.value });
-
-  const inputClass = (field) =>
-    `w-full px-4 py-3.5 text-sm font-medium transition-all outline-none resize-none
-     bg-[#F8FAFC] dark:bg-[#0B1120] border text-slate-900 dark:text-white
-     placeholder:text-slate-400 dark:placeholder:text-slate-600
-     ${focused === field
-       ? 'border-blue-600 dark:border-blue-500 ring-2 ring-blue-600/15 dark:ring-blue-500/15'
-       : 'border-slate-200 dark:border-[#1E293B] hover:border-slate-300 dark:hover:border-[#2D3B55]'
-     }`;
+  if (submitted) return (
+    <div ref={successRef} className="text-center py-10 rounded-2xl" style={{ background:'rgba(17,17,20,0.5)', border:'1px solid rgba(255,255,255,0.08)' }}>
+      <CheckCircle className="w-12 h-12 text-green-400 mx-auto mb-4" />
+      <h3 className="text-xl font-bold text-white mb-2">Message Received!</h3>
+      <p className="text-slate-400 text-sm mb-5">We'll get back to you within 24 hours.</p>
+      <button onClick={() => setSubmitted(false)} className="text-sm text-blue-400 hover:text-blue-300 transition-colors">Send another →</button>
+    </div>
+  );
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.7 }}
-      className="bg-white dark:bg-[#111827] border border-slate-200 dark:border-[#1E293B] p-8 md:p-10"
-    >
-      <AnimatePresence mode="wait">
-        {submitted ? (
-          /* ── Success ── */
-          <motion.div
-            key="success"
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="flex flex-col items-center justify-center py-16 text-center"
-          >
-            <div className="w-16 h-16 bg-blue-50 dark:bg-blue-950/40 border border-blue-200 dark:border-blue-800 flex items-center justify-center mb-6">
-              <FiCheckCircle className="text-3xl text-blue-600 dark:text-blue-400" />
-            </div>
-            <h3 className="text-2xl font-bold font-display text-slate-900 dark:text-white mb-3">Message Sent!</h3>
-            <p className="text-slate-500 dark:text-slate-400 mb-8 text-sm">
-              Thank you for reaching out. We'll get back to you within 24 hours.
-            </p>
-            <button
-              onClick={() => { setSubmitted(false); setFormData({ name: '', email: '', company: '', message: '' }); }}
-              className="px-6 py-2.5 text-sm border border-blue-600 dark:border-blue-400 text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/30 transition-colors font-semibold"
-            >
-              Send Another Message
-            </button>
-          </motion.div>
-        ) : (
-          /* ── Form ── */
-          <motion.form key="form" initial={{ opacity: 0 }} animate={{ opacity: 1 }} onSubmit={handleSubmit}>
-            <h3 className="text-2xl font-bold font-display text-slate-900 dark:text-white mb-1">Send us a message</h3>
-            <p className="text-slate-500 dark:text-slate-400 text-sm mb-8">We'll respond within 24 hours.</p>
-
-            <div className="space-y-5">
-              {/* Name */}
-              <div>
-                <label htmlFor="name" className="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-[0.15em] mb-2">
-                  Full Name <span className="text-blue-600 dark:text-blue-400">*</span>
-                </label>
-                <input
-                  type="text" id="name" name="name" required
-                  value={formData.name} onChange={handleChange}
-                  onFocus={() => setFocused('name')} onBlur={() => setFocused('')}
-                  className={inputClass('name')} placeholder="John Doe"
-                />
-              </div>
-
-              {/* Email */}
-              <div>
-                <label htmlFor="email" className="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-[0.15em] mb-2">
-                  Email Address <span className="text-blue-600 dark:text-blue-400">*</span>
-                </label>
-                <input
-                  type="email" id="email" name="email" required
-                  value={formData.email} onChange={handleChange}
-                  onFocus={() => setFocused('email')} onBlur={() => setFocused('')}
-                  className={inputClass('email')} placeholder="john@company.com"
-                />
-              </div>
-
-              {/* Company */}
-              <div>
-                <label htmlFor="company" className="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-[0.15em] mb-2">
-                  Company
-                </label>
-                <input
-                  type="text" id="company" name="company"
-                  value={formData.company} onChange={handleChange}
-                  onFocus={() => setFocused('company')} onBlur={() => setFocused('')}
-                  className={inputClass('company')} placeholder="Your Company"
-                />
-              </div>
-
-              {/* Message */}
-              <div>
-                <label htmlFor="message" className="block text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-[0.15em] mb-2">
-                  Message <span className="text-blue-600 dark:text-blue-400">*</span>
-                </label>
-                <textarea
-                  id="message" name="message" required rows={5}
-                  value={formData.message} onChange={handleChange}
-                  onFocus={() => setFocused('message')} onBlur={() => setFocused('')}
-                  className={inputClass('message')} placeholder="Tell us about your project..."
-                />
-              </div>
-
-              {/* Submit */}
-              <motion.button
-                type="submit"
-                disabled={loading}
-                whileHover={{ scale: 1.01 }}
-                whileTap={{ scale: 0.98 }}
-                className="w-full group inline-flex items-center justify-center gap-2 px-8 py-4
-                           bg-blue-600 hover:bg-blue-700 disabled:opacity-70
-                           text-white font-bold uppercase tracking-wider text-sm
-                           transition-colors shadow-lg shadow-blue-600/20"
-              >
-                {loading ? (
-                  <>
-                    <svg className="animate-spin h-5 w-5" fill="none" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
-                    </svg>
-                    Sending...
-                  </>
-                ) : (
-                  <>
-                    Send Message
-                    <FiArrowRight className="group-hover:translate-x-1 transition-transform" />
-                  </>
-                )}
-              </motion.button>
-            </div>
-          </motion.form>
-        )}
-      </AnimatePresence>
-    </motion.div>
+    <form ref={formRef} onSubmit={handleSubmit(onSubmit)} className="space-y-4" style={{ opacity:0 }}>
+      {/* sm:grid-cols-2 — stacks to 1 col on phones < 640px */}
+      <div className={`grid gap-4 ${compact ? 'grid-cols-1' : 'grid-cols-1 sm:grid-cols-2'}`}>
+        <Field label="Full Name *" error={errors.name?.message}><input {...register('name')} style={iStyle} placeholder="John Smith" onFocus={fBorder} onBlur={bBorder} /></Field>
+        <Field label="Company" error={errors.company?.message}><input {...register('company')} style={iStyle} placeholder="Acme Corp" onFocus={fBorder} onBlur={bBorder} /></Field>
+      </div>
+      <div className={`grid gap-4 ${compact ? 'grid-cols-1' : 'grid-cols-1 sm:grid-cols-2'}`}>
+        <Field label="Email *" error={errors.email?.message}><input type="email" {...register('email')} style={iStyle} placeholder="you@company.com" onFocus={fBorder} onBlur={bBorder} /></Field>
+        <Field label="Phone / WhatsApp" error={errors.phone?.message}><input type="tel" {...register('phone')} style={iStyle} placeholder="+1 000 000 0000" onFocus={fBorder} onBlur={bBorder} /></Field>
+      </div>
+      {!compact && (
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <Field label="Project Type" error={errors.projectType?.message}><select {...register('projectType')} style={iStyle}><option value="">Select...</option>{PROJECT_TYPES.map(t => <option key={t} value={t}>{t}</option>)}</select></Field>
+          <Field label="Budget" error={errors.budget?.message}><select {...register('budget')} style={iStyle}><option value="">Select...</option>{BUDGETS.map(b => <option key={b} value={b}>{b}</option>)}</select></Field>
+        </div>
+      )}
+      <Field label="Message *" error={errors.message?.message}><textarea rows={compact ? 3 : 4} {...register('message')} style={iStyle} placeholder="Tell us about your project, goals, and timeline..." onFocus={fBorder} onBlur={bBorder} /></Field>
+      {serverError && (
+        <div className="flex items-start gap-2 p-3 rounded-lg text-sm text-red-400" style={{ background:'rgba(239,68,68,0.08)', border:'1px solid rgba(239,68,68,0.2)' }}>
+          <AlertCircle className="w-4 h-4 flex-shrink-0 mt-0.5" />{serverError}
+        </div>
+      )}
+      <button type="submit" disabled={isSubmitting} className="btn-glow w-full flex items-center justify-center gap-2 py-4 bg-blue-600 text-white font-bold text-sm rounded-xl hover:bg-blue-700 transition-colors disabled:opacity-60">
+        {isSubmitting ? <><Loader className="w-4 h-4 animate-spin" /> Sending...</> : <>Send Message <ArrowRight className="w-4 h-4" /></>}
+      </button>
+      <p className="text-xs text-slate-500 text-center">
+        By submitting, you agree to our <Link to="/privacy-policy" className="text-blue-400 hover:text-blue-300 transition-colors">Privacy Policy</Link>. We never share your data.
+      </p>
+    </form>
   );
 };
 
 export default ContactForm;
+
+
+
+
 

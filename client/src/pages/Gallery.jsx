@@ -15,66 +15,60 @@ const Gallery = () => {
     { id: 5, category: 'events',    title: 'Product Launch',       image: '/gallery/p10.jpg' },
   ];
 
-  const filteredImages =
-    selectedCategory === 'all'
-      ? images
-      : images.filter((img) => img.category === selectedCategory);
+  const filtered = selectedCategory === 'all'
+    ? images
+    : images.filter(img => img.category === selectedCategory);
 
   return (
-    <div className="section-bg pt-8">
+    <div className="bg-[#08090B] min-h-screen">
 
-      {/* ── HERO ──────────────────────────────────────── */}
-      <section className="relative py-20 overflow-hidden">
-        {/* Ambient glow */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-blue-500/8 blur-[140px] rounded-full" />
-        </div>
+      {/* HERO */}
+      <section className="pt-24 pb-16 text-center relative overflow-hidden"
+        style={{ background: 'linear-gradient(180deg, #0B0D12 0%, #08090B 100%)' }}>
+        <div className="absolute inset-0 opacity-[0.04]"
+          style={{ backgroundImage: 'linear-gradient(rgba(148,163,184,1) 1px, transparent 1px), linear-gradient(90deg, rgba(148,163,184,1) 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] pointer-events-none"
+          style={{ background: 'radial-gradient(ellipse, rgba(255,255,255,0.12) 0%, transparent 70%)', borderRadius: '50%' }} />
 
-        <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center max-w-4xl mx-auto"
-          >
-            <span className="inline-block px-4 py-1.5 rounded-full border border-blue-500/30 bg-blue-500/10 text-blue-400 text-sm font-semibold tracking-widest uppercase mb-6">
-              Visual Stories
-            </span>
-            <h1 className="text-5xl lg:text-7xl font-bold mb-6 text-primary">
-              Our <span className="text-gradient">Gallery</span>
-            </h1>
-            <p className="text-xl text-secondary leading-relaxed">
-              Moments captured from our journey, events, and team activities
-            </p>
+        <div className="relative z-10 max-w-3xl mx-auto px-6">
+          <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}>
+            <span className="section-label mb-4 inline-flex">Visual Stories</span>
           </motion.div>
+          <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
+            className="text-4xl sm:text-5xl lg:text-7xl font-extrabold font-display text-white mb-5">
+            Our <span className="text-slate-200">Gallery</span>
+          </motion.h1>
+          <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
+            className="text-xl text-slate-400 leading-relaxed">
+            Moments captured from our journey, events, and team activities
+          </motion.p>
         </div>
       </section>
 
-      {/* ── CATEGORY FILTER ───────────────────────────── */}
-      <section className="py-4 section-bg-alt sticky top-20 z-40 backdrop-blur-xl border-b border-white/5">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <div className="flex flex-wrap justify-center gap-3">
-            {categories.map((category) => (
-              <motion.button
-                key={category}
-                onClick={() => setSelectedCategory(category)}
-                whileHover={{ scale: 1.04 }}
-                whileTap={{ scale: 0.96 }}
-                className={`px-6 py-2 rounded-full text-sm font-semibold transition-all ${
-                  selectedCategory === category
-                    ? 'bg-blue-500 text-black shadow-lg shadow-blue-500/30'
-                    : 'bg-white/5 text-secondary hover:bg-white/10 border border-white/10 hover:border-blue-500/30'
-                }`}
-              >
-                {category.charAt(0).toUpperCase() + category.slice(1)}
-              </motion.button>
-            ))}
-          </div>
+      {/* STICKY FILTER */}
+      <div className="sticky top-[62px] z-40 border-b py-4"
+        style={{ background: 'rgba(8,9,11,0.92)', backdropFilter: 'blur(20px)', borderColor: 'rgba(255,255,255,0.07)' }}>
+        <div className="max-w-7xl mx-auto px-6 lg:px-8 flex flex-wrap justify-center gap-3">
+          {categories.map(cat => (
+            <motion.button
+              key={cat}
+              onClick={() => setSelectedCategory(cat)}
+              whileHover={{ scale: 1.04 }}
+              whileTap={{ scale: 0.96 }}
+              className="px-5 py-2 rounded-full text-sm font-semibold transition-all"
+              style={selectedCategory === cat
+                ? { background: '#E5E7EB', color: '#111827', boxShadow: '0 0 20px rgba(229,231,235,0.25)' }
+                : { background: 'rgba(255,255,255,0.06)', color: '#94a3b8', border: '1px solid rgba(255,255,255,0.1)' }
+              }
+            >
+              {cat.charAt(0).toUpperCase() + cat.slice(1)}
+            </motion.button>
+          ))}
         </div>
-      </section>
+      </div>
 
-      {/* ── CIRCULAR GALLERY ──────────────────────────── */}
-      <section className="py-12 section-bg">
+      {/* CIRCULAR GALLERY — component preserved unchanged */}
+      <section className="py-12">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <AnimatePresence mode="wait">
             <motion.div
@@ -86,7 +80,7 @@ const Gallery = () => {
               style={{ height: 600, position: 'relative' }}
             >
               <CircularGallery
-                items={filteredImages.map((img) => ({ image: img.image, text: img.title }))}
+                items={filtered.map(img => ({ image: img.image, text: img.title }))}
                 bend={3}
                 textColor="#ffffff"
                 borderRadius={0.05}
@@ -97,8 +91,9 @@ const Gallery = () => {
 
           {/* Count badge */}
           <div className="text-center mt-8">
-            <span className="inline-block px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-secondary text-xs font-semibold">
-              {filteredImages.length} {filteredImages.length === 1 ? 'photo' : 'photos'}
+            <span className="px-4 py-1.5 rounded-full text-xs font-semibold text-slate-400"
+              style={{ background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.1)' }}>
+              {filtered.length} {filtered.length === 1 ? 'photo' : 'photos'}
               {selectedCategory !== 'all' && ` in "${selectedCategory}"`}
             </span>
           </div>
@@ -109,4 +104,3 @@ const Gallery = () => {
 };
 
 export default Gallery;
-

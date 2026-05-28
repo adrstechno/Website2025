@@ -19,7 +19,7 @@ const SocialPopup = () => {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: 10 }}
             transition={{ duration: 0.15 }}
-            className="bg-[#0B1120] text-white text-xs font-bold uppercase tracking-wider
+            className="bg-[#08090B] text-white text-xs font-bold uppercase tracking-wider
                        px-4 py-2 whitespace-nowrap border border-[#1E293B] shadow-xl"
           >
             Apply Now
@@ -49,4 +49,5 @@ const SocialPopup = () => {
 };
 
 export default SocialPopup;
+
 

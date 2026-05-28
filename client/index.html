@@ -2,17 +2,205 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-
-    <link rel="manifest" href="/manifest.json" />
-  <meta name="theme-color" content="#000000" />
-
-
-    <link rel="icon" type="image/svg+xml" href="/logo-dark.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>ADRS Techno - Innovation & Technology</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <!-- Primary SEO -->
+    <title>ADRS Techno - Software Development, AI Automation & BPO Solutions | Est. 2022</title>
+    <meta name="description" content="ADRS Techno — 100+ projects delivered, 40+ specialist developers, serving 6+ countries. Software development, AI automation, BPO & offshore teams for global businesses. Free consultation." />
+    <meta name="keywords" content="software development company India, AI automation, BPO solutions, mobile app development, web development, dedicated developers, offshore team, React developers, Flutter developers, MERN stack, SaaS development, cloud DevOps, Jabalpur, Bhopal, Raipur" />
+    <meta name="author" content="ADRS Technology Private Limited" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://adrstechno.com/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://adrstechno.com/" />
+    <meta property="og:title" content="ADRS Techno — Build Scalable Digital Products" />
+    <meta property="og:description" content="100+ Projects Delivered · 40+ Developers · 6+ Countries. Software Development, AI Automation & BPO for Global Businesses." />
+    <meta property="og:image" content="/og-image.png" />
+    <meta property="og:site_name" content="ADRS Techno" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="ADRS Techno — Build Scalable Digital Products" />
+    <meta name="twitter:description" content="100+ Projects Delivered · 40+ Developers · 6+ Countries. Software Development, AI Automation & BPO." />
+    <meta name="twitter:image" content="/og-image.png" />
+
+    <!-- PWA + Theme -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#2563EB" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/logo-dark.png" />
+    <link rel="apple-touch-icon" href="/logo-dark.png" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+
+    <!-- Schema: Organization — 3 offices, corrected founding year -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "ADRS Technology Private Limited",
+      "alternateName": "ADRS Techno",
+      "url": "https://adrstechno.com",
+      "logo": "https://adrstechno.com/logo.png",
+      "description": "Enterprise software development, AI automation, BPO operations and offshore dedicated teams for global businesses. 100+ projects, 40+ developers, 6+ countries served.",
+      "foundingDate": "2022",
+      "numberOfEmployees": { "@type": "QuantitativeValue", "value": 40 },
+      "address": [
+        {
+          "@type": "PostalAddress",
+          "name": "Headquarters — Jabalpur",
+          "streetAddress": "71, Dadda Nagar, Karmeta",
+          "addressLocality": "Jabalpur",
+          "addressRegion": "Madhya Pradesh",
+          "postalCode": "482001",
+          "addressCountry": "IN"
+        },
+        {
+          "@type": "PostalAddress",
+          "name": "Regional Office — Bhopal",
+          "streetAddress": "Plot No. R25, Opposite Railway Track, Zone 02, Maharana Pratap Nagar",
+          "addressLocality": "Bhopal",
+          "addressRegion": "Madhya Pradesh",
+          "postalCode": "462011",
+          "addressCountry": "IN"
+        },
+        {
+          "@type": "PostalAddress",
+          "name": "Regional Office — Raipur",
+          "streetAddress": "Shangar Nagar, VIP Road",
+          "addressLocality": "Raipur",
+          "addressRegion": "Chhattisgarh",
+          "postalCode": "492001",
+          "addressCountry": "IN"
+        }
+      ],
+      "contactPoint": [{
+        "@type": "ContactPoint",
+        "telephone": "+91-9201347033",
+        "email": "support@adrstechno.com",
+        "contactType": "customer service",
+        "availableLanguage": ["English", "Hindi"],
+        "contactOption": "TollFree",
+        "hoursAvailable": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+          "opens": "09:00",
+          "closes": "19:00"
+        }
+      }],
+      "sameAs": [
+        "https://www.linkedin.com/company/adrs-technology/",
+        "https://github.com/adrstechno",
+        "https://www.instagram.com/adrstechno"
+      ],
+      "knowsAbout": [
+        "Software Development", "AI Automation", "BPO Solutions",
+        "Mobile App Development", "SaaS Development", "Cloud Computing",
+        "DevOps", "React Development", "Flutter Development", "MERN Stack"
+      ]
+    }
+    </script>
+
+    <!-- Schema: LocalBusiness (Headquarters) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "ADRS Technology Private Limited",
+      "image": "https://adrstechno.com/logo.png",
+      "url": "https://adrstechno.com",
+      "telephone": "+91-9201347033",
+      "email": "support@adrstechno.com",
+      "foundingDate": "2022",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "71, Dadda Nagar, Karmeta",
+        "addressLocality": "Jabalpur",
+        "addressRegion": "Madhya Pradesh",
+        "postalCode": "482001",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 23.1815,
+        "longitude": 79.9864
+      },
+      "priceRange": "$$",
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+        "opens": "09:00",
+        "closes": "19:00"
+      },
+      "areaServed": ["India","United States","United Kingdom","United Arab Emirates","Australia","Canada"],
+      "serviceType": ["Software Development","AI Automation","BPO Solutions","Mobile App Development","Cloud DevOps"]
+    }
+    </script>
+
+    <!-- Schema: WebSite -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "ADRS Techno",
+      "url": "https://adrstechno.com",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://adrstechno.com/?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      }
+    }
+    </script>
+
+    <!-- Schema: FAQ -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What does ADRS Techno do?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ADRS Techno provides software development, AI automation, mobile app development, SaaS products, BPO solutions, cloud/DevOps services, and dedicated offshore developer teams for global businesses."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you sign NDAs?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. We sign NDA agreements before any project discussion begins. 100% IP ownership is transferred to the client on project completion."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much does it cost to hire developers from ADRS Techno?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Developer rates range from $25 to $45 per hour depending on the role and experience level. Fixed-price and dedicated team models are also available."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Where is ADRS Techno located?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "ADRS Techno is headquartered in Jabalpur, Madhya Pradesh, India, with regional offices in Bhopal and Raipur. We serve clients globally across the USA, UK, UAE, and more."
+          }
+        }
+      ]
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>
