@@ -12,6 +12,7 @@ const getInitials = (name) =>
 const Team = () => {
   const leaders = [
     { name: 'Mr. Abhishek Dubey', role: 'Founder & CEO',                               image: '/images/Abhishek.jpg' },
+    { name: 'Mr. Prateek Gupta',  role: 'Co-Founder & Chief Strategy Officer (CSO)',   image: '/images/PrateekGupta.jpeg' },
   ];
 
   const developers = [
@@ -69,7 +70,7 @@ const Team = () => {
             <SLabel text="Leadership" />
             <h2 className="text-4xl sm:text-5xl font-extrabold font-display text-white">Executive Team</h2>
           </motion.div>
-          <div className="grid grid-cols-1 gap-6 max-w-xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
             {leaders.map((l, i) => <MemberCard key={i} person={l} large />)}
           </div>
         </Wrap>
@@ -118,6 +119,4 @@ const Team = () => {
 };
 
 export default Team;
-
-
 
