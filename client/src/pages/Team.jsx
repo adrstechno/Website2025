@@ -12,14 +12,11 @@ const getInitials = (name) =>
 const Team = () => {
   const leaders = [
     { name: 'Mr. Abhishek Dubey', role: 'Founder & CEO',                               image: '/images/Abhishek.jpg' },
-    { name: 'Mr. Prateek Gupta',  role: 'Co-Founder & Chief Strategy Officer (CSO)',   image: '/images/PrateekGupta.jpeg' },
   ];
 
   const developers = [
     { name: 'Siddhant Dubey',    role: 'Chief Technical Officer',                image: '/images/Siddhant.jpg' },
-    { name: 'Aman Vishwakarma',  role: 'Chief Operating Officer',                image: '/images/Aman.jpg' },
-    { name: 'Danish Khan',       role: 'ErpNEXT-Python Developer',               image: '/images/danish.jpeg' },
-    { name: 'Abhay Mishra',      role: 'Business Development Administrator',     image: '/images/abhay.jpeg' },
+    { name: 'Abhay Mishra',      role: 'BDA (Business Development Administrator)', image: '/images/abhay.jpeg' },
   ];
 
   const MemberCard = ({ person, large = false }) => (
@@ -72,7 +69,7 @@ const Team = () => {
             <SLabel text="Leadership" />
             <h2 className="text-4xl sm:text-5xl font-extrabold font-display text-white">Executive Team</h2>
           </motion.div>
-          <div className="grid md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+          <div className="grid grid-cols-1 gap-6 max-w-xl mx-auto">
             {leaders.map((l, i) => <MemberCard key={i} person={l} large />)}
           </div>
         </Wrap>
@@ -83,10 +80,10 @@ const Team = () => {
         <Wrap>
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }} className="mb-12">
-            <SLabel text="Development" />
-            <h2 className="text-4xl sm:text-5xl font-extrabold font-display text-white">Core Engineers</h2>
+            <SLabel text="Technology & Growth" />
+            <h2 className="text-4xl sm:text-5xl font-extrabold font-display text-white">Core Team</h2>
           </motion.div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid sm:grid-cols-2 gap-6 max-w-3xl mx-auto">
             {developers.map((d, i) => <MemberCard key={i} person={d} />)}
           </div>
         </Wrap>
@@ -121,7 +118,6 @@ const Team = () => {
 };
 
 export default Team;
-
 
 
 
